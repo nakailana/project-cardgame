@@ -1,10 +1,10 @@
-# My Personal Project
+# Personal Project: Cards Against Boredom
 
-## A subtitle
+## About 🃏
+As a busy university student, I sometimes find myself wondering *“what do I do with my life now?”* as soon as the occasional day off rolls around. **Cards Against Boredom** helps with this by randomly generating activity cards (that users pre-set)!  
+The inspiration for my app comes from a small pouch I found while doing a deep clean of my closet. When I was little—before TikTok, Reels, and the emergence of elementary schoolers who owned their own smart phones—I wrote the names of various activities/games on paper slips and put them in the pouch. When I was bored, I would pull out a paper slip and do that activity.  
+**Cards Against Boredom** follows this simple idea in an improved digital form, where users can make their own prompt/activity cards. Cards that follow a theme can also be put into specified decks, so users can create themed decks such as “party”, “date night ideas”, or even “game mode” if they got creative. The flexibility of card and deck making makes **Cards Against Boredom** compatible for anyone who has difficulty deciding what to do, or just needs a little spontaneity in their life :)
 
-A *bulleted* list:
-- item 1
-- item 2
-- item 3
+*As a user I want to be able to…* 💭
 
-An example of text with **bold** and *italic* fonts.  
+- bullet 1
