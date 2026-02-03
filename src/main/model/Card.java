@@ -1,0 +1,56 @@
+package model;
+
+import java.util.ArrayList;
+
+// Represents a Card having an activity name, the name of the deck it belongs to, and optionally a brief description
+public class Card {
+
+    /*
+     * REQUIRES: activity and has a non-zero length; 
+                 deckName matches the name of the deck it belongs to
+     * EFFECTS: the card's activity is set to activity;
+     *          its description is set to the given description.
+     */
+    public Card(String activity, String deckName, String description) {
+        // stub
+    }
+
+    // REQUIRES: decks is an ArrayList of decks, which are ArrayLists of Cards
+    // MODIFIES: decks
+    // EFFECTS: adds this to all given decks
+    public void addToDecks(ArrayList<ArrayList<Card>> decks) {
+        // stub
+    }
+
+    // REQUIRES: decks is an ArrayList of decks; each deck is not empty
+    // MODIFIES: decks
+    // EFFECTS: removes this from list of given decks
+    public void removeAllInstances(ArrayList<ArrayList<Card>> decks) {
+        // stub
+    }
+
+    // setters
+    public void updateActivity(String newActivity) {
+        // stub
+    }
+    public void updateDeckName(String deckName) {
+        // stub
+    }
+    public void updateDescription(String newDesc) {
+        // stub
+    }
+
+    // getters
+    public String getActivity() {
+        return ""; // stub
+    }
+
+    public String getDeckName() {
+        return ""; // stub
+    }
+
+    public String getDescription() {
+        return ""; // stub
+    }
+
+}
