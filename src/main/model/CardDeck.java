@@ -33,9 +33,10 @@ public class CardDeck {
     }
 
     // MODIFIES: this
-    // EFFECTS: updates this deck's name; changes deckName for all cards in this deck
-    public void updateName(String newActivity) {
-        // stub
+    // EFFECTS: flips to the next card in the deck;
+    //          if the end of the deck is reached, return the first card in the deck
+    public Card getNextCard() {
+        return null; // stub
     }
 
     // getters

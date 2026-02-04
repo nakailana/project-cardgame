@@ -2,16 +2,15 @@ package model;
 
 import java.util.ArrayList;
 
-// Represents a Card having an activity name, the name of the deck it belongs to, and optionally a brief description
+// Represents a Card having an activity name, and optionally a brief description
 public class Card {
 
     /*
      * REQUIRES: activity and has a non-zero length; 
-                 deckName matches the name of the deck it belongs to
      * EFFECTS: the card's activity is set to activity;
      *          its description is set to the given description.
      */
-    public Card(String activity, String deckName, String description) {
+    public Card(String activity, String description) {
         // stub
     }
 
@@ -33,19 +32,12 @@ public class Card {
     public void updateActivity(String newActivity) {
         // stub
     }
-    public void updateDeckName(String deckName) {
-        // stub
-    }
     public void updateDescription(String newDesc) {
         // stub
     }
 
     // getters
     public String getActivity() {
-        return ""; // stub
-    }
-
-    public String getDeckName() {
         return ""; // stub
     }
 

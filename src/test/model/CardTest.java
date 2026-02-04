@@ -12,17 +12,16 @@ public class CardTest {
     
     @BeforeEach
     void runBefore() {
-        c1 = new Card("A1", "A", "");
+        c1 = new Card("A", "");
     }
 
     @Test
     void testConstructor() {
         assertEquals("A1", c1.getActivity());
-        assertEquals("A", c1.getDeckName());
         assertEquals("", c1.getDescription());
     }
     @Test
     void testAddCardToDecks(){
-        
+
     }
 }
