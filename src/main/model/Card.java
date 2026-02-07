@@ -1,6 +1,7 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.List;
 
 // Represents a Card having an activity name, and optionally a brief description
 public class Card {
@@ -14,17 +15,16 @@ public class Card {
         // stub
     }
 
-    // REQUIRES: decks is an ArrayList of decks, which are ArrayLists of Cards
+    // REQUIRES: decks is an ArrayList of decks, which are ArrayLists of Cards;
     // MODIFIES: decks
-    // EFFECTS: adds this to all given decks
-    public void addToDecks(ArrayList<ArrayList<Card>> decks) {
+    // EFFECTS: adds this card to all given decks that don't already have this card
+    public void addToDecks(List<ArrayList<Card>> decks) {
         // stub
     }
 
-    // REQUIRES: decks is an ArrayList of decks; each deck is not empty
     // MODIFIES: decks
     // EFFECTS: removes this from list of given decks
-    public void removeAllInstances(ArrayList<ArrayList<Card>> decks) {
+    public void removeAllInstances(List<ArrayList<Card>> decks) {
         // stub
     }
 
