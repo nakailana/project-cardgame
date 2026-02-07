@@ -1,8 +1,5 @@
 package model;
 
-import java.util.ArrayList;
-import java.util.List;
-
 // Represents a Card having an activity name, if it is an outdoor activity,
 // and optionally a brief description
 public class Card {
@@ -39,7 +36,7 @@ public class Card {
     public String getActivity() {
         return ""; // stub
     }
-    public Boolean getAppropriateLocation() {
+    public Boolean getLocation() {
         return false; // stub
     }
     public String getDescription() {
