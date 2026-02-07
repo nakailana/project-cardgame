@@ -1,6 +1,7 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.List;
 
 // Represents a Card Deck with a name (theme) and list of cards.
 public class CardDeck {
@@ -30,6 +31,15 @@ public class CardDeck {
     // EFFECTS: removes given card from the deck
     public void removeFromDeck(Card card) {
         // stub
+    }
+
+    // EFFECTS: filters cards in the deck by whether they are indoor activities
+    public List<Card> filterIndoor() {
+        return null; // stub
+    }
+    // EFFECTS: filters cards in the deck by whether they are outdoor activities
+    public List<Card> filterOutdoor() {
+        return null; // stub
     }
 
     // MODIFIES: this
