@@ -17,35 +17,23 @@ public class CardDeck {
 
     // REQUIRES: this is not an empty ArrayList
     // EFFECTS: draws a random card from the deck
-    public Card pullRandomCard(){
+    public Card pullRandomCard() {
+        return null; //stub
+    }
+    // REQUIRES: this is not an empty ArrayList
+    // EFFECTS: draws a random card of specified location from the deck
+    public Card pullRandomCard(Boolean outdoor) {
         return null; //stub
     }
 
     // MODIFIES: this
-    // EFFECTS: adds given card to the deck
+    // EFFECTS: adds given card to the deck if it is not yet in the deck
     public void addToDeck(Card card) {
         // stub
     }
 
-    // MODIFIES: this
-    // EFFECTS: removes given card from the deck
-    public void removeFromDeck(Card card) {
-        // stub
-    }
-
     // EFFECTS: filters cards in the deck by whether they are indoor activities
-    public List<Card> filterIndoor() {
-        return null; // stub
-    }
-    // EFFECTS: filters cards in the deck by whether they are outdoor activities
-    public List<Card> filterOutdoor() {
-        return null; // stub
-    }
-
-    // MODIFIES: this
-    // EFFECTS: flips to the next card in the deck;
-    //          if the end of the deck is reached, return the first card in the deck
-    public Card getNextCard() {
+    public List<Card> filterCards(Boolean outdoor) {
         return null; // stub
     }
 
