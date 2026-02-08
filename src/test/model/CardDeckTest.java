@@ -69,10 +69,38 @@ public class CardDeckTest {
 
     @Test
     void testPullRandomCardFilterIndoor() {
+        deck.addToDeck(c1);
+        deck.addToDeck(c3);
+        int pullC1 = 0;
+        int pullC3 = 0;
+
+        for (int i = 0; i < 50; i++) {
+            if (c1.equals(deck.pullRandomCard(false))) {
+                pullC1++;
+            } else {
+                pullC3++;
+            }
+        }
+        assertTrue((pullC1 > 10) && (pullC1 < 40));
+        assertTrue((pullC3 > 10) && (pullC3 < 40));
     }
     @Test
     void testPullRandomCardFilterOutdoor() {
         Card c4 = new Card("swim", true, "");
+        deck.addToDeck(c2);
+        deck.addToDeck(c4);
+        int pullC2 = 0;
+        int pullC4 = 0;
+
+        for (int i = 0; i < 50; i++) {
+            if (c1.equals(deck.pullRandomCard(true))) {
+                pullC2++;
+            } else {
+                pullC4++;
+            }
+        }
+        assertTrue((pullC2 > 10) && (pullC2 < 40));
+        assertTrue((pullC4 > 10) && (pullC4 < 40));
     }
 
     @Test 
