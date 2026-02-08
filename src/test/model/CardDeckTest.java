@@ -63,8 +63,8 @@ public class CardDeckTest {
                 pullC2++;
             }
         }
-        assertTrue((pullC1 > 5) && (pullC1 < 45));
-        assertTrue((pullC2 > 5) && (pullC2 < 45));
+        assertTrue((pullC1 > 8) && (pullC1 < 40));
+        assertTrue((pullC2 > 8) && (pullC2 < 40));
     }
 
     @Test
@@ -81,8 +81,8 @@ public class CardDeckTest {
                 pullC3++;
             }
         }
-        assertTrue((pullC1 > 10) && (pullC1 < 40));
-        assertTrue((pullC3 > 10) && (pullC3 < 40));
+        assertTrue((pullC1 > 15) && (pullC1 < 35));
+        assertTrue((pullC3 > 15) && (pullC3 < 35));
     }
     @Test
     void testPullRandomCardFilterOutdoor() {
@@ -93,7 +93,7 @@ public class CardDeckTest {
         int pullC4 = 0;
 
         for (int i = 0; i < 50; i++) {
-            if (c1.equals(deck.pullRandomCard(true))) {
+            if (c2.equals(deck.pullRandomCard(true))) {
                 pullC2++;
             } else {
                 pullC4++;
