@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 
 public class CardDeckTest {
 
-    CardDeck deck;
+    Deck deck;
     Card c1, c2, c3;
     ArrayList<Card> d1, d2;
     
@@ -26,7 +26,7 @@ public class CardDeckTest {
         d1.add(c3);
         d2 = new ArrayList<Card>();
 
-        deck = new CardDeck("cool");
+        deck = new Deck("cool");
     }
 
     @Test

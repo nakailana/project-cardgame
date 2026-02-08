@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 // Represents a Card Deck with a name (theme) and list of cards.
-public class CardDeck {
+public class Deck {
 
     String deckName;
     List<Card> cards;
@@ -14,7 +14,7 @@ public class CardDeck {
      * EFFECTS: the deck's name is set to deckName;
      *          the deck is set to an empty ArrayList containing no Cards
      */
-    public CardDeck(String deckName) {
+    public Deck(String deckName) {
         this.deckName = deckName;
         cards = new ArrayList<Card>();
     }
