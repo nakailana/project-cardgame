@@ -13,9 +13,9 @@ public class CardTest {
     
     @BeforeEach
     void runBefore() {
-        c1 = new Card("A", false, "Indoor activity.");
-        c2 = new Card("B", true, "Outdoor activity. ball");
-        c3 = new Card("C", false, "Indoor activity.");
+        c1 = new Card("A", false, "");
+        c2 = new Card("B", true, "ball");
+        c3 = new Card("C", false, "");
     }
 
     @Test
@@ -28,20 +28,20 @@ public class CardTest {
     void testConstructorIndoor() {
         assertEquals("A", c1.getActivity());
         assertFalse(c1.getLocation());
-        assertEquals("Indoor activity", c1.getDescription());
+        assertEquals("Indoor activity. ", c1.getDescription());
     }
 
     @Test
     void updateLocationTestChangeDesc(){
         c1.updateLocation(true);
         assertTrue(c1.getLocation());
-        assertEquals("Outdoor activity.", c1.getDescription());
+        assertEquals("Outdoor activity. ", c1.getDescription());
     }
     @Test
     void updateLocationTestNoChangeDesc(){
         c1.updateLocation(false);
         assertFalse(c1.getLocation());
-        assertEquals("Indoor activity.", c1.getDescription());
+        assertEquals("Indoor activity. ", c1.getDescription());
     }
 
     @Test

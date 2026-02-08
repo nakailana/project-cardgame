@@ -4,43 +4,53 @@ package model;
 // and optionally a brief description
 public class Card {
 
+    private String activity, description, locationDesc;
+    private Boolean outdoor;
+
     /*
-     * REQUIRES: activity and has a non-zero length; 
-     * EFFECTS: the card's activity is set to activity;
-     *          the card's location is set to indoor;
-     *          its description is set to describe the recommended location, 
-     *          followed by the given description.
+     * REQUIRES: activity has a non-zero length; 
+     * EFFECTS: the card's activity is set to activity; the card's location is set to indoor;
+     *          its description states the recommended location followed by the given description.
      */
     public Card(String activity, Boolean outdoor, String description) {
-        // stub
+        this.activity = activity;
+        this.outdoor = outdoor;
+
+        if (this.outdoor) {
+            this.locationDesc = "Outdoor activity. ";
+        } else {
+            this.locationDesc = "Indoor activity. ";
+        }
+        this.description = description;
     }
 
     // setters
-    public void updateActivity(String newActivity) {
-        // stub
-    }
     // MODIFIES: this
-    // EFFECTS: updates the recommended location of this activity, and updates the 
-    //          location listed in the description
+    // EFFECTS: updates the location of this, updates location returned in description
     public void updateLocation(Boolean location) {
-        //stub
+        outdoor = location;
+
+        if (this.outdoor) {
+            this.locationDesc = "Outdoor activity. ";
+        } else {
+            this.locationDesc = "Indoor activity. ";
+        }
     }
     // MODIFIES: this
-    // EFFECTS: updates the description of the activity without changing the 
-    //          location description
+    // EFFECTS: updates the description of the activity without changing the location description
     public void updateDescription(String newDesc) {
-        // stub
+        this.description = newDesc;
     }
 
     // getters
     public String getActivity() {
-        return ""; // stub
+        return activity;
     }
     public Boolean getLocation() {
-        return false; // stub
+        return outdoor;
     }
     public String getDescription() {
-        return ""; // stub
+        return locationDesc + description; 
     }
 
 }
