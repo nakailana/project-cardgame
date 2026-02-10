@@ -35,7 +35,7 @@ public class CardGame {
     public void init() {
         decks = new ArrayList<Deck>();
         currentDeck = null;
-        this.scanner = new Scanner(System.in);addNewCard();
+        this.scanner = new Scanner(System.in);
         isProgramRunning = true;
     }
 
@@ -49,9 +49,9 @@ public class CardGame {
     // EFFECTS: displays a list of commands that can be used in the main menu
     public void displayMenu() {
         System.out.println("Please select an option:\n");
-        System.out.println("a: Add a new Deck");
-        System.out.println("v: View all Decks");
-        System.out.println("q: Exit the application");
+        System.out.println("a: Add a new deck");
+        System.out.println("v: View all decks and select");
+        System.out.println("q: Quit game");
         printDivider();
     }
 
@@ -95,41 +95,48 @@ public class CardGame {
         }
         displayDeckMenu();
         String input = "";
-        while (!input.equals("q")) {
-            input = this.scanner.nextLine();
-            try { 
-                int i = Integer.parseInt(input) - 1;
-                currentDeck = decks.get(i);
-                System.out.println(currentDeck.getDeckName() + " deck selected!");
-            } catch (Exception e) {
-                System.out.println("Invalid option inputted. Please try again.");
-            }
+        
+        input = this.scanner.nextLine();
+        try { 
+            int i = Integer.parseInt(input) - 1;
+            currentDeck = decks.get(i);
+            System.out.println(currentDeck.getDeckName() + " deck selected!");
+            printDivider();
+            handleMenuDeck();
+        } catch (Exception e) {
+            System.out.println("Invalid option inputted. Please try again.");
         }
-        handleViewMenuDeck(input, currentDeck);
     }
 
-    // EFFECTS: displays a list of decks/commands that can be used in the card deck menu
+    // EFFECTS: displays a list of decks in the card deck view
     public void displayDeckMenu() {
-        System.out.println("Please select a deck by entering its number:\n");
+        System.out.println("\nPlease select a deck by entering its number:\n");
         for (int i = 0; i < decks.size(); i++) {
             System.out.println((i + 1) + ": " + decks.get(i).getDeckName());
         }
-        System.out.println("Enter 'q' to return to the menu.");
+    }
+
+    // EFFECTS: displays and processes inputs for the deck menu
+    public void handleMenuDeck() {
+        displayCardMenu();
+        String input = this.scanner.nextLine();
+        handleViewMenuDeck(input);
     }
 
     // EFFECTS: displays a list of commands that can be used within the deck
     public void displayCardMenu() {
         System.out.println("Please select an option:\n");
-        System.out.println("a: Add a new Card");
-        System.out.println("r: Draw a random Card");
-        System.out.println("f: Draw a random Card (filtered)");
-        System.out.println("v: View all Cards");
-        System.out.println("q: Exit the application");
+        System.out.println("a: Add a new card");
+        System.out.println("r: Draw a random card");
+        System.out.println("f: Draw a random card (filtered)");
+        System.out.println("v: View all cards");
+        System.out.println("x: Delete a card");
+        System.out.println("q: Return to menu");
         printDivider();
     }
     // MODIFIES: this
     // EFFECTS: processes user's input within the deck viewing menu
-    public void handleViewMenuDeck(String input, Deck deck) {
+    public void handleViewMenuDeck(String input) {
         System.out.print("\n");
 
         switch (input) {
@@ -142,12 +149,16 @@ public class CardGame {
             case "f":
                 drawCardFiltered();
                 break;
+            case "x":
+                deleteCard();
+                break;
             case "q":
                 System.out.println("Returning to the menu...");
                 break;
             default:
                 System.out.println("Invalid option inputted. Please try again.");
         }
+        printDivider();
     }
 
     // MODIFIES: this
@@ -159,13 +170,31 @@ public class CardGame {
     // MODIFIES:
     // EFFECTS: adds a Card to the current Deck
     public void addNewCard() {
-        //stub
+        System.out.println("Please enter the card's activity name:");
+        String name = this.scanner.nextLine();
+
+        System.out.println("\nIs the activity for the outdoors?");
+        System.out.println("(enter t for outdoor, f for indoor)");
+        boolean loc = false;
+        if (this.scanner.nextLine().equals("t")) {
+            loc = true;
+        }
+
+        System.out.println("Finally, please enter a brief description:");
+        String desc = this.scanner.nextLine();
+
+        Card c = new Card(name, loc, desc);
+
+        this.currentDeck.addToDeck(c);
+        System.out.println("\nNew activity card successfully created!");
+        System.out.println("\nActivity: " + c.getActivity());
+        System.out.println("Description: " + c.getDescription());
     }
 
     // MODIFIES: this
     // EFFECTS: draws a random card from the current deck
     public void drawCard() {
-       //stub
+       displayCard(currentDeck.pullRandomCard());
     }
     // MODIFIES: this
     // EFFECTS: draws a random card from a filtered version of the current deck
@@ -181,29 +210,16 @@ public class CardGame {
     // MODIFIES: Card
     // EFFECTS: change the given card's recommended location
     public void toggleCardLocation(Boolean input, Card card) {
-        //stub
+        card.updateLocation(input);
     }
     // MODIFIES: Card
     // EFFECTS: change the given card's description based on user input
     public void changeDescription(String input, Card card) {
-        //stub
+        card.updateDescription(input);
     }
 
-    // MODIFIES: this
-    // EFFECTS: if there is another card in the deck, increments the current card index
-    public void getNextCard(List<Card> cards) {
-        //stub
-    }
-
-    // MODIFIES: this
-    // EFFECTS: if there is a previous card in the deck, decrements the current card index
-    public void getPreviousCard() {
-        //stub
-    }
-
-    // MODIFIES: cards
-    // EFFECTS: deletes the card from the deck 
-    public void deleteCard(List<Card> cards) {
+    // EFFECTS: deletes the card from the current deck 
+    public void deleteCard() {
        //stub
     }
 
@@ -217,6 +233,6 @@ public class CardGame {
 
     // EFFECTS: prints out a line of dashes to act as a divider
     private void printDivider() {
-        //stub
+        System.out.println("------------------------------------");
     }
 }
