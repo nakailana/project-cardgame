@@ -41,6 +41,11 @@ public class Deck {
             cards.add(card);
         }
     }
+    // MODIFIES: this
+    // EFFECTS: removes given card from the deck
+    public void removeFromDeck(Card card) {
+        cards.remove(card);
+    }
 
     // EFFECTS: filters cards in the deck by their activity location
     public List<Card> filterCards(Boolean outdoor) {

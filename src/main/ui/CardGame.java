@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import com.apple.laf.resources.aqua;
-
 import model.Card;
 import model.Deck;
 

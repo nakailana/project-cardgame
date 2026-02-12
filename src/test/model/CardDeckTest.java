@@ -47,6 +47,29 @@ public class CardDeckTest {
         d2.add(c1);
         assertEquals(d2, deck.getCards());
     }
+    @Test 
+    void testremoveOneFromDeck() {
+        deck.addToDeck(c1);
+        deck.addToDeck(c2);
+        deck.addToDeck(c3);
+        d2.add(c1);
+        d2.add(c3);
+        deck.removeFromDeck(c2);
+        assertEquals(d2, deck.getCards());
+    }
+    @Test 
+    void testremoveMultipleFromDeck() {
+        deck.addToDeck(c1);
+        deck.addToDeck(c2);
+        deck.addToDeck(c3);
+        d2.add(c1);
+        deck.removeFromDeck(c2);
+        deck.removeFromDeck(c3);
+        assertEquals(d2, deck.getCards());
+        d2.remove(c1);
+        deck.removeFromDeck(c1);
+        assertEquals(d2, deck.getCards());
+    }
 
     @Test
     void testPullRandomCardNoFilter() {
