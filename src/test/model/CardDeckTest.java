@@ -2,12 +2,15 @@ package model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import exceptions.EmptyListException;
 
 public class CardDeckTest {
 
@@ -98,10 +101,14 @@ public class CardDeckTest {
         int pullC3 = 0;
 
         for (int i = 0; i < 50; i++) {
-            if (c1.equals(deck.pullRandomCard(false))) {
-                pullC1++;
-            } else {
-                pullC3++;
+            try {
+                if (c1.equals(deck.pullRandomCard(false))) {
+                    pullC1++;
+                } else {
+                    pullC3++;
+                }
+            } catch (EmptyListException e) {
+                fail();
             }
         }
         assertTrue((pullC1 > 15) && (pullC1 < 35));
@@ -116,14 +123,31 @@ public class CardDeckTest {
         int pullC4 = 0;
 
         for (int i = 0; i < 50; i++) {
-            if (c2.equals(deck.pullRandomCard(true))) {
-                pullC2++;
-            } else {
-                pullC4++;
+            try {
+                if (c2.equals(deck.pullRandomCard(true))) {
+                    pullC2++;
+                } else {
+                    pullC4++;
+                }
+            } catch (EmptyListException e) {
+                fail();
             }
         }
         assertTrue((pullC2 > 10) && (pullC2 < 40));
         assertTrue((pullC4 > 10) && (pullC4 < 40));
+    }
+    @Test
+    void testPullRandomCardFilterFail() {
+        try {
+            deck.pullRandomCard(true);
+            fail();
+        } catch (EmptyListException e) {
+        }
+        try {
+            deck.pullRandomCard(false);
+            fail();
+        } catch (EmptyListException e) {
+        }
     }
 
     @Test 
