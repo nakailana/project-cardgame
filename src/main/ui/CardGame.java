@@ -123,6 +123,7 @@ public class CardGame {
 
     // EFFECTS: displays a list of commands that can be used within the deck
     public void displayCardMenu() {
+        printDivider();
         System.out.println("Please select an option:\n");
         System.out.println("a: Add a new card");
         System.out.println("r: Draw a random card");
@@ -147,23 +148,41 @@ public class CardGame {
             case "f":
                 drawCardFiltered();
                 break;
+            case "v":
+                displayAllCards();
+                break;
             case "x":
                 deleteCard();
                 break;
             case "q":
-                System.out.println("Returning to the menu...");
                 break;
             default:
                 System.out.println("Invalid option inputted. Please try again.");
+                handleMenuDeck();
         }
-        printDivider();
+        if (!input.equals("q")) {
+            handleMenuDeck();
+        }
+        else {
+            System.out.println("Returning to the menu...");
+            handleMenu();
+        }
     }
 
     // MODIFIES: this
     // EFFECTS: displays the list of cards in this deck and handles inputs within the menu
-    public void displayAllCards(List<Card> deck) {
-        //stub
+    public void displayAllCards() {
+        List<Card> deck = currentDeck.getCards();
+        if (decks.isEmpty()) {
+            System.out.println("Error: No cards to view. Please create a card first!");
+            return;
+        }
+        for (int i = 0; i < deck.size(); i++) {
+            System.out.println((i + 1) + ": " + deck.get(i).getActivity());
+        }
+        printDivider();
     }
+
 
     // MODIFIES:
     // EFFECTS: adds a Card to the current Deck
@@ -172,11 +191,7 @@ public class CardGame {
         String name = this.scanner.nextLine();
 
         System.out.println("\nIs the activity for the outdoors?");
-        System.out.println("(enter t for outdoor, f for indoor)");
-        boolean loc = false;
-        if (this.scanner.nextLine().equals("t")) {
-            loc = true;
-        }
+        boolean loc = toggleCardLocation();
 
         System.out.println("Finally, please enter a brief description:");
         String desc = this.scanner.nextLine();
@@ -192,33 +207,72 @@ public class CardGame {
     // MODIFIES: this
     // EFFECTS: draws a random card from the current deck
     public void drawCard() {
+        if (currentDeck.getCards().isEmpty()) {
+            System.out.println("Error: No cards to draw from. Please create some cards first!");
+            return;
+        }
        displayCard(currentDeck.pullRandomCard());
     }
     // MODIFIES: this
     // EFFECTS: draws a random card from a filtered version of the current deck
     public void drawCardFiltered() {
-       //stub
+        if (currentDeck.getCards().isEmpty()) {
+            System.out.println("Error: No cards to draw from. Please create some cards first!");
+            return;
+        }
+        System.out.println("\nWould you like to filter for outdoor, or indoor activities?");
+
+        boolean loc = toggleCardLocation();
+
+        displayCard(currentDeck.pullRandomCard(loc));
     }
 
     // EFFECTS: displays the given card
     public void displayCard(Card card) {
-        //stub
-    }
-
-    // MODIFIES: Card
-    // EFFECTS: change the given card's recommended location
-    public void toggleCardLocation(Boolean input, Card card) {
-        card.updateLocation(input);
-    }
-    // MODIFIES: Card
-    // EFFECTS: change the given card's description based on user input
-    public void changeDescription(String input, Card card) {
-        card.updateDescription(input);
+        System.out.println("\nHere is your random card!");
+        System.out.println("\nActivity: " + card.getActivity());
+        System.out.println("Description: " + card.getDescription());
     }
 
     // EFFECTS: deletes the card from the current deck 
     public void deleteCard() {
-       //stub
+        System.out.println("\nPlease select a card by entering its number:\n");
+        displayAllCards();
+
+        String input = this.scanner.nextLine();
+        Card card = null;
+
+        try { 
+            int i = Integer.parseInt(input) - 1;
+            card = currentDeck.getCards().get(i);
+            currentDeck.removeFromDeck(card);
+            System.out.println(card.getActivity() + " card has been deleted.");
+            printDivider();
+        } catch (Exception e) {
+            System.out.println("Invalid option inputted. Please try again.");
+        }
+    } 
+
+    // EFFECTS: handle user input to change the a card's location, and return the location value
+    public boolean toggleCardLocation() {
+        boolean validInput = false;
+        boolean loc = false;
+        while (!validInput){
+            System.out.println("(enter t for outdoor, f for indoor)");
+
+            String input = this.scanner.nextLine();
+            
+            if (input.equals("t")) {
+                loc = true;
+                validInput = true;
+            } else if (input.equals("f")) {
+                loc = false;
+                validInput = true;
+            } else {
+                System.out.println("Invalid option inputted. Please try again.");
+            }
+        }
+        return loc;
     }
 
     // MODIFIES: this
