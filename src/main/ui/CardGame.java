@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import exceptions.EmptyListException;
 import model.Card;
 import model.Deck;
 
@@ -224,7 +225,11 @@ public class CardGame {
 
         boolean loc = toggleCardLocation();
 
-        displayCard(currentDeck.pullRandomCard(loc));
+        try {
+            displayCard(currentDeck.pullRandomCard(loc));
+        } catch(EmptyListException e) {
+            System.out.println("\nThere are no activities of this type in your deck!");
+        }
     }
 
     // EFFECTS: displays the given card

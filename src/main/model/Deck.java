@@ -3,6 +3,8 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
+import exceptions.EmptyListException;
+
 // Represents a Card Deck with a name (theme) and list of cards.
 public class Deck {
 
@@ -25,10 +27,12 @@ public class Deck {
         int cardNum = (int)(Math.random() * cards.size());
         return cards.get(cardNum);
     }
-    // REQUIRES: this is not an empty ArrayList
     // EFFECTS: draws a random card of specified location from the deck
-    public Card pullRandomCard(Boolean outdoor) {
+    public Card pullRandomCard(Boolean outdoor) throws EmptyListException{
         List<Card> filtered = filterCards(outdoor);
+        if (filtered.size() == 0) {
+            throw new EmptyListException();
+        }
         int cardNum = (int)(Math.random() * filtered.size());
 
         return filtered.get(cardNum);
