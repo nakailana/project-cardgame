@@ -4,13 +4,17 @@ package model;
 // and optionally a brief description
 public class Card {
 
-    private String activity, description, locationDesc;
+    private String activity;
+    private String description;
+    private String locationDesc;
     private Boolean outdoor;
 
     /*
-     * REQUIRES: activity has a non-zero length; 
-     * EFFECTS: the card's activity is set to activity; the card's location is set to indoor;
-     *          its description states the recommended location followed by the given description.
+     * REQUIRES: activity has a non-zero length;
+     * EFFECTS: the card's activity is set to activity; the card's location is set
+     * to indoor;
+     * its description states the recommended location followed by the given
+     * description.
      */
     public Card(String activity, Boolean outdoor, String description) {
         this.activity = activity;
@@ -26,7 +30,8 @@ public class Card {
 
     // setters
     // MODIFIES: this
-    // EFFECTS: updates the location of this, updates location returned in description
+    // EFFECTS: updates the location of this, updates location returned in
+    // description
     public void updateLocation(Boolean location) {
         outdoor = location;
 
@@ -36,8 +41,10 @@ public class Card {
             this.locationDesc = "Indoor activity. ";
         }
     }
+
     // MODIFIES: this
-    // EFFECTS: updates the description of the activity without changing the location description
+    // EFFECTS: updates the description of the activity without changing the
+    // location description
     public void updateDescription(String newDesc) {
         this.description = newDesc;
     }
@@ -46,11 +53,13 @@ public class Card {
     public String getActivity() {
         return activity;
     }
+
     public Boolean getLocation() {
         return outdoor;
     }
+
     public String getDescription() {
-        return locationDesc + description; 
+        return locationDesc + description;
     }
 
 }

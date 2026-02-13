@@ -11,10 +11,10 @@ public class Deck {
     String deckName;
     List<Card> cards;
 
-     /*
+    /*
      * REQUIRES: deckName has a non-zero length
      * EFFECTS: the deck's name is set to deckName;
-     *          the deck is set to an empty ArrayList containing no Cards
+     * the deck is set to an empty ArrayList containing no Cards
      */
     public Deck(String deckName) {
         this.deckName = deckName;
@@ -24,16 +24,17 @@ public class Deck {
     // REQUIRES: this is not an empty ArrayList
     // EFFECTS: draws a random card from the deck
     public Card pullRandomCard() {
-        int cardNum = (int)(Math.random() * cards.size());
+        int cardNum = (int) (Math.random() * cards.size());
         return cards.get(cardNum);
     }
+
     // EFFECTS: draws a random card of specified location from the deck
-    public Card pullRandomCard(Boolean outdoor) throws EmptyListException{
+    public Card pullRandomCard(Boolean outdoor) throws EmptyListException {
         List<Card> filtered = filterCards(outdoor);
         if (filtered.size() == 0) {
             throw new EmptyListException();
         }
-        int cardNum = (int)(Math.random() * filtered.size());
+        int cardNum = (int) (Math.random() * filtered.size());
 
         return filtered.get(cardNum);
     }
@@ -45,6 +46,7 @@ public class Deck {
             cards.add(card);
         }
     }
+
     // MODIFIES: this
     // EFFECTS: removes given card from the deck
     public void removeFromDeck(Card card) {
@@ -55,7 +57,7 @@ public class Deck {
     public List<Card> filterCards(Boolean outdoor) {
         List<Card> filtered = new ArrayList<Card>();
 
-        for (Card c: cards) {
+        for (Card c : cards) {
             if (c.getLocation() == outdoor) {
                 filtered.add(c);
             }
