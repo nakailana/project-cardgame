@@ -22,7 +22,6 @@ public class CardGame {
 
         printDivider();
         System.out.println("Welcome to Cards Against Boredom!");
-        printDivider();
 
         while (this.isProgramRunning) {
             handleMenu();
@@ -47,6 +46,7 @@ public class CardGame {
 
     // EFFECTS: displays a list of commands that can be used in the main menu
     public void displayMenu() {
+        printDivider();
         System.out.println("Please select an option:\n");
         System.out.println("a: Add a new deck");
         System.out.println("v: View all decks and select");
@@ -174,12 +174,15 @@ public class CardGame {
     // EFFECTS: displays the list of cards in this deck and handles inputs within the menu
     public void displayAllCards() {
         List<Card> deck = currentDeck.getCards();
-        if (decks.isEmpty()) {
+        if (deck.isEmpty()) {
             System.out.println("Error: No cards to view. Please create a card first!");
             return;
         }
-        for (int i = 0; i < deck.size(); i++) {
-            System.out.println((i + 1) + ": " + deck.get(i).getActivity());
+        else {
+            for (int i = 0; i < deck.size(); i++) {
+                System.out.println((i + 1) + ": " + deck.get(i).getActivity());
+                System.out.println("   " + deck.get(i).getDescription());
+            }
         }
         printDivider();
     }
@@ -285,6 +288,7 @@ public class CardGame {
     public void quitGame() {
         System.out.println("Hope we added a little fun to your day :)");
         System.out.println("See you soon!");
+        printDivider();
         this.isProgramRunning = false;
     }
 
