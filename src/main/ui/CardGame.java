@@ -7,7 +7,10 @@ import java.util.Scanner;
 import exceptions.EmptyListException;
 import model.Card;
 import model.Deck;
+import ca.ubc.cs.ExcludeFromJacocoGeneratedReport;
 
+//Represents the card application
+@ExcludeFromJacocoGeneratedReport
 public class CardGame {
 
     private List<Deck> decks;
