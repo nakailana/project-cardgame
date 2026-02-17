@@ -14,3 +14,6 @@ The inspiration for my app comes from a small pouch I found while doing a deep c
 - Delete a card from my current deck
 - Switch between different card decks
 - Generate a card from my current deck
+
+- Have the option to save my card decks and their respective cards to file when I select the quit option from the application menu
+- Have the option to load my card decks and their respective cards from file when I start the application
