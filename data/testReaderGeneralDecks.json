@@ -1,0 +1,12 @@
+{
+    "decks": [
+        {
+            "name": "theme1",
+            "cards": []
+        },
+        {
+            "name": "theme2",
+            "cards": []
+        }
+    ]
+}
