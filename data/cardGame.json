@@ -2,7 +2,14 @@
     "decks": [
         {
             "name": "theme1",
-            "cards": []
+            "cards": [
+                {
+                    "activity": "sleep",
+                    "description": "N/a",
+                    "locationDesc": "indoor",
+                    "outdoor": "false" 
+                }
+            ]
         },
         {
             "name": "theme2",

@@ -29,7 +29,7 @@ class JsonReaderTest extends JsonTest {
     }
 
     @Test
-    void testReaderEmptyWorkRoom() {
+    void testReaderEmptyCardDecks() {
         JsonReader reader = new JsonReader("./data/testReaderEmptyDecks.json");
         try {
             List<Deck> ds = reader.read();
@@ -40,12 +40,13 @@ class JsonReaderTest extends JsonTest {
     }
 
     @Test
-    void testReaderGeneralWorkRoom() {
+    void testReaderGeneralCardDecks() {
         JsonReader reader = new JsonReader("./data/testReaderGeneralDecks.json");
         try {
             List<Deck> ds = reader.read();
+            assertEquals(2, ds.size());
             Deck deck = ds.get(0);
-            assertEquals(2, deck.getCards().size());
+            assertEquals(0, deck.getCards().size());
             checkDeck("theme1",  new ArrayList<Card>(), ds.get(0));
             checkDeck("theme2", new ArrayList<Card>(), ds.get(1));
         } catch (IOException e) {

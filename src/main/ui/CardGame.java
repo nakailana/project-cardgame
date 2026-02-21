@@ -1,6 +1,5 @@
 package ui;
 // Referenced from Lab 4 - Flashcard Reviewer
-// https://us.prairielearn.com/pl/workspace/4215313
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;

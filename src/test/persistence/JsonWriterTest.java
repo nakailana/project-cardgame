@@ -15,9 +15,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @ExcludeFromJacocoGeneratedReport
 class JsonWriterTest extends JsonTest {
-    //NOTE TO CPSC 210 STUDENTS: the strategy in designing tests for the JsonWriter is to
-    //write data to a file and then use the reader to read it back in and check that we
-    //read in a copy of what was written out.
 
     @Test
     void testWriterInvalidFile() {
@@ -31,7 +28,7 @@ class JsonWriterTest extends JsonTest {
     }
 
     @Test
-    void testWriterEmptyWorkroom() {
+    void testWriterEmptyCardDeck() {
         try {
             List<Deck> ds = new ArrayList<Deck>();
             JsonWriter writer = new JsonWriter("./data/testReaderEmptyDecks.json");
@@ -48,7 +45,7 @@ class JsonWriterTest extends JsonTest {
     }
 
     @Test
-    void testWriterGeneralWorkroom() {
+    void testWriterGeneralCardDeck() {
         try {
             List<Deck> ds = new ArrayList<Deck>();
             ds.add(new Deck("theme1"));
