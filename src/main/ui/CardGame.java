@@ -7,13 +7,14 @@ import java.util.Scanner;
 import exceptions.EmptyListException;
 import model.Card;
 import model.Deck;
+import model.DecksController;
 import ca.ubc.cs.ExcludeFromJacocoGeneratedReport;
 
 //Represents the card application
 @ExcludeFromJacocoGeneratedReport
 public class CardGame {
 
-    private List<Deck> decks;
+    private DecksController dc;
     private Deck currentDeck;
 
     private Scanner scanner;
@@ -34,7 +35,7 @@ public class CardGame {
     // MODIFIES: this
     // EFFECTS: initializes the application with the starting values
     public void init() {
-        decks = new ArrayList<Deck>();
+        dc = new DecksController();
         currentDeck = null;
         this.scanner = new Scanner(System.in);
         isProgramRunning = true;
@@ -84,14 +85,14 @@ public class CardGame {
 
         Deck d = new Deck(theme);
 
-        this.decks.add(d);
+        dc.addToController(d);
         System.out.println("\nNew deck created!");
     }
 
     // MODIFIES: this
     // EFFECTS: displays the list of all decks, handles inputs to select a deck
     public void viewDecks() {
-        if (decks.isEmpty()) {
+        if (dc.getDecks().isEmpty()) {
             System.out.println("Error: No decks to view. Please create a deck first!");
             return;
         }
@@ -101,7 +102,7 @@ public class CardGame {
         input = this.scanner.nextLine();
         try {
             int i = Integer.parseInt(input) - 1;
-            currentDeck = decks.get(i);
+            currentDeck = dc.getDecks().get(i);
             System.out.println(currentDeck.getDeckName() + " deck selected!");
             printDivider();
             handleMenuDeck();
@@ -113,8 +114,8 @@ public class CardGame {
     // EFFECTS: displays a list of decks in the card deck view
     public void displayDeckMenu() {
         System.out.println("\nPlease select a deck by entering its number:\n");
-        for (int i = 0; i < decks.size(); i++) {
-            System.out.println((i + 1) + ": " + decks.get(i).getDeckName());
+        for (int i = 0; i < dc.getDecks().size(); i++) {
+            System.out.println((i + 1) + ": " + dc.getDecks().get(i).getDeckName());
         }
     }
 
