@@ -16,7 +16,7 @@ public class DecksController {
 
     // MODIFIES: this
     // EFFECTS: adds deck to the deck controller if not already added
-    public void addToDeck(Deck deck) {
+    public void addToController(Deck deck) {
         // stub
     }
 
