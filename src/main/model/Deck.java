@@ -3,10 +3,14 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import exceptions.EmptyListException;
+import persistence.Writable;
 
 // Represents a Card Deck with a name (theme) and list of cards.
-public class Deck {
+public class Deck implements Writable{
 
     String deckName;
     List<Card> cards;
@@ -74,4 +78,21 @@ public class Deck {
         return cards;
     }
 
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("name", deckName);
+        return json;
+    }
+
+    // EFFECTS: returns things in this workroom as a JSON array
+    private JSONArray cardsToJson() {
+        JSONArray jsonArray = new JSONArray();
+
+        for (Card c : cards) {
+            jsonArray.put(c.toJson());
+        }
+
+        return jsonArray;
+    }
 }

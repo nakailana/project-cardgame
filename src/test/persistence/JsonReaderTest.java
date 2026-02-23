@@ -40,7 +40,7 @@ class JsonReaderTest extends JsonTest {
     }
 
     @Test
-    void testReaderGeneralCardDecks() {
+    void testReaderGeneralEmptyDecks() {
         JsonReader reader = new JsonReader("./data/testReaderGeneralDecks.json");
         try {
             List<Deck> ds = reader.read();
@@ -52,5 +52,10 @@ class JsonReaderTest extends JsonTest {
         } catch (IOException e) {
             fail("Couldn't read from file");
         }
+    }
+
+    @Test
+    void testReaderGeneralDecksWithCards() {
+
     }
 }

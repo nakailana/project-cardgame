@@ -6,7 +6,6 @@
                 {
                     "activity": "sleep",
                     "description": "N/a",
-                    "locationDesc": "indoor",
                     "outdoor": "false" 
                 }
             ]

@@ -1,8 +1,13 @@
 package model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import persistence.Writable;
+
 // Represents a Card having an activity name, if it is an outdoor activity,
 // and optionally a brief description
-public class Card {
+public class Card implements Writable{
 
     private String activity;
     private String description;
@@ -62,4 +67,12 @@ public class Card {
         return locationDesc + description;
     }
 
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("activity", activity);
+        json.put("description", description);
+        json.put("outdoor", outdoor);
+        return json;
+    }
 }
