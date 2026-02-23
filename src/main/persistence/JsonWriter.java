@@ -30,6 +30,9 @@ public class JsonWriter {
     // MODIFIES: this
     // EFFECTS: writes JSON representation of decks to file
     public void write(List<Deck> decks) {
+        //JSONObject json = decks.toJson();
+        //saveToFile(json.toString(TAB));
+
         for (Deck d: decks) {
             JSONObject json = d.toJson();
             saveToFile(json.toString(TAB));
