@@ -3,8 +3,13 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import persistence.Writable;
+
 // Represents all the decks of cards in the program
-public class DecksController {
+public class DecksController implements Writable {
 
     private List<Deck> decks;
 
@@ -27,6 +32,23 @@ public class DecksController {
     // getters
     public List<Deck> getDecks() {
         return decks;
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        return json;
+    }
+
+    // EFFECTS: returns things in this workroom as a JSON array
+    private JSONArray decksToJson() {
+        JSONArray jsonArray = new JSONArray();
+
+        for (Deck d : decks) {
+            jsonArray.put(d.toJson());
+        }
+
+        return jsonArray;
     }
 
 }

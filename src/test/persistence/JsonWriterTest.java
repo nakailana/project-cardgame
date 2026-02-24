@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import ca.ubc.cs.ExcludeFromJacocoGeneratedReport;
 import model.Deck;
+import model.DecksController;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -30,15 +31,15 @@ class JsonWriterTest extends JsonTest {
     @Test
     void testWriterEmptyCardDeck() {
         try {
-            List<Deck> ds = new ArrayList<Deck>();
+            DecksController dc = new DecksController();
             JsonWriter writer = new JsonWriter("./data/testReaderEmptyDecks.json");
             writer.open();
-            writer.write(ds);
+            writer.write(dc);
             writer.close();
 
             JsonReader reader = new JsonReader("./data/testReaderEmptyDecks.json");
-            ds = reader.read();
-            assertEquals(0, ds.size());
+            dc = reader.read();
+            assertEquals(0, dc.getDecks().size());
         } catch (IOException e) {
             fail("Exception should not have been thrown");
         }
@@ -47,17 +48,17 @@ class JsonWriterTest extends JsonTest {
     @Test
     void testWriterGeneralCardDeck() {
         try {
-            List<Deck> ds = new ArrayList<Deck>();
-            ds.add(new Deck("theme1"));
-            ds.add(new Deck("theme2"));
+            DecksController dc = new DecksController();
+            dc.addToController(new Deck("theme1"));
+            dc.addToController(new Deck("theme2"));
             JsonWriter writer = new JsonWriter("./data/testReaderGeneralDecks.json");
             writer.open();
-            writer.write(ds);
+            writer.write(dc);
             writer.close();
 
             JsonReader reader = new JsonReader("./data/testReaderGeneralDecks.json");
-            ds = reader.read();
-            List<Deck> decks = ds;
+            dc = reader.read();
+            List<Deck> decks = dc.getDecks();
             assertEquals(2, decks.size());
             checkDeck("theme1", decks.get(0).getCards(), decks.get(0));
             checkDeck("theme2", decks.get(0).getCards(), decks.get(1));

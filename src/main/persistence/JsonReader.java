@@ -14,6 +14,7 @@ import org.json.*;
 
 import model.Card;
 import model.Deck;
+import model.DecksController;
 
 // Represents a reader that reads CardGame Decks from JSON data stored in file
 public class JsonReader {
@@ -26,7 +27,7 @@ public class JsonReader {
 
     // EFFECTS: reads Decks from file and returns it;
     // throws IOException if an error occurs reading data from file
-    public List<Deck> read() throws IOException {
+    public DecksController read() throws IOException {
         String jsonData = readFile(source);
         JSONObject jsonObject = new JSONObject(jsonData);
         return parseDecks(jsonObject);
@@ -44,29 +45,29 @@ public class JsonReader {
     }
 
     // EFFECTS: parses list of decks from JSON object and returns it
-    private List<Deck> parseDecks(JSONObject jsonObject) {
-        List<Deck> ds = new ArrayList<Deck>();
-        addDecks(ds, jsonObject);
-        return ds;
+    private DecksController parseDecks(JSONObject jsonObject) {
+        DecksController dc = new DecksController();
+        addDecks(dc, jsonObject);
+        return dc;
     }
 
     // MODIFIES: decks
     // EFFECTS: parses decks from JSON object and adds them to CardGame Decks
-    private void addDecks(List<Deck> decks, JSONObject jsonObject) {
+    private void addDecks(DecksController dc, JSONObject jsonObject) {
         JSONArray jsonArray = jsonObject.getJSONArray("decks");
         for (Object json : jsonArray) {
             JSONObject nextDeck = (JSONObject) json;
-            addDeck(decks, nextDeck);
+            addDeck(dc, nextDeck);
         }
     }
 
     // MODIFIES: decks
     // EFFECTS: parses deck from JSON object and adds it to CardGame Decks
-    private void addDeck(List<Deck> decks, JSONObject jsonObject) {
+    private void addDeck(DecksController dc, JSONObject jsonObject) {
         String name = jsonObject.getString("name");
         Deck deck = new Deck(name);
         addCards(deck, jsonObject);
-        decks.add(deck);
+        dc.addToController(deck);
     }
 
     // MODIFIES: decks
