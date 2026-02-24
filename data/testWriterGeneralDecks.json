@@ -5,7 +5,7 @@
             "cards": [
                 {
                     "activity": "sleep",
-                    "description": "N/a",
+                    "description": "zzzz",
                     "outdoor": "false" 
                 }
             ]
@@ -14,14 +14,9 @@
             "name": "theme2",
             "cards": [
                 {
-                    "activity": "play",
-                    "description": "N/a",
-                    "outdoor": "true" 
-                },
-                {
                     "activity": "eat",
                     "description": "N/a",
-                    "outdoor": "false" 
+                    "outdoor": "true" 
                 }
             ]
         }
