@@ -6,7 +6,7 @@
                 {
                     "activity": "sleep",
                     "description": "zzzz",
-                    "outdoor": "false" 
+                    "outdoor": false 
                 }
             ]
         },
@@ -16,7 +16,7 @@
                 {
                     "activity": "eat",
                     "description": "N/a",
-                    "outdoor": "true" 
+                    "outdoor": true 
                 }
             ]
         }
