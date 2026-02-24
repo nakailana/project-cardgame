@@ -42,6 +42,8 @@ public class DecksController implements Writable {
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
+        json.put("decks", decksToJson());
+        json.put("name", name);
         return json;
     }
 

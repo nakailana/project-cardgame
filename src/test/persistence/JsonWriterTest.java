@@ -5,6 +5,7 @@ package persistence;
 import org.junit.jupiter.api.Test;
 
 import ca.ubc.cs.ExcludeFromJacocoGeneratedReport;
+import model.Card;
 import model.Deck;
 import model.DecksController;
 
@@ -32,12 +33,12 @@ class JsonWriterTest extends JsonTest {
     void testWriterEmptyCardDeck() {
         try {
             DecksController dc = new DecksController("1");
-            JsonWriter writer = new JsonWriter("./data/testReaderEmptyDecks.json");
+            JsonWriter writer = new JsonWriter("./data/testWriterEmptyDecks.json");
             writer.open();
             writer.write(dc);
             writer.close();
 
-            JsonReader reader = new JsonReader("./data/testReaderEmptyDecks.json");
+            JsonReader reader = new JsonReader("./data/testWriterEmptyDecks.json");
             dc = reader.read();
             assertEquals(0, dc.getDecks().size());
         } catch (IOException e) {
@@ -50,19 +51,24 @@ class JsonWriterTest extends JsonTest {
         try {
             DecksController dc = new DecksController("1");
             dc.addToController(new Deck("theme1"));
+            Card c1 = new Card("sleep", false, "zzzz");
+            dc.getDecks().get(0).addToDeck(c1);
             dc.addToController(new Deck("theme2"));
-            JsonWriter writer = new JsonWriter("./data/testReaderGeneralDecks.json");
+            Card c2 = new Card("eat", true, "N/a");
+            dc.getDecks().get(1).addToDeck(c2);
+            dc.addToController(new Deck("empty"));
+            JsonWriter writer = new JsonWriter("./data/testWriterGeneralDecks.json");
             writer.open();
             writer.write(dc);
             writer.close();
 
-            JsonReader reader = new JsonReader("./data/testReaderGeneralDecks.json");
+            JsonReader reader = new JsonReader("./data/testWriterGeneralDecks.json");
             dc = reader.read();
             List<Deck> decks = dc.getDecks();
-            assertEquals(2, decks.size());
-            checkDeck("theme1", 2, decks.get(0));
+            assertEquals(3, decks.size());
+            checkDeck("theme1", 1, decks.get(0));
             checkDeck("theme2", 1, decks.get(1));
-
+            checkDeck("empty", 0, decks.get(2));
         } catch (IOException e) {
             fail("Exception should not have been thrown");
         }
