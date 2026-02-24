@@ -82,6 +82,7 @@ public class Deck implements Writable{
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
         json.put("theme", deckName);
+        json.put("cards", cardsToJson());
         return json;
     }
 

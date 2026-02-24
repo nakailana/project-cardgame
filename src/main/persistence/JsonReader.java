@@ -86,7 +86,7 @@ public class JsonReader {
     private void addCard(Deck deck, JSONObject jsonObject) {
         String activity = jsonObject.getString("activity");
         String desc = jsonObject.getString("description");
-        boolean outdoor = Boolean.getBoolean(jsonObject.getString("outdoor"));
+        boolean outdoor = jsonObject.getBoolean("outdoor");
         Card card = new Card(activity, outdoor, desc);
         deck.addToDeck(card);
     }
