@@ -41,23 +41,19 @@ class JsonReaderTest extends JsonTest {
     }
 
     @Test
-    void testReaderGeneralEmptyDecks() {
+    void testReaderGeneralDecksWithCards() {
         JsonReader reader = new JsonReader("./data/testReaderGeneralDecks.json");
         try {
             DecksController dc = reader.read();
             List<Deck> ds = dc.getDecks();
-            assertEquals(2, ds.size());
+            assertEquals(3, ds.size());
             Deck deck = dc.getDecks().get(0);
-            assertEquals(0, deck.getCards().size());
-            checkDeck("theme1",  new ArrayList<Card>(), ds.get(0));
-            checkDeck("theme2", new ArrayList<Card>(), ds.get(1));
+            assertEquals(1, deck.getCards().size());
+            checkDeck("theme1",  1, ds.get(0));
+            checkDeck("theme2", 2, ds.get(1));
+            checkDeck("empty",  0, ds.get(2));
         } catch (IOException e) {
             fail("Couldn't read from file");
         }
-    }
-
-    @Test
-    void testReaderGeneralDecksWithCards() {
-
     }
 }

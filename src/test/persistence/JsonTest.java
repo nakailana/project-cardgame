@@ -12,8 +12,8 @@ import model.Deck;
 
 @ExcludeFromJacocoGeneratedReport
 public class JsonTest {
-    protected void checkDeck(String deckName, List<Card> cards, Deck deck) {
+    protected void checkDeck(String deckName, int cardNum, Deck deck) {
         assertEquals(deckName, deck.getDeckName());
-        assertEquals(cards.size(), deck.getCards().size());
+        assertEquals(cardNum, deck.getCards().size());
     }
 }

@@ -35,7 +35,7 @@ public class CardGame {
     // MODIFIES: this
     // EFFECTS: initializes the application with the starting values
     public void init() {
-        dc = new DecksController();
+        dc = new DecksController("1");
         currentDeck = null;
         this.scanner = new Scanner(System.in);
         isProgramRunning = true;

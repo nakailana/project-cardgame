@@ -1,7 +1,7 @@
 {
     "decks": [
         {
-            "name": "theme1",
+            "theme": "theme1",
             "cards": [
                 {
                     "activity": "sleep",
@@ -11,12 +11,13 @@
             ]
         },
         {
-            "name": "theme2",
+            "theme": "theme2",
             "cards": []
         },
         {
-            "name": "dogmask",
+            "theme": "dogmask",
             "cards": []
         }
-    ]
+    ],
+    "name": "1"
 }

@@ -44,15 +44,16 @@ public class JsonReader {
         return contentBuilder.toString();
     }
 
-    // EFFECTS: parses list of decks from JSON object and returns it
+    // EFFECTS: parses decksController from JSON object
     private DecksController parseDecks(JSONObject jsonObject) {
-        DecksController dc = new DecksController();
-        addDecks(dc, jsonObject);
-        return dc;
+        String name = jsonObject.getString("name");
+        DecksController decks = new DecksController(name);
+        addDecks(decks, jsonObject);
+        return decks;
     }
 
     // MODIFIES: decks
-    // EFFECTS: parses decks from JSON object and adds them to CardGame Decks
+    // EFFECTS: parses decks from JSON object and adds them to the controller
     private void addDecks(DecksController dc, JSONObject jsonObject) {
         JSONArray jsonArray = jsonObject.getJSONArray("decks");
         for (Object json : jsonArray) {
@@ -64,7 +65,7 @@ public class JsonReader {
     // MODIFIES: decks
     // EFFECTS: parses deck from JSON object and adds it to CardGame Decks
     private void addDeck(DecksController dc, JSONObject jsonObject) {
-        String name = jsonObject.getString("name");
+        String name = jsonObject.getString("theme");
         Deck deck = new Deck(name);
         addCards(deck, jsonObject);
         dc.addToController(deck);

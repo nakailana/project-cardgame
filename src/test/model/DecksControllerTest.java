@@ -31,12 +31,13 @@ public class DecksControllerTest {
         d1.addToDeck(c3);
         d2 = new Deck("d2");
 
-        dc = new DecksController();
+        dc = new DecksController("1");
     }
 
     @Test
     void testConstructor() {
         assertEquals(0, dc.getDecks().size());
+        assertEquals("1", dc.getName());
     }
 
     @Test 

@@ -1,12 +1,13 @@
 {
     "decks": [
         {
-            "name": "1theme",
+            "theme": "1theme",
             "cards": []
         },
         {
-            "name": "2theme",
+            "theme": "2theme",
             "cards": []
         }
-    ]
+    ],
+    "name": "1"
 }

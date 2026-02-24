@@ -31,7 +31,7 @@ class JsonWriterTest extends JsonTest {
     @Test
     void testWriterEmptyCardDeck() {
         try {
-            DecksController dc = new DecksController();
+            DecksController dc = new DecksController("1");
             JsonWriter writer = new JsonWriter("./data/testReaderEmptyDecks.json");
             writer.open();
             writer.write(dc);
@@ -48,7 +48,7 @@ class JsonWriterTest extends JsonTest {
     @Test
     void testWriterGeneralCardDeck() {
         try {
-            DecksController dc = new DecksController();
+            DecksController dc = new DecksController("1");
             dc.addToController(new Deck("theme1"));
             dc.addToController(new Deck("theme2"));
             JsonWriter writer = new JsonWriter("./data/testReaderGeneralDecks.json");
@@ -60,8 +60,8 @@ class JsonWriterTest extends JsonTest {
             dc = reader.read();
             List<Deck> decks = dc.getDecks();
             assertEquals(2, decks.size());
-            checkDeck("theme1", decks.get(0).getCards(), decks.get(0));
-            checkDeck("theme2", decks.get(0).getCards(), decks.get(1));
+            checkDeck("theme1", 2, decks.get(0));
+            checkDeck("theme2", 1, decks.get(1));
 
         } catch (IOException e) {
             fail("Exception should not have been thrown");

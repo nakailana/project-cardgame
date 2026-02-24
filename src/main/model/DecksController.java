@@ -12,13 +12,15 @@ import persistence.Writable;
 public class DecksController implements Writable {
 
     private List<Deck> decks;
+    private String name;
 
     /*
      * EFFECTS: create a new instance of the game with an empty
      * ArrayList of decks
      */
-    public DecksController() {
+    public DecksController(String name) {
         decks = new ArrayList<Deck>();
+        this.name = name;
     }
 
     // MODIFIES: this
@@ -32,6 +34,9 @@ public class DecksController implements Writable {
     // getters
     public List<Deck> getDecks() {
         return decks;
+    }
+    public String getName() {
+        return name;
     }
 
     @Override
