@@ -1,6 +1,10 @@
 package model;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -51,5 +55,15 @@ public class CardTest {
     void updateDescriptionNoChangeLocation(){
         c1.updateDescription("eat apples");
         assertEquals("Indoor activity. eat apples", c1.getDescription());
+    }
+
+    @Test 
+    void testToJson() {
+        JSONObject test = c1.toJson();
+        assertTrue(test.has("activity"));
+        assertEquals("A", test.getString("activity"));
+        assertTrue(test.has("outdoor"));
+        assertFalse(test.getBoolean("outdoor"));
+        assertEquals("", test.getString("description"));
     }
 }

@@ -6,6 +6,8 @@ import static org.junit.jupiter.api.Assertions.fail;
 
 import java.util.ArrayList;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -56,4 +58,14 @@ public class DecksControllerTest {
         assertEquals(1, dc.getDecks().size());
     }
 
+    @Test 
+    void testToJson() {
+        dc.addToController(d1);
+        JSONObject test = dc.toJson();
+        assertTrue(test.has("name"));
+        assertEquals("1", test.getString("name"));
+        assertTrue(test.has("decks"));
+        JSONArray testDecks = test.getJSONArray("decks");
+        assertEquals(1, testDecks.length());
+    }
 }
