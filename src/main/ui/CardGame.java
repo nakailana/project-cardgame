@@ -1,4 +1,6 @@
 package ui;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 // Referenced from Lab 4 - Flashcard Reviewer
 import java.util.ArrayList;
 import java.util.List;
@@ -54,6 +56,8 @@ public class CardGame {
         System.out.println("Please select an option:\n");
         System.out.println("a: Add a new deck");
         System.out.println("v: View all decks and select");
+        System.out.println("s: save decks to file");
+        System.out.println("l: load decks from file");
         System.out.println("q: Quit game");
         printDivider();
     }
@@ -68,6 +72,12 @@ public class CardGame {
             case "v":
                 viewDecks();
                 break;
+            case "s":
+                saveGameState();
+                break;
+            case "l":
+                loadGameState();
+                break;
             case "q":
                 quitGame();
                 break;
@@ -75,6 +85,17 @@ public class CardGame {
                 System.out.println("Invalid option inputted. Please try again.");
         }
         printDivider();
+    }
+
+    // EFFECTS: saves the workroom to file
+    private void saveGameState() {
+        //stub
+    }
+
+    // MODIFIES: this
+    // EFFECTS: loads workroom from file
+    private void loadGameState() {
+        //stub
     }
 
     // MODIFIES: this
