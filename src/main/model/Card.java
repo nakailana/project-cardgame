@@ -7,7 +7,7 @@ import persistence.Writable;
 
 // Represents a Card having an activity name, if it is an outdoor activity,
 // and optionally a brief description
-public class Card implements Writable{
+public class Card implements Writable {
 
     private String activity;
     private String description;

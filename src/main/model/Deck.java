@@ -10,7 +10,7 @@ import exceptions.EmptyListException;
 import persistence.Writable;
 
 // Represents a Card Deck with a name (theme) and list of cards.
-public class Deck implements Writable{
+public class Deck implements Writable {
 
     String deckName;
     List<Card> cards;

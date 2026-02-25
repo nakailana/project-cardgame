@@ -35,6 +35,7 @@ public class DecksController implements Writable {
     public List<Deck> getDecks() {
         return decks;
     }
+    
     public String getName() {
         return name;
     }
