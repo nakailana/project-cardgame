@@ -1,23 +1,33 @@
 {
+    "name": "Decks",
     "decks": [
         {
-            "theme": "theme1",
             "cards": [
                 {
-                    "activity": "sleep",
-                    "description": "N/a",
-                    "outdoor": false 
+                    "outdoor": false,
+                    "activity": "cake",
+                    "description": "yumm"
+                },
+                {
+                    "outdoor": false,
+                    "activity": "cookies",
+                    "description": "pumpkin spice"
+                },
+                {
+                    "outdoor": false,
+                    "activity": "cheesecake",
+                    "description": ""
                 }
-            ]
+            ],
+            "theme": "baking"
         },
         {
-            "theme": "theme2",
-            "cards": []
-        },
-        {
-            "theme": "dogmask",
-            "cards": []
+            "cards": [{
+                "outdoor": true,
+                "activity": "swim",
+                "description": "if it's summer!"
+            }],
+            "theme": "fun"
         }
-    ],
-    "name": "1"
+    ]
 }

@@ -46,6 +46,8 @@ public class CardGame {
         dc = new DecksController("Decks");
         currentDeck = null;
         this.scanner = new Scanner(System.in);
+        jsonWriter = new JsonWriter(JSON_STORE);
+        jsonReader = new JsonReader(JSON_STORE);
         isProgramRunning = true;
     }
 
