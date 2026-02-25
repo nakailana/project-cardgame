@@ -10,6 +10,8 @@ import exceptions.EmptyListException;
 import model.Card;
 import model.Deck;
 import model.DecksController;
+import persistence.JsonReader;
+import persistence.JsonWriter;
 import ca.ubc.cs.ExcludeFromJacocoGeneratedReport;
 
 //Represents the card application
@@ -21,6 +23,10 @@ public class CardGame {
 
     private Scanner scanner;
     private boolean isProgramRunning;
+
+    private static final String JSON_STORE = "./data/cardGame.json";
+    private JsonWriter jsonWriter;
+    private JsonReader jsonReader;
 
     // EFFECTS: creates an instance of the CardGame console ui application
     public CardGame() {
@@ -37,7 +43,7 @@ public class CardGame {
     // MODIFIES: this
     // EFFECTS: initializes the application with the starting values
     public void init() {
-        dc = new DecksController("1");
+        dc = new DecksController("Decks");
         currentDeck = null;
         this.scanner = new Scanner(System.in);
         isProgramRunning = true;
@@ -87,15 +93,29 @@ public class CardGame {
         printDivider();
     }
 
-    // EFFECTS: saves the workroom to file
+    // EFFECTS: saves the state of the card game to file
     private void saveGameState() {
-        //stub
+        try {
+            jsonWriter.open();
+            jsonWriter.write(dc);
+            jsonWriter.close();
+            System.out.println("Saved decks to " + JSON_STORE);
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to write to file: " + JSON_STORE);
+        } catch (NullPointerException e) {
+            System.out.println("No data to save.");
+        }
     }
 
     // MODIFIES: this
-    // EFFECTS: loads workroom from file
+    // EFFECTS: loads the state of the card game from file
     private void loadGameState() {
-        //stub
+        try {
+            dc = jsonReader.read();
+            System.out.println("Loaded decks from " + JSON_STORE);
+        } catch (IOException e) {
+            System.out.println("Unable to read from file: " + JSON_STORE);
+        }
     }
 
     // MODIFIES: this
