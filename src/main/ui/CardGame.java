@@ -3,7 +3,6 @@ package ui;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 // Referenced from Lab 4 - Flashcard Reviewer
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -15,7 +14,7 @@ import persistence.JsonReader;
 import persistence.JsonWriter;
 import ca.ubc.cs.ExcludeFromJacocoGeneratedReport;
 
-//Represents the card application
+//Represents the card game application
 @ExcludeFromJacocoGeneratedReport
 public class CardGame {
 

@@ -5,11 +5,9 @@ package persistence;
 
 import org.json.JSONObject;
 
-import model.Deck;
 import model.DecksController;
 
 import java.io.*;
-import java.util.List;
 
 // Represents a writer that writes JSON representation of CardGame Decks to file
 public class JsonWriter {
