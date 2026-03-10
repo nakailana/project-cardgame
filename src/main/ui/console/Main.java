@@ -1,4 +1,4 @@
-package ui;
+package ui.console;
 
 import ca.ubc.cs.ExcludeFromJacocoGeneratedReport;
 
@@ -6,6 +6,6 @@ import ca.ubc.cs.ExcludeFromJacocoGeneratedReport;
 @ExcludeFromJacocoGeneratedReport
 public class Main {
     public static void main(String[] args) throws Exception {
-        new CardGame();
+        new CardGame(); //for console application
     }
 }
