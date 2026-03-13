@@ -67,6 +67,7 @@ public class Card implements Writable {
     }
 
     @Override
+    // EFFECTS: convert the current object to be stored as JSON
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
         json.put("activity", activity);

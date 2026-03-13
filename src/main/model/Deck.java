@@ -79,6 +79,7 @@ public class Deck implements Writable {
     }
 
     @Override
+    // EFFECTS: convert the current object to be stored as JSON
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
         json.put("theme", deckName);
@@ -86,7 +87,7 @@ public class Deck implements Writable {
         return json;
     }
 
-    // EFFECTS: returns things in this workroom as a JSON array
+    // EFFECTS: returns cards in this deck as a JSON array
     private JSONArray cardsToJson() {
         JSONArray jsonArray = new JSONArray();
 

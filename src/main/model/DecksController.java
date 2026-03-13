@@ -41,6 +41,7 @@ public class DecksController implements Writable {
     }
 
     @Override
+    // EFFECTS: convert the current object to be stored as JSON
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
         json.put("decks", decksToJson());
@@ -48,7 +49,7 @@ public class DecksController implements Writable {
         return json;
     }
 
-    // EFFECTS: returns things in this workroom as a JSON array
+    // EFFECTS: returns decks in this controller as a JSON array
     private JSONArray decksToJson() {
         JSONArray jsonArray = new JSONArray();
 
