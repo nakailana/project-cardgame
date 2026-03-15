@@ -64,6 +64,9 @@ public class DrawingSurface extends JFrame{
 	public Deck getCurrentDeck() { return currentDeck; }
     public DecksController getDeckController() { return dc; }
 
+    // setters 
+    public void setCurrentDeck(Deck d) { this.currentDeck = currentDeck; }
+
     // MODIFIES: this
     // EFFECTS:  draws the JFrame window where this DrawingSurface will operate
     private void initializeGraphics() {

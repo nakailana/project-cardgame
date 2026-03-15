@@ -3,16 +3,20 @@ package ui;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.SwingConstants;
 
 import model.Deck;
 import model.DecksController;
@@ -20,18 +24,17 @@ import model.DecksController;
 // References:
 // https://github.students.cs.ubc.ca/CPSC210/B02-SpaceInvadersBase.git
 // https://stackoverflow.com/questions/64750241/how-to-check-which-button-in-my-jframe-was-clicked-if-i-have-more-than-one-butto
+// https://stackoverflow.com/questions/20702013/how-to-add-double-click-capability-in-jscrollpane#:~:text=Comments,-Add%20a%20comment&text=0-,JList%20theList%20=%20(JList)%20mouseEvent.,work%20by%20mouse%20or%20keyboard. 
 
 // Represents the panel on which deck related GUI will be placed
 public class DeckPanel extends JPanel {
 
     private DrawingSurface gui;
     private DecksController dc;
-    private Deck currentDeck;
 
     private DefaultListModel<String> deckListModel;
     private JPanel buttonPanel;
     private JButton addDeck;
-    private JButton openDeck;
     private JButton saveButton;
     private JButton loadButton;
 
@@ -40,9 +43,12 @@ public class DeckPanel extends JPanel {
     public DeckPanel(DrawingSurface gui) {
         this.gui = gui;
         this.dc = gui.getDeckController();
-        currentDeck = gui.getCurrentDeck();
 
         this.setLayout(new BorderLayout());
+
+        JLabel select = new JLabel("Double click a Deck to select it!", 
+                                    SwingConstants.CENTER);
+        this.add(select, BorderLayout.NORTH);
 
         initScrollPane();
         initButtons();
@@ -60,6 +66,7 @@ public class DeckPanel extends JPanel {
         JList<String> decks = new JList<String>(deckListModel);
         JScrollPane scrollPane = new JScrollPane(decks);
 
+        decks.addMouseListener(new DeckMouseListener()); 
         this.add(scrollPane, BorderLayout.CENTER);
     }
 
@@ -70,9 +77,7 @@ public class DeckPanel extends JPanel {
 
         addDeck = new JButton("add new deck");
         addDeck.addActionListener(action);
-        openDeck = new JButton("select deck");
-        openDeck.addActionListener(action);
-        saveButton = new JButton("save");
+        saveButton = new JButton("save data");
         saveButton.addActionListener(action);
         loadButton = new JButton("load from data");
         loadButton.addActionListener(action);
@@ -80,9 +85,8 @@ public class DeckPanel extends JPanel {
         buttonPanel = new JPanel();
 
         buttonPanel.add(addDeck);
-        buttonPanel.add(openDeck);
-        buttonPanel.add(saveButton);
         buttonPanel.add(loadButton);
+        buttonPanel.add(saveButton);
 
         this.add(buttonPanel, BorderLayout.SOUTH);
     }
@@ -124,6 +128,8 @@ public class DeckPanel extends JPanel {
             JOptionPane.showMessageDialog(popUp, "Unable to save data to file.");
         } catch (NullPointerException e) {
             JOptionPane.showMessageDialog(popUp, "No data to save.");
+        } finally {
+            popUp.dispose();
         }
     }
 
@@ -142,6 +148,8 @@ public class DeckPanel extends JPanel {
             }
         } catch (IOException e) {
             JOptionPane.showMessageDialog(popUp, "Unable to read data from file.");
+        } finally {
+            popUp.dispose();
         }
     }
 
@@ -154,12 +162,25 @@ public class DeckPanel extends JPanel {
 
             if (source == addDeck) {
                 addNewDeck();
-            } else if (source == openDeck) {
-                gui.showCardPanel();
             } else if (source == saveButton) {
                 saveGameState();
             } else if (source == loadButton) {
                 loadGameState();
+            }
+        }
+    }
+
+    // provides user interaction for the deck panel class
+    private class DeckMouseListener extends MouseAdapter {
+
+        public void mousePressed(MouseEvent e) {
+            if (e.getClickCount() == 2) {
+                JList<String> decks = (JList<String>) e.getSource();
+                int index = decks.locationToIndex(e.getPoint());
+                if (index >= 0) {
+                    gui.setCurrentDeck(dc.getDecks().get(index));
+                    gui.showCardPanel(); 
+                }
             }
         }
     }
