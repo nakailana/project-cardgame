@@ -49,7 +49,8 @@ public class DrawingSurface extends JFrame{
     //           this method is called by the DrawingSurface constructor
     private void initializeFields() {
         dc = new DecksController("my game");
-        currentDeck = null;
+        currentDeck = new Deck("default");
+        dc.addToController(currentDeck);
 
         screens = new CardLayout();
         container = new JPanel(screens);
@@ -65,7 +66,7 @@ public class DrawingSurface extends JFrame{
     public DecksController getDeckController() { return dc; }
 
     // setters 
-    public void setCurrentDeck(Deck d) { this.currentDeck = currentDeck; }
+    public void setCurrentDeck(Deck d) { this.currentDeck = d; }
 
     // MODIFIES: this
     // EFFECTS:  draws the JFrame window where this DrawingSurface will operate
@@ -107,6 +108,13 @@ public class DrawingSurface extends JFrame{
     // MODIFIES: this
     // EFFECTS: switches to the card screen
     public void showCardPanel() {
+        container.remove(cp);
+        cp = new CardPanel(this);
+        container.add(cp, "cardPanel");
+
+        container.revalidate(); 
+        container.repaint();
+
         screens.show(container, "cardPanel");
     }
 

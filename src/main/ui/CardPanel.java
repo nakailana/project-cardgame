@@ -6,11 +6,20 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+import javax.swing.BorderFactory;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JComponent;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 
 import exceptions.EmptyListException;
 import model.Card;
@@ -19,6 +28,8 @@ import model.Deck;
 // References:
 // https://github.students.cs.ubc.ca/CPSC210/B02-SpaceInvadersBase.git
 // https://stackoverflow.com/questions/64750241/how-to-check-which-button-in-my-jframe-was-clicked-if-i-have-more-than-one-butto
+// https://stackoverflow.com/questions/54800528/joptionpane-with-multiple-inputs 
+// https://stackoverflow.com/questions/1790500/render-html-in-swing-application
 
 // Represents the panel on which card related GUI will be placed
 public class CardPanel extends JPanel {
@@ -41,23 +52,25 @@ public class CardPanel extends JPanel {
         this.gui = gui;
         currentDeck = gui.getCurrentDeck();
 
+        JLabel showCurr = new JLabel("deck: " + currentDeck.getDeckName(), SwingConstants.CENTER);
+        this.add(showCurr, BorderLayout.NORTH);
+
         initScrollPane();
         initButtons();
-
-        this.setVisible(true);
     }
 
     // MODIFIES: this
     // EFFECTS: initialize the scroll pane displaying the cards
     private void initScrollPane() {
-        DefaultListModel<Card> cardListModel = new DefaultListModel<>();
+        cardListModel = new DefaultListModel<>();
 
-        if (currentDeck != null) {
-            for (Card c : currentDeck.getCards()) {
-                cardListModel.addElement(c);
-            }
+        for (Card c : currentDeck.getCards()) {
+            cardListModel.addElement("<html><body style='padding: 5px;'>" +
+                                    "<b>activity: </b>" + c.getActivity() +
+                                    "<br>" + c.getDescription() + 
+                                    "</body></html>");
         }
-        JList<Card> cards = new JList<Card>(cardListModel);
+        JList<String> cards = new JList<String>(cardListModel);
         JScrollPane scrollPane = new JScrollPane(cards);
         this.add(scrollPane, BorderLayout.CENTER);
     }
@@ -90,12 +103,46 @@ public class CardPanel extends JPanel {
     // MODIFIES: this
     // EFFECTS: update the scroll pane displaying the cards
     private void updateScrollPane(Card c) {
-        cardListModel.addElement(c.getActivity());
+        cardListModel.addElement("<html><body style='padding: 5px;'>" +
+                                        "<b>activity: </b>" + c.getActivity() +
+                                        "<br>" + c.getDescription() + 
+                                        "</body></html>");
     }
 
 	// EFFECTS:  adds given card to current deck 
 	public void addNewCard() {
+        JFrame inBox = new JFrame();
+        inBox.setVisible(true);
+
+        Card newCard = createCardInputWindow(inBox);
+
+        if (newCard != null) {
+            currentDeck.addToDeck(newCard);
+            updateScrollPane(newCard);
+
+            JOptionPane.showMessageDialog(inBox, "new card created!");
+        } else {
+            JOptionPane.showMessageDialog(inBox, "card not created.");
+        }
+        inBox.dispose();
 	}
+
+    // MODIFIES: this
+    // EFFECTS: creates a user input window for a user to make a card and returns the new card
+    public Card createCardInputWindow(JFrame inBox) { 
+        JTextField activityIn = new JTextField();
+        JCheckBox outdoorIn = new JCheckBox("Outdoor activity?");
+        JTextField descIn = new JTextField();
+
+        Object[] message = { "activity name:", activityIn, outdoorIn, "description:", descIn };
+
+        int result = JOptionPane.showConfirmDialog(inBox, message, "Enter:", JOptionPane.OK_CANCEL_OPTION);
+
+        if (result == JOptionPane.OK_OPTION) {
+            return new Card(activityIn.getText(), outdoorIn.isSelected(), descIn.getText());
+        } 
+        return null;
+    }
 
     // EFFECTS: draws a random card from the current deck
     public void drawCard() {
