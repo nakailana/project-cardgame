@@ -44,6 +44,7 @@ public class DeckPanel extends JPanel {
         super(new BorderLayout());
         this.gui = gui;
         this.dc = gui.getDeckController();
+        gui.setCurrentDeck(null);
 
         JLabel select = new JLabel("double click a deck to select it!", 
                                     SwingConstants.CENTER);
