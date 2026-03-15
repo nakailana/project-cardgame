@@ -41,12 +41,11 @@ public class DeckPanel extends JPanel {
     // MODIFIES: this
 	// EFFECTS:  initializes the panel where deck and deck info is displayed
     public DeckPanel(DrawingSurface gui) {
+        super(new BorderLayout());
         this.gui = gui;
         this.dc = gui.getDeckController();
 
-        this.setLayout(new BorderLayout());
-
-        JLabel select = new JLabel("Double click a Deck to select it!", 
+        JLabel select = new JLabel("double click a deck to select it!", 
                                     SwingConstants.CENTER);
         this.add(select, BorderLayout.NORTH);
 

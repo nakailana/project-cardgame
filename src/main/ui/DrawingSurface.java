@@ -39,7 +39,7 @@ public class DrawingSurface extends JFrame{
 
     // constructs the drawing surface
     public DrawingSurface() {
-        super("Cards Against Boredom");
+        super("cards against boredom");
         initializeFields();
         initializeGraphics();
     }
