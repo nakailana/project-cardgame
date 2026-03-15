@@ -52,10 +52,11 @@ public class CardPanel extends JPanel {
     private void initScrollPane() {
         DefaultListModel<Card> cardListModel = new DefaultListModel<>();
 
-        for (Card c : currentDeck.getCards()) {
-            cardListModel.addElement(c);
+        if (currentDeck != null) {
+            for (Card c : currentDeck.getCards()) {
+                cardListModel.addElement(c);
+            }
         }
-        
         JList<Card> cards = new JList<Card>(cardListModel);
         JScrollPane scrollPane = new JScrollPane(cards);
         this.add(scrollPane, BorderLayout.CENTER);
