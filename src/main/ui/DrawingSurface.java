@@ -18,6 +18,8 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 
 import model.Card;
 import model.Deck;
@@ -53,7 +55,6 @@ public class DrawingSurface extends JFrame{
         super("Cards Against Boredom");
         initializeFields();
         initializeGraphics();
-        initializeInteraction();
     }
 
     // MODIFIES: this
@@ -74,14 +75,7 @@ public class DrawingSurface extends JFrame{
 
     // getters
 	public Deck getCurrentDeck() { return currentDeck; }
-
-    // MODIFIES: this
-	// EFFECTS:  initializes a DrawingMouseListener to be used in the JFrame
-    private void initializeInteraction() {
-        DrawingMouseListener dml = new DrawingMouseListener();
-        addMouseListener(dml);
-        addMouseMotionListener(dml);
-    }
+    public DecksController getDeckController() { return dc; }
 
     // MODIFIES: this
     // EFFECTS:  draws the JFrame window where this DrawingSurface will operate
@@ -94,27 +88,41 @@ public class DrawingSurface extends JFrame{
         container.add(dp, "deckPanel");
         container.add(cp, "cardPanel");
 
+        add(container);
+
         screens.show(container, "deckPanel");
 
         setVisible(true);
     }
 
+    // EFFECTS: saves the state of the card game to file
+    public void saveGameState() throws FileNotFoundException, NullPointerException {
+        jsonWriter.open();
+        jsonWriter.write(dc);
+        jsonWriter.close();
+    }
+
+    // MODIFIES: this
+    // EFFECTS: loads the state of the card game from file
+    public void loadGameState() throws IOException {
+        dc = jsonReader.read();
+    }
+
+    // MODIFIES: this
+    // EFFECTS: switches to the deck screen
     public void showDeckPanel() {
         screens.show(container, "deckPanel");
     }
 
+    // MODIFIES: this
+    // EFFECTS: switches to the card screen
     public void showCardPanel() {
         screens.show(container, "cardPanel");
     }
 
-	public static void main(String args[]) {
+    //EFFECTS: play the game
+    public static void main(String args[]) {
         new DrawingSurface();
 	}
 
-    private class DrawingMouseListener extends MouseAdapter {
-
-		// EFFECTS: Forward mouse clicked event
-        public void mouseClicked(MouseEvent e) {
-        }
-    }
 }
