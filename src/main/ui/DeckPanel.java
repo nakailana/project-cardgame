@@ -172,6 +172,7 @@ public class DeckPanel extends JPanel {
     // provides user interaction for the deck panel class
     private class DeckMouseListener extends MouseAdapter {
 
+        // EFFECTS: selects a deck when the deck in the scroll pane is double clicked
         public void mousePressed(MouseEvent e) {
             if (e.getClickCount() == 2) {
                 JList<String> decks = (JList<String>) e.getSource();
