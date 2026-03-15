@@ -28,6 +28,26 @@
                 "description": "if it's summer!"
             }],
             "theme": "fun"
+        },
+        {
+            "cards": [
+                {
+                    "outdoor": true,
+                    "activity": "walk",
+                    "description": "he loves to walk he is cute hehehe"
+                },
+                {
+                    "outdoor": true,
+                    "activity": "swim",
+                    "description": "ginger doesnt like to swim."
+                },
+                {
+                    "outdoor": false,
+                    "activity": "puppy cup",
+                    "description": "ginger like to eat puppy cup from starbucks"
+                }
+            ],
+            "theme": "ginger"
         }
     ]
 }

@@ -72,7 +72,8 @@ public class DrawingSurface extends JFrame{
     // EFFECTS:  draws the JFrame window where this DrawingSurface will operate
     private void initializeGraphics() {
         setLayout(new BorderLayout());
-        setMinimumSize(new Dimension(WIDTH, HEIGHT));
+        setMinimumSize(new Dimension(WIDTH/2, HEIGHT/2));
+        setSize(new Dimension(WIDTH, HEIGHT));
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
 

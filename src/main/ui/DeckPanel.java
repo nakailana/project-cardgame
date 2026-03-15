@@ -59,7 +59,8 @@ public class DeckPanel extends JPanel {
         deckListModel = new DefaultListModel<>();
         
         for (Deck d : dc.getDecks()) {
-            deckListModel.addElement(d.getDeckName());
+            deckListModel.addElement("<html><body style='padding: 5px;'>" +
+                                    "<b>" + d.getDeckName() + "</b></body></html>");
         }
 
         JList<String> decks = new JList<String>(deckListModel);
@@ -93,7 +94,8 @@ public class DeckPanel extends JPanel {
     // MODIFIES: this
     // EFFECTS: update the scroll pane displaying the decks
     private void updateScrollPane(Deck d) {
-        deckListModel.addElement(d.getDeckName());
+        deckListModel.addElement("<html><body style='padding: 5px;'>" +
+                                "<b>" + d.getDeckName() + "</b></body></html>");
     }
 
     // MODIFIES: this
@@ -106,14 +108,13 @@ public class DeckPanel extends JPanel {
 
         if (input != null && !input.isEmpty()) {
             JOptionPane.showMessageDialog(inBox, "new deck created!");
+            Deck newDeck = new Deck(input);
+            dc.addToController(newDeck);
+            updateScrollPane(newDeck);
         } else {
             JOptionPane.showMessageDialog(inBox, "Invalid input. Please try again.");
         }
         inBox.dispose();
-
-        Deck newDeck = new Deck(input);
-        dc.addToController(newDeck);
-        updateScrollPane(newDeck);
     }
 
     // EFFECTS: saves the state of the card game to file
