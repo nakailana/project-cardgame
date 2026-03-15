@@ -1,27 +1,14 @@
 package ui;
 
-import java.util.ArrayList;
-
-import javax.swing.DefaultListModel;
-import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JList;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.SwingUtilities;
 
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Dimension;
-import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
-import model.Card;
 import model.Deck;
 import model.DecksController;
 import persistence.JsonReader;
@@ -66,7 +53,7 @@ public class DrawingSurface extends JFrame{
 
         screens = new CardLayout();
         container = new JPanel(screens);
-        dp = new DeckPanel(this, dc);
+        dp = new DeckPanel(this);
 		cp = new CardPanel(this);
 
         jsonWriter = new JsonWriter(JSON_STORE);

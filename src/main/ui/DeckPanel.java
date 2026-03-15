@@ -16,8 +16,6 @@ import javax.swing.JScrollPane;
 
 import model.Deck;
 import model.DecksController;
-import persistence.JsonReader;
-import persistence.JsonWriter;
 
 // References:
 // https://github.students.cs.ubc.ca/CPSC210/B02-SpaceInvadersBase.git
@@ -39,9 +37,9 @@ public class DeckPanel extends JPanel {
 
     // MODIFIES: this
 	// EFFECTS:  initializes the panel where deck and deck info is displayed
-    public DeckPanel(DrawingSurface gui, DecksController dc) {
+    public DeckPanel(DrawingSurface gui) {
         this.gui = gui;
-        this.dc = dc;
+        this.dc = gui.getDeckController();
         currentDeck = gui.getCurrentDeck();
 
         this.setLayout(new BorderLayout());
