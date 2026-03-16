@@ -118,11 +118,13 @@ public class CardPanel extends JPanel {
 
         Card newCard = createCardInputWindow(inBox);
 
-        if (newCard != null) {
+        if (newCard != null && !currentDeck.getCards().contains(newCard)) {
             currentDeck.addToDeck(newCard);
             updateScrollPane(newCard);
 
             JOptionPane.showMessageDialog(inBox, "new card created!");
+        } else if (currentDeck.getCards().contains(newCard)) {
+            JOptionPane.showMessageDialog(inBox, "this card already exists in your deck! card not created.");
         } else {
             JOptionPane.showMessageDialog(inBox, "card not created.");
         }

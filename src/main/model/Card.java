@@ -2,6 +2,7 @@ package model;
 
 import org.json.JSONObject;
 
+import ca.ubc.cs.ExcludeFromJacocoGeneratedReport;
 import persistence.Writable;
 
 // Represents a Card having an activity name, if it is an outdoor activity,
@@ -74,5 +75,38 @@ public class Card implements Writable {
         json.put("description", description);
         json.put("outdoor", outdoor);
         return json;
+    }
+
+    @Override
+    @ExcludeFromJacocoGeneratedReport
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((activity == null) ? 0 : activity.hashCode());
+        result = prime * result + ((outdoor == null) ? 0 : outdoor.hashCode());
+        return result;
+    }
+
+    @Override
+    @ExcludeFromJacocoGeneratedReport
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Card other = (Card) obj;
+        if (activity == null) {
+            if (other.activity != null)
+                return false;
+        } else if (!activity.equals(other.activity))
+            return false;
+        if (outdoor == null) {
+            if (other.outdoor != null)
+                return false;
+        } else if (!outdoor.equals(other.outdoor))
+            return false;
+        return true;
     }
 }
