@@ -103,6 +103,7 @@ public class DeckPanel extends JPanel {
     //           update scroll pane
 	private void addNewDeck() {
         JFrame inBox = new JFrame();
+        inBox.setLocationRelativeTo(null);
         inBox.setVisible(true);
         String input = JOptionPane.showInputDialog(inBox, "Please enter the deck's theme:");
 
@@ -112,7 +113,7 @@ public class DeckPanel extends JPanel {
             dc.addToController(newDeck);
             updateScrollPane(newDeck);
         } else {
-            JOptionPane.showMessageDialog(inBox, "Invalid input. Please try again.");
+            JOptionPane.showMessageDialog(inBox, "Invalid input.");
         }
         inBox.dispose();
     }
@@ -120,6 +121,7 @@ public class DeckPanel extends JPanel {
     // EFFECTS: saves the state of the card game to file
     private void saveGameState() {
         JFrame popUp = new JFrame();
+        popUp.setLocationRelativeTo(null);
         popUp.setVisible(true);
         try {
             gui.saveGameState();
@@ -136,6 +138,7 @@ public class DeckPanel extends JPanel {
     // EFFECTS: loads the state of the card game from file
     private void loadGameState() {
         JFrame popUp = new JFrame();
+        popUp.setLocationRelativeTo(null);
         popUp.setVisible(true);
         try {
             gui.loadGameState();

@@ -112,6 +112,7 @@ public class CardPanel extends JPanel {
 	// EFFECTS:  adds given card to current deck 
 	public void addNewCard() {
         JFrame inBox = new JFrame();
+        inBox.setLocationRelativeTo(null);
         inBox.setVisible(true);
 
         Card newCard = createCardInputWindow(inBox);
@@ -131,12 +132,12 @@ public class CardPanel extends JPanel {
     // EFFECTS: creates a user input window for a user to make a card and returns the new card
     public Card createCardInputWindow(JFrame inBox) { 
         JTextField activityIn = new JTextField();
-        JCheckBox outdoorIn = new JCheckBox("Outdoor activity?");
+        JCheckBox outdoorIn = new JCheckBox("outdoor activity?");
         JTextField descIn = new JTextField();
 
         Object[] message = { "activity name:", activityIn, outdoorIn, "description:", descIn };
 
-        int result = JOptionPane.showConfirmDialog(inBox, message, "Enter:", JOptionPane.OK_CANCEL_OPTION);
+        int result = JOptionPane.showConfirmDialog(inBox, message, "enter:", JOptionPane.OK_CANCEL_OPTION);
 
         if (result == JOptionPane.OK_OPTION) {
             return new Card(activityIn.getText(), outdoorIn.isSelected(), descIn.getText());
@@ -146,15 +147,39 @@ public class CardPanel extends JPanel {
 
     // EFFECTS: draws a random card from the current deck
     public void drawCard() {
+        displayCard(currentDeck.pullRandomCard());
     }
 
     // EFFECTS: draws a random card from a filtered version of the current deck
     public void drawCardFiltered(Boolean outdoor) {
+        JFrame inBox = new JFrame();
+        JCheckBox outdoorIn = new JCheckBox("<html>filtered draw:"+
+                                            "<br><b>check this box to filter for outdoor cards</b></html>");
+        Object[] message = { outdoorIn };
+        int result = JOptionPane.showConfirmDialog(inBox, message, "enter:", JOptionPane.OK_CANCEL_OPTION);
+
+        if (result == JOptionPane.OK_OPTION) {
+            try {
+                displayCard(currentDeck.pullRandomCard(outdoorIn.isSelected()));
+            } catch (EmptyListException e) {
+                JOptionPane.showMessageDialog(inBox, "<html>Sorry, there are no cards of this type to draw from."
+                                                            + "<br> Please create some more cards first!</html>");
+            }
+        } 
     }
 
     // MODIFIES: this
     // EFFECTS: displays the given card
     public void displayCard(Card c) {
+        JFrame popUp = new JFrame();
+        popUp.setLocationRelativeTo(null);
+        popUp.setVisible(true);
+        JOptionPane.showMessageDialog(popUp, "<html><body style='padding: 5px;'>" +
+                                            "card generated!" +
+                                            "<br><b>activity: </b>" + c.getActivity() +
+                                            "<br>" + c.getDescription() + 
+                                            "</body></html>");
+        popUp.dispose();
     }
 
     // EFFECTS: deletes the card from the current deck
