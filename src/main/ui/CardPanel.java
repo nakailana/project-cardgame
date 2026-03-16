@@ -39,7 +39,6 @@ public class CardPanel extends JPanel {
     private JButton addCard;
     private JButton drawCard;
     private JButton drawFilteredCard;
-    private JButton deleteCard;
     private JButton menu;
 
     // MODIFIES: this
@@ -85,17 +84,18 @@ public class CardPanel extends JPanel {
         drawCard.addActionListener(action);
         drawFilteredCard = new JButton("draw random (filtered)");
         drawFilteredCard.addActionListener(action);
-        deleteCard = new JButton("delete");
-        deleteCard.addActionListener(action);
         menu = new JButton("return to menu");
         menu.addActionListener(action);
+        JLabel deleteInstructions = new JLabel("<html><body style='padding-left: 10px;'>" + 
+                                                "<small>right click to" +
+                                                "<br>delete a card</small></html>");
 
         buttonPanel = new JPanel();
         buttonPanel.add(addCard);
         buttonPanel.add(drawCard);
         buttonPanel.add(drawFilteredCard);
-        buttonPanel.add(deleteCard); //TODO - no longer need this button
         buttonPanel.add(menu);
+        buttonPanel.add(deleteInstructions);
         this.add(buttonPanel, BorderLayout.SOUTH);
     }
 
