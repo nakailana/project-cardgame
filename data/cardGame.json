@@ -11,7 +11,7 @@
                 {
                     "outdoor": false,
                     "activity": "cookies",
-                    "description": "pumpkin spice"
+                    "description": "look online for inspiration"
                 },
                 {
                     "outdoor": false,
@@ -25,29 +25,29 @@
             "cards": [{
                 "outdoor": true,
                 "activity": "swim",
-                "description": "if it's summer!"
+                "description": "a summer classic!"
             }],
-            "theme": "fun"
+            "theme": "daytime"
         },
         {
             "cards": [
                 {
                     "outdoor": true,
                     "activity": "walk",
-                    "description": "he loves to walk he is cute hehehe"
-                },
-                {
-                    "outdoor": true,
-                    "activity": "swim",
-                    "description": "ginger doesnt like to swim."
+                    "description": "it's good to take in the outside air."
                 },
                 {
                     "outdoor": false,
-                    "activity": "puppy cup",
-                    "description": "ginger like to eat puppy cup from starbucks"
+                    "activity": "journal",
+                    "description": "organize your thoughts"
+                },
+                {
+                    "outdoor": false,
+                    "activity": "relax",
+                    "description": "take a few deep breaths and do something you enjoy"
                 }
             ],
-            "theme": "ginger"
+            "theme": "wellness"
         }
     ]
 }
