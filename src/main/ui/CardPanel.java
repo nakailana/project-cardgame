@@ -145,12 +145,19 @@ public class CardPanel extends JPanel {
         return null;
     }
 
-    // EFFECTS: draws a random card from the current deck
+    // EFFECTS: draws a random card from the current deck if it is not empty, otherwise show error msg
     public void drawCard() {
-        displayCard(currentDeck.pullRandomCard());
+        if (currentDeck.getCards().size() <= 0) {
+            JFrame popUp = new JFrame();
+            JOptionPane.showMessageDialog(popUp, "<html>Sorry, there are no cards of this type to draw from."
+                        + "<br> Please create some more cards first!</html>");
+        } else {
+            displayCard(currentDeck.pullRandomCard());
+        }
     }
 
-    // EFFECTS: draws a random card from a filtered version of the current deck
+    // EFFECTS: draws a random card from a filtered version of the current deck if cards of those
+    //          type exist in the deck, otherwise show error msg
     public void drawCardFiltered(Boolean outdoor) {
         JFrame inBox = new JFrame();
         JCheckBox outdoorIn = new JCheckBox("<html>filtered draw:" +
@@ -220,8 +227,7 @@ public class CardPanel extends JPanel {
     private class CardMouseListener extends MouseAdapter {
 
         // EFFECTS: if user right clicks, confirm if the user wants to delete the
-        // clicked card and
-        // delete that card if yes
+        // clicked card and delete that card if confirmed yes
         public void mousePressed(MouseEvent e) {
             if (e.isPopupTrigger()) {
                 JList<String> cardList = (JList<String>) e.getSource();
