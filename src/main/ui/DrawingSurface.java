@@ -3,6 +3,8 @@ package ui;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import ca.ubc.cs.ExcludeFromJacocoGeneratedReport;
+
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Dimension;
@@ -20,6 +22,7 @@ import persistence.JsonWriter;
 //                 https://github.students.cs.ubc.ca/CPSC210/B02-SpaceInvadersBase.git 
 
 // Represents the main surface where GUI is drawn
+@ExcludeFromJacocoGeneratedReport
 public class DrawingSurface extends JFrame{
 
     public static final int WIDTH = 1000;

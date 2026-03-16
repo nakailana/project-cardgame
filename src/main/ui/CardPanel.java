@@ -18,6 +18,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
+import ca.ubc.cs.ExcludeFromJacocoGeneratedReport;
 import exceptions.EmptyListException;
 import model.Card;
 import model.Deck;
@@ -29,6 +30,7 @@ import model.Deck;
 // https://stackoverflow.com/questions/1790500/render-html-in-swing-application
 
 // Represents the panel on which card related GUI will be placed
+@ExcludeFromJacocoGeneratedReport
 public class CardPanel extends JPanel {
 
     private DrawingSurface gui;

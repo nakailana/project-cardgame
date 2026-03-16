@@ -18,6 +18,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
 
+import ca.ubc.cs.ExcludeFromJacocoGeneratedReport;
 import model.Deck;
 import model.DecksController;
 
@@ -27,6 +28,7 @@ import model.DecksController;
 // https://stackoverflow.com/questions/20702013/how-to-add-double-click-capability-in-jscrollpane#:~:text=Comments,-Add%20a%20comment&text=0-,JList%20theList%20=%20(JList)%20mouseEvent.,work%20by%20mouse%20or%20keyboard. 
 
 // Represents the panel on which deck related GUI will be placed
+@ExcludeFromJacocoGeneratedReport
 public class DeckPanel extends JPanel {
 
     private DrawingSurface gui;
