@@ -6,18 +6,15 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-import javax.swing.BorderFactory;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
-import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
@@ -46,7 +43,7 @@ public class CardPanel extends JPanel {
     private JButton menu;
 
     // MODIFIES: this
-	// EFFECTS:  initializes the panel where card info is displayed
+    // EFFECTS: initializes the panel where card info is displayed
     public CardPanel(DrawingSurface gui) {
         super(new BorderLayout());
         this.gui = gui;
@@ -66,12 +63,14 @@ public class CardPanel extends JPanel {
 
         for (Card c : currentDeck.getCards()) {
             cardListModel.addElement("<html><body style='padding: 5px;'>" +
-                                    "<b>activity: </b>" + c.getActivity() +
-                                    "<br>" + c.getDescription() + 
-                                    "</body></html>");
+                    "<b>activity: </b>" + c.getActivity() +
+                    "<br>" + c.getDescription() +
+                    "</body></html>");
         }
         JList<String> cards = new JList<String>(cardListModel);
         JScrollPane scrollPane = new JScrollPane(cards);
+
+        cards.addMouseListener(new CardMouseListener());
         this.add(scrollPane, BorderLayout.CENTER);
     }
 
@@ -95,7 +94,7 @@ public class CardPanel extends JPanel {
         buttonPanel.add(addCard);
         buttonPanel.add(drawCard);
         buttonPanel.add(drawFilteredCard);
-        buttonPanel.add(deleteCard);
+        buttonPanel.add(deleteCard); //TODO - no longer need this button
         buttonPanel.add(menu);
         this.add(buttonPanel, BorderLayout.SOUTH);
     }
@@ -104,13 +103,13 @@ public class CardPanel extends JPanel {
     // EFFECTS: update the scroll pane displaying the cards
     private void updateScrollPane(Card c) {
         cardListModel.addElement("<html><body style='padding: 5px;'>" +
-                                        "<b>activity: </b>" + c.getActivity() +
-                                        "<br>" + c.getDescription() + 
-                                        "</body></html>");
+                "<b>activity: </b>" + c.getActivity() +
+                "<br>" + c.getDescription() +
+                "</body></html>");
     }
 
-	// EFFECTS:  adds given card to current deck 
-	public void addNewCard() {
+    // EFFECTS: adds given card to current deck
+    public void addNewCard() {
         JFrame inBox = new JFrame();
         inBox.setLocationRelativeTo(null);
         inBox.setVisible(true);
@@ -126,11 +125,12 @@ public class CardPanel extends JPanel {
             JOptionPane.showMessageDialog(inBox, "card not created.");
         }
         inBox.dispose();
-	}
+    }
 
     // MODIFIES: this
-    // EFFECTS: creates a user input window for a user to make a card and returns the new card
-    public Card createCardInputWindow(JFrame inBox) { 
+    // EFFECTS: creates a user input window for a user to make a card and returns
+    // the new card
+    public Card createCardInputWindow(JFrame inBox) {
         JTextField activityIn = new JTextField();
         JCheckBox outdoorIn = new JCheckBox("outdoor activity?");
         JTextField descIn = new JTextField();
@@ -141,7 +141,7 @@ public class CardPanel extends JPanel {
 
         if (result == JOptionPane.OK_OPTION) {
             return new Card(activityIn.getText(), outdoorIn.isSelected(), descIn.getText());
-        } 
+        }
         return null;
     }
 
@@ -153,8 +153,8 @@ public class CardPanel extends JPanel {
     // EFFECTS: draws a random card from a filtered version of the current deck
     public void drawCardFiltered(Boolean outdoor) {
         JFrame inBox = new JFrame();
-        JCheckBox outdoorIn = new JCheckBox("<html>filtered draw:"+
-                                            "<br><b>check this box to filter for outdoor cards</b></html>");
+        JCheckBox outdoorIn = new JCheckBox("<html>filtered draw:" +
+                "<br><b>check this box to filter for outdoor cards</b></html>");
         Object[] message = { outdoorIn };
         int result = JOptionPane.showConfirmDialog(inBox, message, "enter:", JOptionPane.OK_CANCEL_OPTION);
 
@@ -163,9 +163,9 @@ public class CardPanel extends JPanel {
                 displayCard(currentDeck.pullRandomCard(outdoorIn.isSelected()));
             } catch (EmptyListException e) {
                 JOptionPane.showMessageDialog(inBox, "<html>Sorry, there are no cards of this type to draw from."
-                                                            + "<br> Please create some more cards first!</html>");
+                        + "<br> Please create some more cards first!</html>");
             }
-        } 
+        }
     }
 
     // MODIFIES: this
@@ -175,18 +175,29 @@ public class CardPanel extends JPanel {
         popUp.setLocationRelativeTo(null);
         popUp.setVisible(true);
         JOptionPane.showMessageDialog(popUp, "<html><body style='padding: 5px;'>" +
-                                            "card generated!" +
-                                            "<br><b>activity: </b>" + c.getActivity() +
-                                            "<br>" + c.getDescription() + 
-                                            "</body></html>");
+                "card generated!" +
+                "<br><b>activity: </b>" + c.getActivity() +
+                "<br>" + c.getDescription() +
+                "</body></html>");
         popUp.dispose();
     }
 
-    // EFFECTS: deletes the card from the current deck
-    public void deleteCard(Card c) {
+    // EFFECTS: deletes the card at the given index from the current deck
+    public void deleteCard(Card c, int index) {
+        JFrame inBox = new JFrame();
+        String message = "<html><b>are you sure you want to delete this card?</b>" +
+                "<br>(this can not be undone)</html>";
+
+        int result = JOptionPane.showConfirmDialog(inBox, message, "enter:", JOptionPane.OK_CANCEL_OPTION);
+
+        if (result == JOptionPane.OK_OPTION) {
+            currentDeck.removeFromDeck(c);
+        }
+        cardListModel.remove(index);
+        inBox.dispose();
     }
 
-    //provides user interaction for the card panel class
+    // provides user interaction for the card panel class
     private class CardListener implements ActionListener {
 
         // EFFECTS: perform the action corresponding to each button on the screen
@@ -199,8 +210,6 @@ public class CardPanel extends JPanel {
                 drawCard();
             } else if (source == drawFilteredCard) {
                 drawCardFiltered(false);
-            } else if (source == deleteCard) {
-                //deleteCard(Card c)
             } else if (source == menu) {
                 gui.showDeckPanel();
             }
@@ -210,9 +219,17 @@ public class CardPanel extends JPanel {
     // provides user mouse related interaction for the card panel class
     private class CardMouseListener extends MouseAdapter {
 
-        // EFFECTS: if delete card button was pressed and the card in the JList is double clicked,
-        //          delete that card
+        // EFFECTS: if user right clicks, confirm if the user wants to delete the
+        // clicked card and
+        // delete that card if yes
         public void mousePressed(MouseEvent e) {
+            if (e.isPopupTrigger()) {
+                JList<String> cardList = (JList<String>) e.getSource();
+                int index = cardList.locationToIndex(e.getPoint());
+                if (index >= 0) {
+                    deleteCard(currentDeck.getCards().get(index), index);
+                }
+            }
         }
     }
 
