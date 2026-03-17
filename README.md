@@ -23,6 +23,6 @@ The inspiration for my app comes from a small pouch I found while doing a deep c
 - You can view the card display panel,  containing any existing cards, by double-clicking its corresponding deck in the main menu
 - You can create a new activity card by first selecting the deck you want the card to be located in, and then pressing the 'add new card' button in the menu at the bottom of the screen
 - You can delete a card by right-clicking it in the card display panel
-- You can locate the visual component by adding a new card
+- You can locate the visual component of the application by generating a random card
 - You can save the state of the application by clicking the 'save data' button in the main menu
 - You can load any saved pre-existing state of the application by clicking the 'load data' button in the main menu
