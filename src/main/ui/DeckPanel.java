@@ -81,7 +81,7 @@ public class DeckPanel extends JPanel {
         addDeck.addActionListener(action);
         saveButton = new JButton("save data");
         saveButton.addActionListener(action);
-        loadButton = new JButton("load from data");
+        loadButton = new JButton("load data");
         loadButton.addActionListener(action);
 
         buttonPanel = new JPanel();
