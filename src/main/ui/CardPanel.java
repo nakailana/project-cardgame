@@ -1,12 +1,15 @@
 package ui;
 
 import java.awt.BorderLayout;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.IOException;
 
 import javax.swing.DefaultListModel;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JFrame;
@@ -28,6 +31,8 @@ import model.Deck;
 // https://stackoverflow.com/questions/64750241/how-to-check-which-button-in-my-jframe-was-clicked-if-i-have-more-than-one-butto
 // https://stackoverflow.com/questions/54800528/joptionpane-with-multiple-inputs 
 // https://stackoverflow.com/questions/1790500/render-html-in-swing-application
+// Image Credits:
+// https://www.nicepng.com/ourpic/u2w7a9t4y3i1i1t4_orange-star-icon-diamond-icon-cute-star/ 
 
 // Represents the panel on which card related GUI will be placed
 @ExcludeFromJacocoGeneratedReport
@@ -88,9 +93,9 @@ public class CardPanel extends JPanel {
         drawFilteredCard.addActionListener(action);
         menu = new JButton("return to menu");
         menu.addActionListener(action);
-        JLabel deleteInstructions = new JLabel("<html><body style='padding-left: 10px;'>" + 
-                                                "<small>right click to" +
-                                                "<br>delete a card</small></html>");
+        JLabel deleteInstructions = new JLabel("<html><body style='padding-left: 10px;'>" +
+                "<small>right click to" +
+                "<br>delete a card</small></html>");
 
         buttonPanel = new JPanel();
         buttonPanel.add(addCard);
@@ -122,7 +127,8 @@ public class CardPanel extends JPanel {
             currentDeck.addToDeck(newCard);
             updateScrollPane(newCard);
 
-            JOptionPane.showMessageDialog(inBox, "new card created!");
+            JOptionPane.showMessageDialog(inBox, "new card created!", "success!", JOptionPane.INFORMATION_MESSAGE);
+
         } else if (currentDeck.getCards().contains(newCard)) {
             JOptionPane.showMessageDialog(inBox, "this card already exists in your deck! card not created.");
         } else {
@@ -149,19 +155,21 @@ public class CardPanel extends JPanel {
         return null;
     }
 
-    // EFFECTS: draws a random card from the current deck if it is not empty, otherwise show error msg
+    // EFFECTS: draws a random card from the current deck if it is not empty,
+    // otherwise show error msg
     public void drawCard() {
         if (currentDeck.getCards().size() <= 0) {
             JFrame popUp = new JFrame();
             JOptionPane.showMessageDialog(popUp, "<html>Sorry, there are no cards of this type to draw from."
-                        + "<br> Please create some more cards first!</html>");
+                    + "<br> Please create some more cards first!</html>");
         } else {
             displayCard(currentDeck.pullRandomCard());
         }
     }
 
-    // EFFECTS: draws a random card from a filtered version of the current deck if cards of those
-    //          type exist in the deck, otherwise show error msg
+    // EFFECTS: draws a random card from a filtered version of the current deck if
+    // cards of those
+    // type exist in the deck, otherwise show error msg
     public void drawCardFiltered(Boolean outdoor) {
         JFrame inBox = new JFrame();
         JCheckBox outdoorIn = new JCheckBox("<html>filtered draw:" +
@@ -185,12 +193,23 @@ public class CardPanel extends JPanel {
         JFrame popUp = new JFrame();
         popUp.setLocationRelativeTo(null);
         popUp.setVisible(true);
+
+        ImageIcon icon = createIcon();
+
         JOptionPane.showMessageDialog(popUp, "<html><body style='padding: 5px;'>" +
                 "card generated!" +
                 "<br><b>activity: </b>" + c.getActivity() +
                 "<br>" + c.getDescription() +
-                "</body></html>");
+                "</body></html>", "card generated!", JOptionPane.PLAIN_MESSAGE, icon);
         popUp.dispose();
+    }
+
+    // EFFECTS: creates a scaled image icon
+    private ImageIcon createIcon() {
+        ImageIcon icon = new ImageIcon("src/img/happystar.png");
+        Image scaled = icon.getImage().getScaledInstance(90, 70, Image.SCALE_DEFAULT);
+        ImageIcon resizedIcon = new ImageIcon(scaled);
+        return resizedIcon;
     }
 
     // EFFECTS: deletes the card at the given index from the current deck
