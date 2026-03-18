@@ -88,25 +88,33 @@ public class Card implements Writable {
     }
 
     @Override
+    @SuppressWarnings("methodlength")
     @ExcludeFromJacocoGeneratedReport
     public boolean equals(Object obj) {
-        if (this == obj)
+        if (this == obj) {
             return true;
-        if (obj == null)
+        }
+        if (obj == null) {
             return false;
-        if (getClass() != obj.getClass())
+        }
+        if (getClass() != obj.getClass()) {
             return false;
+        }
         Card other = (Card) obj;
         if (activity == null) {
-            if (other.activity != null)
+            if (other.activity != null) {
                 return false;
-        } else if (!activity.equals(other.activity))
+            }
+        } else if (!activity.equals(other.activity)) {
             return false;
+        }
         if (outdoor == null) {
-            if (other.outdoor != null)
+            if (other.outdoor != null) {
                 return false;
-        } else if (!outdoor.equals(other.outdoor))
+            }
+        } else if (!outdoor.equals(other.outdoor)) {
             return false;
+        }
         return true;
     }
 }

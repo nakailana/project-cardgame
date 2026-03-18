@@ -6,7 +6,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.io.IOException;
 
 import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
@@ -68,10 +67,11 @@ public class CardPanel extends JPanel {
         cardListModel = new DefaultListModel<>();
 
         for (Card c : currentDeck.getCards()) {
-            cardListModel.addElement("<html><body style='padding: 5px;'>" +
-                    "<b>activity: </b>" + c.getActivity() +
-                    "<br>" + c.getDescription() +
-                    "</body></html>");
+            cardListModel.addElement("<html><body style='padding: 5px;'>"
+                    + "<b>activity: </b>" 
+                    + c.getActivity()
+                    + "<br>" + c.getDescription()
+                    + "</body></html>");
         }
         JList<String> cards = new JList<String>(cardListModel);
         JScrollPane scrollPane = new JScrollPane(cards);
@@ -93,9 +93,9 @@ public class CardPanel extends JPanel {
         drawFilteredCard.addActionListener(action);
         menu = new JButton("return to menu");
         menu.addActionListener(action);
-        JLabel deleteInstructions = new JLabel("<html><body style='padding-left: 10px;'>" +
-                "<small>right click to" +
-                "<br>delete a card</small></html>");
+        JLabel deleteInstructions = new JLabel("<html><body style='padding-left: 10px;'>"
+                + "<small>right click to"
+                + "<br>delete a card</small></html>");
 
         buttonPanel = new JPanel();
         buttonPanel.add(addCard);
@@ -109,10 +109,10 @@ public class CardPanel extends JPanel {
     // MODIFIES: this
     // EFFECTS: update the scroll pane displaying the cards
     private void updateScrollPane(Card c) {
-        cardListModel.addElement("<html><body style='padding: 5px;'>" +
-                "<b>activity: </b>" + c.getActivity() +
-                "<br>" + c.getDescription() +
-                "</body></html>");
+        cardListModel.addElement("<html><body style='padding: 5px;'>" 
+                + "<b>activity: </b>" + c.getActivity()
+                + "<br>" + c.getDescription()
+                + "</body></html>");
     }
 
     // EFFECTS: adds given card to current deck
@@ -172,8 +172,8 @@ public class CardPanel extends JPanel {
     // type exist in the deck, otherwise show error msg
     public void drawCardFiltered(Boolean outdoor) {
         JFrame inBox = new JFrame();
-        JCheckBox outdoorIn = new JCheckBox("<html>filtered draw:" +
-                "<br><b>check this box to filter for outdoor cards</b></html>");
+        JCheckBox outdoorIn = new JCheckBox("<html>filtered draw:" 
+                + "<br><b>check this box to filter for outdoor cards</b></html>");
         Object[] message = { outdoorIn };
         int result = JOptionPane.showConfirmDialog(inBox, message, "enter:", JOptionPane.OK_CANCEL_OPTION);
 
@@ -196,11 +196,11 @@ public class CardPanel extends JPanel {
 
         ImageIcon icon = createIcon();
 
-        JOptionPane.showMessageDialog(popUp, "<html><body style='padding: 5px;'>" +
-                "card generated!" +
-                "<br><b>activity: </b>" + c.getActivity() +
-                "<br>" + c.getDescription() +
-                "</body></html>", "card generated!", JOptionPane.PLAIN_MESSAGE, icon);
+        JOptionPane.showMessageDialog(popUp, "<html><body style='padding: 5px;'>"
+                + "card generated!"
+                + "<br><b>activity: </b>" + c.getActivity()
+                + "<br>" + c.getDescription()
+                + "</body></html>", "card generated!", JOptionPane.PLAIN_MESSAGE, icon);
         popUp.dispose();
     }
 
@@ -215,8 +215,8 @@ public class CardPanel extends JPanel {
     // EFFECTS: deletes the card at the given index from the current deck
     public void deleteCard(Card c, int index) {
         JFrame inBox = new JFrame();
-        String message = "<html><b>are you sure you want to delete this card?</b>" +
-                "<br>(this can not be undone)</html>";
+        String message = "<html><b>are you sure you want to delete this card?</b>"
+                + "<br>(this can not be undone)</html>";
 
         int result = JOptionPane.showConfirmDialog(inBox, message, "enter:", JOptionPane.OK_CANCEL_OPTION);
 

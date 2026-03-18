@@ -41,14 +41,14 @@ public class DeckPanel extends JPanel {
     private JButton loadButton;
 
     // MODIFIES: this
-	// EFFECTS:  initializes the panel where deck and deck info is displayed
+    // EFFECTS: initializes the panel where deck and deck info is displayed
     public DeckPanel(DrawingSurface gui) {
         super(new BorderLayout());
         this.gui = gui;
         this.dc = gui.getDeckController();
 
-        JLabel select = new JLabel("double click a deck to select it!", 
-                                    SwingConstants.CENTER);
+        JLabel select = new JLabel("double click a deck to select it!",
+                SwingConstants.CENTER);
         this.add(select, BorderLayout.NORTH);
 
         initScrollPane();
@@ -59,16 +59,18 @@ public class DeckPanel extends JPanel {
     // EFFECTS: initialize the scroll pane displaying the decks
     private void initScrollPane() {
         deckListModel = new DefaultListModel<>();
-        
+
         for (Deck d : dc.getDecks()) {
-            deckListModel.addElement("<html><body style='padding: 5px;'>" +
-                                    "<b>" + d.getDeckName() + "</b></body></html>");
+            deckListModel.addElement("<html><body style='padding: 5px;'>" 
+                    + "<b>" 
+                    + d.getDeckName() 
+                    + "</b></body></html>");
         }
 
         JList<String> decks = new JList<String>(deckListModel);
         JScrollPane scrollPane = new JScrollPane(decks);
 
-        decks.addMouseListener(new DeckMouseListener()); 
+        decks.addMouseListener(new DeckMouseListener());
         this.add(scrollPane, BorderLayout.CENTER);
     }
 
@@ -96,14 +98,14 @@ public class DeckPanel extends JPanel {
     // MODIFIES: this
     // EFFECTS: update the scroll pane displaying the decks
     private void updateScrollPane(Deck d) {
-        deckListModel.addElement("<html><body style='padding: 5px;'>" +
-                                "<b>" + d.getDeckName() + "</b></body></html>");
+        deckListModel.addElement("<html><body style='padding: 5px;'>"
+                + "<b>" + d.getDeckName() + "</b></body></html>");
     }
 
     // MODIFIES: this
-	// EFFECTS:  declares and instantiates a Deck, and adds it to deck controller
-    //           update scroll pane
-	private void addNewDeck() {
+    // EFFECTS: declares and instantiates a Deck, and adds it to deck controller
+    // update scroll pane
+    private void addNewDeck() {
         JFrame inBox = new JFrame();
         inBox.setLocationRelativeTo(null);
         inBox.setVisible(true);
@@ -145,10 +147,10 @@ public class DeckPanel extends JPanel {
         try {
             gui.loadGameState();
             JOptionPane.showMessageDialog(popUp, "Loaded data from file!");
-            
-            deckListModel.clear(); 
+
+            deckListModel.clear();
             dc = gui.getDeckController();
-            for (Deck d: dc.getDecks()) {
+            for (Deck d : dc.getDecks()) {
                 updateScrollPane(d);
             }
         } catch (IOException e) {
@@ -185,7 +187,7 @@ public class DeckPanel extends JPanel {
                 int index = decks.locationToIndex(e.getPoint());
                 if (index >= 0) {
                     gui.setCurrentDeck(dc.getDecks().get(index));
-                    gui.showCardPanel(); 
+                    gui.showCardPanel();
                 }
             }
         }

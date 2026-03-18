@@ -16,8 +16,10 @@ import ca.ubc.cs.ExcludeFromJacocoGeneratedReport;
 @ExcludeFromJacocoGeneratedReport
 public class CardTest {
 
-    Card c1, c2, c3;
-    
+    Card c1;
+    Card c2;
+    Card c3;
+
     @BeforeEach
     void runBefore() {
         c1 = new Card("A", false, "");

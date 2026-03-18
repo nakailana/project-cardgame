@@ -23,10 +23,10 @@ import persistence.JsonWriter;
 
 // Represents the main surface where GUI is drawn
 @ExcludeFromJacocoGeneratedReport
-public class DrawingSurface extends JFrame{
+public class DrawingSurface extends JFrame {
 
     public static final int WIDTH = 1000;
-	public static final int HEIGHT = 700;
+    public static final int HEIGHT = 700;
 
     private static final String JSON_STORE = "./data/cardGame.json";
     private JsonWriter jsonWriter;
@@ -48,8 +48,8 @@ public class DrawingSurface extends JFrame{
     }
 
     // MODIFIES: this
-    // EFFECTS:  sets deck controller and current deck to null
-    //           this method is called by the DrawingSurface constructor
+    // EFFECTS: sets deck controller and current deck to null
+    // this method is called by the DrawingSurface constructor
     private void initializeFields() {
         dc = new DecksController("my game");
         currentDeck = new Deck("default");
@@ -58,24 +58,31 @@ public class DrawingSurface extends JFrame{
         screens = new CardLayout();
         container = new JPanel(screens);
         dp = new DeckPanel(this);
-		cp = new CardPanel(this);
+        cp = new CardPanel(this);
 
         jsonWriter = new JsonWriter(JSON_STORE);
         jsonReader = new JsonReader(JSON_STORE);
     }
 
     // getters
-	public Deck getCurrentDeck() { return currentDeck; }
-    public DecksController getDeckController() { return dc; }
+    public Deck getCurrentDeck() {
+        return currentDeck;
+    }
 
-    // setters 
-    public void setCurrentDeck(Deck d) { this.currentDeck = d; }
+    public DecksController getDeckController() {
+        return dc;
+    }
+
+    // setters
+    public void setCurrentDeck(Deck d) {
+        this.currentDeck = d;
+    }
 
     // MODIFIES: this
-    // EFFECTS:  draws the JFrame window where this DrawingSurface will operate
+    // EFFECTS: draws the JFrame window where this DrawingSurface will operate
     private void initializeGraphics() {
         setLayout(new BorderLayout());
-        setMinimumSize(new Dimension(WIDTH/2, HEIGHT/2));
+        setMinimumSize(new Dimension(WIDTH / 2, HEIGHT / 2));
         setSize(new Dimension(WIDTH, HEIGHT));
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
@@ -116,15 +123,15 @@ public class DrawingSurface extends JFrame{
         cp = new CardPanel(this);
         container.add(cp, "cardPanel");
 
-        container.revalidate(); 
+        container.revalidate();
         container.repaint();
 
         screens.show(container, "cardPanel");
     }
 
-    //EFFECTS: play the game
-    public static void main(String args[]) {
+    // EFFECTS: play the game
+    public static void main(String[] args) {
         new DrawingSurface();
-	}
+    }
 
 }
