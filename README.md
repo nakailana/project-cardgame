@@ -31,3 +31,38 @@ The inspiration for my app comes from a small pouch I found while doing a deep c
 - You can save the state of the application by clicking the 'save data' button in the main menu
 
 - You can load any saved pre-existing state of the application by clicking the 'load data' button in the main menu
+
+
+## Phase 4: Task 2  ✎
+A representative sample of the events that occur when the program is run:
+
+Sun Mar 22 15:59:40 PDT 2026  
+Added deck to game.
+
+
+Sun Mar 22 15:59:50 PDT 2026  
+Added deck to game.
+
+
+Sun Mar 22 16:00:01 PDT 2026  
+Added a card to deck.
+
+
+Sun Mar 22 16:00:08 PDT 2026  
+Added a card to deck.
+
+
+Sun Mar 22 16:00:15 PDT 2026  
+Added a card to deck.
+
+
+Sun Mar 22 16:00:18 PDT 2026  
+Drew a random card.
+
+
+Sun Mar 22 16:00:24 PDT 2026  
+Drew a random card with filtering
+
+
+Sun Mar 22 16:00:28 PDT 2026  
+Removed card from deck.

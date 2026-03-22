@@ -1,18 +1,21 @@
 package ui;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+import javax.swing.*;
 
 import ca.ubc.cs.ExcludeFromJacocoGeneratedReport;
 
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Dimension;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import model.Deck;
 import model.DecksController;
+import model.Event;
+import model.EventLog;
 import persistence.JsonReader;
 import persistence.JsonWriter;
 
@@ -20,6 +23,7 @@ import persistence.JsonWriter;
 // Previous Java project: https://github.com/HHSAPCompSci2023/capstoneproject-capstone-vibhalanatalya-compcrew.git
 // Course content: https://github.students.cs.ubc.ca/CPSC210/SimpleDrawingPlayer-Complete.git 
 //                 https://github.students.cs.ubc.ca/CPSC210/B02-SpaceInvadersBase.git 
+//                 https://github.students.cs.ubc.ca/CPSC210/AlarmSystem 
 
 // Represents the main surface where GUI is drawn
 @ExcludeFromJacocoGeneratedReport
@@ -43,6 +47,7 @@ public class DrawingSurface extends JFrame {
     // constructs the drawing surface
     public DrawingSurface() {
         super("cards against boredom");
+        this.addWindowListener(new WindowCloseAction());
         initializeFields();
         initializeGraphics();
     }
@@ -84,7 +89,7 @@ public class DrawingSurface extends JFrame {
         setLayout(new BorderLayout());
         setMinimumSize(new Dimension(WIDTH / 2, HEIGHT / 2));
         setSize(new Dimension(WIDTH, HEIGHT));
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
 
         container.add(dp, "deckPanel");
@@ -133,5 +138,22 @@ public class DrawingSurface extends JFrame {
     public static void main(String[] args) {
         new DrawingSurface();
     }
+
+    /**
+	 * Represents the action of printing the event log,
+     * to be taken when the user closes the window.
+	 */
+	private class WindowCloseAction extends WindowAdapter {
+		
+		@Override
+        // EFFECTS: prints the event log to console
+		public void windowClosing(WindowEvent evt) {
+            			
+            for (Event next : EventLog.getInstance()) {
+			    System.out.println(next.toString() + "\n\n");
+            }
+            EventLog.getInstance().clear();
+		}
+	}
 
 }

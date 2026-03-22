@@ -29,6 +29,7 @@ public class DecksController implements Writable {
         if (!decks.contains(deck)) {
             decks.add(deck);
         }
+        EventLog.getInstance().logEvent(new Event("Added deck to game."));
     }
 
     // getters

@@ -29,6 +29,7 @@ public class Deck implements Writable {
     // EFFECTS: draws a random card from the deck
     public Card pullRandomCard() {
         int cardNum = (int) (Math.random() * cards.size());
+        EventLog.getInstance().logEvent(new Event("Drew a random card."));
         return cards.get(cardNum);
     }
 
@@ -40,6 +41,8 @@ public class Deck implements Writable {
         }
         int cardNum = (int) (Math.random() * filtered.size());
 
+        EventLog.getInstance().logEvent(new Event("Drew a random card with filtering"));
+
         return filtered.get(cardNum);
     }
 
@@ -49,12 +52,14 @@ public class Deck implements Writable {
         if (!cards.contains(card)) {
             cards.add(card);
         }
+        EventLog.getInstance().logEvent(new Event("Added a card to deck."));
     }
 
     // MODIFIES: this
     // EFFECTS: removes given card from the deck
     public void removeFromDeck(Card card) {
         cards.remove(card);
+        EventLog.getInstance().logEvent(new Event("Removed card from deck."));
     }
 
     // EFFECTS: filters cards in the deck by their activity location
