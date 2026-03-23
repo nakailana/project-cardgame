@@ -32,7 +32,6 @@ import model.DecksController;
 public class DeckPanel extends JPanel {
 
     private DrawingSurface gui;
-    private DecksController dc;
 
     private DefaultListModel<String> deckListModel;
     private JPanel buttonPanel;
@@ -45,7 +44,6 @@ public class DeckPanel extends JPanel {
     public DeckPanel(DrawingSurface gui) {
         super(new BorderLayout());
         this.gui = gui;
-        this.dc = gui.getDeckController();
 
         JLabel select = new JLabel("double click a deck to select it!",
                 SwingConstants.CENTER);
@@ -60,7 +58,7 @@ public class DeckPanel extends JPanel {
     private void initScrollPane() {
         deckListModel = new DefaultListModel<>();
 
-        for (Deck d : dc.getDecks()) {
+        for (Deck d : gui.getDeckController().getDecks()) {
             deckListModel.addElement("<html><body style='padding: 5px;'>" 
                     + "<b>" 
                     + d.getDeckName() 
@@ -114,7 +112,7 @@ public class DeckPanel extends JPanel {
         if (input != null && !input.isEmpty()) {
             JOptionPane.showMessageDialog(inBox, "new deck created!");
             Deck newDeck = new Deck(input);
-            dc.addToController(newDeck);
+            gui.getDeckController().addToController(newDeck);
             updateScrollPane(newDeck);
         } else {
             JOptionPane.showMessageDialog(inBox, "Invalid input.");
@@ -149,7 +147,7 @@ public class DeckPanel extends JPanel {
             JOptionPane.showMessageDialog(popUp, "Loaded data from file!");
 
             deckListModel.clear();
-            dc = gui.getDeckController();
+            DecksController dc = gui.getDeckController();
             for (Deck d : dc.getDecks()) {
                 updateScrollPane(d);
             }
@@ -186,7 +184,7 @@ public class DeckPanel extends JPanel {
                 JList<String> decks = (JList<String>) e.getSource();
                 int index = decks.locationToIndex(e.getPoint());
                 if (index >= 0) {
-                    gui.setCurrentDeck(dc.getDecks().get(index));
+                    gui.setCurrentDeck(gui.getDeckController().getDecks().get(index));
                     gui.showCardPanel();
                 }
             }
