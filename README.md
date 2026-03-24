@@ -3,7 +3,7 @@
 ## About 🃏
 As a busy university student, I sometimes find myself wondering *“what do I do with my life now?”* as soon as the occasional day off rolls around. **Cards Against Boredom** helps with this by randomly generating activity cards (that users pre-set)!  
 The inspiration for my app comes from a small pouch I found while doing a deep clean of my closet. When I was little—before TikTok, Reels, and the emergence of elementary schoolers who owned their own smart phones—I wrote the names of various activities/games on paper slips and put them in the pouch. When I was bored, I would pull out a paper slip and do that activity.  
-**Cards Against Boredom** follows this simple idea in an improved digital form, where users can make their own prompt/activity cards. Cards that follow a theme can also be put into specified decks, so users can create themed decks such as “party”, “date night ideas”, or even “game mode” if they got creative. The flexibility of card and deck making makes **Cards Against Boredom** compatible for anyone who has difficulty deciding what to do, or just needs a little spontaneity in their life :)
+**Cards Against Boredom** follows this simple idea in an improved digital form, where users can make their own prompt/activity cards. Cards can also be put into themed decks, so users can create decks such as “party”, “date night ideas”, or even “game mode” if they got creative. The flexibility of card and deck making makes **Cards Against Boredom** compatible for anyone who has difficulty deciding what to do, or just needs a little spontaneity in their life :)
 
 ## User Stories
 *As a user I want to be able to…* 💭
@@ -66,3 +66,8 @@ Drew a random card with filtering
 
 Sun Mar 22 16:00:28 PDT 2026  
 Removed card from deck.
+
+## Phase 4: Task 3 🔎
+*An analysis of how to improve the program's design*
+
+If I had more time to work on this project, I would refactor my program to reduce coupling between my model and UI package classes. Currently, I have classes to support both a CLI and GUI, so I would probably remove the UI classes for the CLI. There are also a few unneccessary dependencies between my model and GUI classes. This is especially noticable in my diagram with the Deck, DrawingSurface, and CardPanel classes. For example, there are currently fields representing the 'current Deck' across both DrawingSurface and CardPanel classes. This works for now, but in the future it could cause trouble if the current Deck field is set or changed in one class while being forgotten in the other. While it is important for the CardPanel to know what the current Deck is in order to add/remove/draw cards from that deck in response to user interaction, it is not really important for the DrawingSurface to have that information. In the future, I could refactor the DrawingSurface and CardPanel classes so that only CardPanel has a field for the current Deck.

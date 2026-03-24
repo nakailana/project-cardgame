@@ -140,20 +140,20 @@ public class DrawingSurface extends JFrame {
     }
 
     /**
-	 * Represents the action of printing the event log,
+     * Represents the action of printing the event log,
      * to be taken when the user closes the window.
-	 */
-	private class WindowCloseAction extends WindowAdapter {
-		
-		@Override
+     */
+    private class WindowCloseAction extends WindowAdapter {
+
+        @Override
         // EFFECTS: prints the event log to console
-		public void windowClosing(WindowEvent evt) {
-            			
+        public void windowClosing(WindowEvent evt) {
+
             for (Event next : EventLog.getInstance()) {
-			    System.out.println(next.toString() + "\n\n");
+                System.out.println(next.toString() + "\n\n");
             }
             EventLog.getInstance().clear();
-		}
-	}
+        }
+    }
 
 }
