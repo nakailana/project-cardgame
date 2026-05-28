@@ -1,15 +1,11 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
-import './App.css'
+import { useState, useEffect } from "react";
+import { loadDecks, saveDecks } from "./data/storage";
+import DeckList from "./components/DeckList";
+import DeckView from "./components/DeckView";
 
-function App() {
-  const [count, setCount] = useState(0)
-
+export default function App() {
+  
   return (
-    <div></div>
-  )
+    <div> </div>
+  );
 }
-
-export default App
