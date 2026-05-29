@@ -1,16 +1,24 @@
-# React + Vite
+[Original project repo link](https://github.students.cs.ubc.ca/CPSC210-2025W-T2/project-f5l6v) 
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Cards Against Boredom
+An extended version of my CPSC 210 term project.
 
-Currently, two official plugins are available:
+## About 🃏
+As a university student (and workaholic), I sometimes find myself wondering what to do as soon as the occasional day off rolls around. **Cards Against Boredom** helps with this by randomly generating user-made activity cards.  
+The inspiration for my app comes from a pouch I found while doing a deep clean of my closet. When I was little—before I had infinite screen access—I wrote the names of various activities on paper slips and put them in the pouch. When I was bored, I would pull out a paper slip and do that activity.  
+**Cards Against Boredom** follows this simple idea, where users can make their own prompt/activity cards. Cards are organized into themed decks, so users can create decks such as “wellness” or “date night ideas”. The flexibility of card and deck making makes **Cards Against Boredom** compatible for anyone who has difficulty deciding what to do, or just needs a little spontaneity in their life!
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## User Stories
+*As a user I want to be able to…* 💭
 
-## React Compiler
+- Create a new activity card
+- Add my card to a deck of my choosing
+- View a list of all cards in my current deck
+- Delete a card from my current deck
+- Switch between different card decks
+- Generate a card from my current deck
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- Have the option to save my card decks and their respective cards to file when I select the quit option from the application menu
+- Have the option to load my card decks and their respective cards from file when I start the application
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- Get AI suggestions for cards to add to my current deck
