@@ -1,4 +1,4 @@
-[Original project repo link](https://github.students.cs.ubc.ca/CPSC210-2025W-T2/project-f5l6v) 
+Original term project completed with commit: *Phase 4: Task 3* made on Mar 24, 2026. 
 
 # Cards Against Boredom
 An extended version of my CPSC 210 term project.
