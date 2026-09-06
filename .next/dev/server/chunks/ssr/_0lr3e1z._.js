@@ -1,4 +1,9 @@
 module.exports = [
+"[project]/node_modules/next/dist/server/route-modules/app-page/vendored/ssr/react-jsx-dev-runtime.js [app-ssr] (ecmascript)", ((__turbopack_context__, module, exports) => {
+"use strict";
+
+module.exports = __turbopack_context__.r("[project]/node_modules/next/dist/server/route-modules/app-page/module.compiled.js [app-ssr] (ecmascript)").vendored['react-ssr'].ReactJsxDevRuntime;
+}),
 "[project]/src/api/api.ts [app-ssr] (ecmascript)", ((__turbopack_context__) => {
 "use strict";
 
@@ -107,7 +112,7 @@ function App() {
         setActiveDeck(updated);
     };
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-        className: "min-h-screen bg-[#1a0533] text-white font-sans p-6",
+        className: "min-h-screen text-white font-sans p-6",
         children: activeDeck ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$DeckView$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
             deck: activeDeck,
             onUpdate: handleUpdateDeck,
@@ -153,7 +158,7 @@ function DeckList({ decks, onSelect, onCreate, onDelete }) {
         setNewDeckName("");
     };
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-        className: "max-w-2xl mx-auto mt-16",
+        className: "max-w-2xl mx-auto mt-16 px-4",
         children: [
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h1", {
                 className: "text-5xl font-bold mb-2 text-[#e9e6ff]",
@@ -164,7 +169,7 @@ function DeckList({ decks, onSelect, onCreate, onDelete }) {
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                className: "text-[#2a2d4a] mb-10 text-lg",
+                className: "text-[#7a77c8] mb-10 text-lg",
                 children: "Pick a deck or create a new one"
             }, void 0, false, {
                 fileName: "[project]/src/components/DeckList.tsx",
@@ -180,7 +185,7 @@ function DeckList({ decks, onSelect, onCreate, onDelete }) {
                         value: newDeckName,
                         onChange: (e)=>setNewDeckName(e.target.value),
                         onKeyDown: (e)=>e.key === "Enter" && handleCreate(),
-                        className: "flex-1 rounded-xl px-4 py-3 bg-[#b6b3f2] text-white placeholder-purple-400 outline-none focus:ring-2 focus:ring-yellow-300"
+                        className: "flex-1 rounded-xl px-4 py-3 bg-[#c7d6ff] text-[#e9e6ff] placeholder-[#7a77c8] outline-none focus:ring-2 focus:ring-[#b6b3f2]"
                     }, void 0, false, {
                         fileName: "[project]/src/components/DeckList.tsx",
                         lineNumber: 28,
@@ -188,7 +193,7 @@ function DeckList({ decks, onSelect, onCreate, onDelete }) {
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                         onClick: handleCreate,
-                        className: "bg-[#7a77c8] text-black font-bold px-6 py-3 rounded-xl hover:bg-yellow-400 transition-all",
+                        className: "bg-[#7a77c8] text-[#e9e6ff] font-bold px-6 py-3 rounded-xl hover:bg-[#b6b3f2] hover:text-[#2a2d4a] transition-all",
                         children: "+ Create"
                     }, void 0, false, {
                         fileName: "[project]/src/components/DeckList.tsx",
@@ -202,7 +207,7 @@ function DeckList({ decks, onSelect, onCreate, onDelete }) {
                 columnNumber: 7
             }, this),
             decks.length === 0 ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                className: "text-[#2a2d4a] text-center mt-20",
+                className: "text-[#7a77c8] text-center mt-20",
                 children: "No decks yet — create one above!"
             }, void 0, false, {
                 fileName: "[project]/src/components/DeckList.tsx",
@@ -211,34 +216,33 @@ function DeckList({ decks, onSelect, onCreate, onDelete }) {
             }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                 className: "flex flex-col gap-4",
                 children: decks.map((deck)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "flex items-center justify-between bg-[#b6b3f2] rounded-2xl px-6 py-4 hover:bg-[#b6b3f2] transition-all cursor-pointer",
-                        onClick: ()=>onSelect(deck),
+                        className: "flex items-center justify-between bg-[#2a2d4a] border border-[#7a77c8] rounded-2xl px-6 py-4 hover:bg-[#7a77c8] hover:border-[#b6b3f2] transition-all cursor-pointer group",
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
-                                        className: "text-xl font-semibold",
+                                        className: "text-xl font-semibold text-[#e9e6ff]",
                                         children: deck.name
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/DeckList.tsx",
-                                        lineNumber: 53,
+                                        lineNumber: 52,
                                         columnNumber: 17
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                        className: "text-[#b6b3f2] text-sm",
+                                        className: "text-[#b6b3f2] text-sm group-hover:text-[#e9e6ff] transition-colors",
                                         children: [
                                             deck.cards.length,
                                             " cards"
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/components/DeckList.tsx",
-                                        lineNumber: 54,
+                                        lineNumber: 53,
                                         columnNumber: 17
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/DeckList.tsx",
-                                lineNumber: 52,
+                                lineNumber: 51,
                                 columnNumber: 15
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -246,11 +250,11 @@ function DeckList({ decks, onSelect, onCreate, onDelete }) {
                                     e.stopPropagation();
                                     onDelete(deck.id);
                                 },
-                                className: "text-[#2a2d4a] hover:text-red-400 transition-colors text-xl px-2",
+                                className: "text-[#7a77c8] hover:text-red-400 transition-colors text-xl px-2 group-hover:text-[#e9e6ff]",
                                 children: "✕"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/DeckList.tsx",
-                                lineNumber: 56,
+                                lineNumber: 55,
                                 columnNumber: 15
                             }, this)
                         ]
@@ -284,4 +288,4 @@ function DeckView({ deck, onUpdate, onBack }) {}
 }),
 ];
 
-//# sourceMappingURL=src_18v-ydm._.js.map
+//# sourceMappingURL=_0lr3e1z._.js.map

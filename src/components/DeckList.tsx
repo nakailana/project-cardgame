@@ -19,9 +19,9 @@ export default function DeckList({ decks, onSelect, onCreate, onDelete }: Props)
   };
 
   return (
-    <div className="max-w-2xl mx-auto mt-16">
-      <h1 className="text-5xl font-bold mb-2 text-yellow-300">🃏 Cards Against Boredom</h1>
-      <p className="text-purple-300 mb-10 text-lg">Pick a deck or create a new one</p>
+    <div className="max-w-2xl mx-auto mt-16 px-4">
+      <h1 className="text-5xl font-bold mb-2 text-[#e9e6ff]">CARDS AGAINST BOREDOM</h1>
+      <p className="text-[#7a77c8] mb-10 text-lg">Pick a deck or create a new one</p>
 
       {/* Create deck */}
       <div className="flex gap-3 mb-10">
@@ -31,31 +31,30 @@ export default function DeckList({ decks, onSelect, onCreate, onDelete }: Props)
           value={newDeckName}
           onChange={(e) => setNewDeckName(e.target.value)}
           onKeyDown={(e) => e.key === "Enter" && handleCreate()}
-          className="flex-1 rounded-xl px-4 py-3 bg-[#2d0f4e] text-white placeholder-purple-400 outline-none focus:ring-2 focus:ring-yellow-300"
+          className="flex-1 rounded-xl px-4 py-3 bg-[#c7d6ff] text-[#e9e6ff] placeholder-[#7a77c8] outline-none focus:ring-2 focus:ring-[#b6b3f2]"
         />
         <button
           onClick={handleCreate}
-          className="bg-yellow-300 text-black font-bold px-6 py-3 rounded-xl hover:bg-yellow-400 transition-all">
+          className="bg-[#7a77c8] text-[#e9e6ff] font-bold px-6 py-3 rounded-xl hover:bg-[#b6b3f2] hover:text-[#2a2d4a] transition-all">
           + Create
         </button>
       </div>
 
       {/* Deck list */}
       {decks.length === 0 ? (
-        <p className="text-purple-400 text-center mt-20">No decks yet — create one above!</p>
+        <p className="text-[#7a77c8] text-center mt-20">No decks yet — create one above!</p>
       ) : (
         <div className="flex flex-col gap-4">
           {decks.map((deck) => (
             <div key={deck.id}
-              className="flex items-center justify-between bg-[#2d0f4e] rounded-2xl px-6 py-4 hover:bg-[#3d1a63] transition-all cursor-pointer"
-              onClick={() => onSelect(deck)}>
+              className="flex items-center justify-between bg-[#2a2d4a] border border-[#7a77c8] rounded-2xl px-6 py-4 hover:bg-[#7a77c8] hover:border-[#b6b3f2] transition-all cursor-pointer group">
               <div>
-                <h2 className="text-xl font-semibold">{deck.name}</h2>
-                <p className="text-purple-400 text-sm">{deck.cards.length} cards</p>
+                <h2 className="text-xl font-semibold text-[#e9e6ff]">{deck.name}</h2>
+                <p className="text-[#b6b3f2] text-sm group-hover:text-[#e9e6ff] transition-colors">{deck.cards.length} cards</p>
               </div>
               <button
                 onClick={(e) => { e.stopPropagation(); onDelete(deck.id); }}
-                className="text-purple-400 hover:text-red-400 transition-colors text-xl px-2">
+                className="text-[#7a77c8] hover:text-red-400 transition-colors text-xl px-2 group-hover:text-[#e9e6ff]">
                 ✕
               </button>
             </div>

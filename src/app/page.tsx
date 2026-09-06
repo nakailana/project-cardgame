@@ -30,7 +30,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-[#1a0533] text-white font-sans p-6">
+    <div className="min-h-screen text-white font-sans p-6">
       {activeDeck ? (
         <DeckView
           deck={activeDeck}

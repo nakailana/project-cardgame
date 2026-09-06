@@ -1,9 +1,9 @@
-"use client"
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
 import type { Metadata } from "next";
 import "./globals.css";
-import App from './page.js'
+
+export const metadata: Metadata = {
+  title: "Cards Against Boredom",
+};
 
 export default function RootLayout({
   children,
@@ -12,7 +12,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body className="bg-[#c7d6ff] text-[#e9e6ff]">{children}</body>
     </html>
   );
 }
