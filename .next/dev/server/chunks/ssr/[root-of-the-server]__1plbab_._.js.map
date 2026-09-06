@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 46, "column": 0}, "map": {"version":3,"sources":["file:///Users/lana/Code/project-cardgame/src/app/layout.tsx"],"sourcesContent":["\"use client\"\nimport { StrictMode } from 'react'\nimport { createRoot } from 'react-dom/client'\nimport type { Metadata } from \"next\";\nimport \"./globals.css\";\nimport App from './page.js'\n\nexport default function RootLayout({\n  children,\n}: {\n  children: React.ReactNode;\n}) {\n  return (\n    <html lang=\"en\">\n      <body>{children}</body>\n    </html>\n  );\n}"],"names":["RootLayout","children","lang"],"mappings":";;;;;AAAA;;;AAOe,SAASA,WAAW,EACjCC,QAAQ,EAGT;IACC,qBACE,8OAAC;QAAKC,MAAK;kBACT,cAAA,8OAAC;sBAAMD;;;;;;;;;;;AAGb"}}]
+}
