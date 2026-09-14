@@ -7,7 +7,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/decks")
-@CrossOrigin(origins = "http://localhost:5173")
+@CrossOrigin(origins = "http://localhost:3000")
 public class DeckController {
 
     private List<Deck> decks = new ArrayList<>();
@@ -37,7 +37,7 @@ public class DeckController {
     @GetMapping("/{id}/cards")
     public ResponseEntity<List<Card>> getCards(@PathVariable String id) {
         Deck deck = findDeck(id);
-        if (deck == null) 
+        if (deck == null)
             return ResponseEntity.notFound().build();
         return ResponseEntity.ok(deck.getCards());
     }
@@ -46,7 +46,7 @@ public class DeckController {
     @PostMapping("/{id}/cards")
     public ResponseEntity<Card> addCard(@PathVariable String id, @RequestBody Card card) {
         Deck deck = findDeck(id);
-        if (deck == null) 
+        if (deck == null)
             return ResponseEntity.notFound().build();
         Card newCard = new Card(card.getActivity(), card.getLocation(), card.getDescription());
         deck.addCard(newCard);
@@ -57,7 +57,7 @@ public class DeckController {
     @DeleteMapping("/{id}/cards/{cardId}")
     public ResponseEntity<Void> deleteCard(@PathVariable String id, @PathVariable String cardId) {
         Deck deck = findDeck(id);
-        if (deck == null) 
+        if (deck == null)
             return ResponseEntity.notFound().build();
         deck.removeCard(cardId);
         return ResponseEntity.ok().build();
@@ -69,10 +69,10 @@ public class DeckController {
             @PathVariable String id,
             @RequestParam(required = false) Boolean outdoor) {
         Deck deck = findDeck(id);
-        if (deck == null) 
+        if (deck == null)
             return ResponseEntity.notFound().build();
         Card card = (outdoor != null) ? deck.pullRandomCard(outdoor) : deck.pullRandomCard();
-        if (card == null) 
+        if (card == null)
             return ResponseEntity.notFound().build();
         return ResponseEntity.ok(card);
     }
