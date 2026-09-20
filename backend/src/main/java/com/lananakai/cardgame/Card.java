@@ -1,11 +1,13 @@
 package com.lananakai.cardgame;
 
 import java.util.UUID;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 // Represents a Card having an activity name, if it is an outdoor activity,
 // and optionally a brief description
 public class Card {
-    
+
     private String id;
     private String activity;
     private String description;
@@ -19,9 +21,12 @@ public class Card {
      * its description states the recommended location followed by the given
      * description.
      */
-    public Card(String activity, Boolean outdoor, String description) {
+    @JsonCreator
+    public Card(@JsonProperty("activity") String activity,
+            @JsonProperty("outdoor") Boolean outdoor,
+            @JsonProperty("description") String description) {
         this.id = UUID.randomUUID().toString();
-        
+
         this.activity = activity;
         this.outdoor = outdoor;
 
@@ -58,7 +63,7 @@ public class Card {
     public String getId() {
         return id;
     }
-    
+
     public String getActivity() {
         return activity;
     }

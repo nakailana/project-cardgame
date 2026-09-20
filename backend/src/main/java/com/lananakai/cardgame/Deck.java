@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 // Represents a Card Deck with a name (theme) and list of cards.
 public class Deck {
     
@@ -16,7 +19,8 @@ public class Deck {
      * EFFECTS: the deck's name is set to deckName;
      * the deck is set to an empty ArrayList containing no Cards
      */
-    public Deck(String deckName) {
+    @JsonCreator
+    public Deck(@JsonProperty("name") String deckName) {
         this.id = UUID.randomUUID().toString();
         this.deckName = deckName;
         cards = new ArrayList<Card>();
