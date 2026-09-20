@@ -9,7 +9,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 // Represents a Card Deck with a name (theme) and list of cards.
 public class Deck {
-    
+
     private String id;
     private String deckName;
     private List<Card> cards;
@@ -29,6 +29,9 @@ public class Deck {
     // REQUIRES: this is not an empty ArrayList
     // EFFECTS: draws a random card from the deck
     public Card pullRandomCard() {
+        if (cards.isEmpty()) {
+            return null;
+        }
         int cardNum = (int) (Math.random() * cards.size());
         return cards.get(cardNum);
     }
