@@ -47,6 +47,7 @@ export default function DeckList({ decks, onSelect, onCreate, onDelete }: Props)
         <div className="flex flex-col gap-4">
           {decks.map((deck) => (
             <div key={deck.id}
+              onClick={() => onSelect(deck)}
               className="flex items-center justify-between bg-[#2a2d4a] border border-[#7a77c8] rounded-2xl px-6 py-4 hover:bg-[#7a77c8] hover:border-[#b6b3f2] transition-all cursor-pointer group">
               <div>
                 <h2 className="text-xl font-semibold text-[#e9e6ff]">{deck.name}</h2>

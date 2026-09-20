@@ -432,6 +432,10 @@
     justify-content: space-between;
   }
 
+  .gap-2 {
+    gap: calc(var(--spacing) * 2);
+  }
+
   .gap-3 {
     gap: calc(var(--spacing) * 3);
   }
@@ -537,14 +541,6 @@
 
   .text-\[\#b6b3f2\] {
     color: #b6b3f2;
-  }
-
-  .text-\[\#c7\] {
-    color: #c7;
-  }
-
-  .text-\[\#c7d6ff\] {
-    color: #c7d6ff;
   }
 
   .text-\[\#e9e6ff\] {
