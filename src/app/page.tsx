@@ -30,21 +30,12 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen text-white font-sans p-6">
+    <div className="min-h-screen font-sans p-6">
       {activeDeck ? (
-        <DeckView
-          deck={activeDeck}
-          onUpdate={handleUpdateDeck}
-          onBack={() => setActiveDeck(null)}
-        />
+        <DeckView deck={activeDeck} onUpdate={handleUpdateDeck} onBack={() => setActiveDeck(null)} />
       ) : (
-        <DeckList
-          decks={decks}
-          onSelect={setActiveDeck}
-          onCreate={handleCreateDeck}
-          onDelete={handleDeleteDeck}
-        />
+        <DeckList decks={decks} onSelect={setActiveDeck} onCreate={handleCreateDeck} onDelete={handleDeleteDeck} />
       )}
     </div>
-  );
+);
 }

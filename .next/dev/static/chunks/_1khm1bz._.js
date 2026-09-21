@@ -341,7 +341,7 @@ function App() {
         setActiveDeck(updated);
     };
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-        className: "min-h-screen text-white font-sans p-6",
+        className: "min-h-screen font-sans p-6",
         children: activeDeck ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$DeckView$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
             deck: activeDeck,
             onUpdate: handleUpdateDeck,
@@ -357,7 +357,7 @@ function App() {
             onDelete: handleDeleteDeck
         }, void 0, false, {
             fileName: "[project]/src/app/page.tsx",
-            lineNumber: 41,
+            lineNumber: 37,
             columnNumber: 9
         }, this)
     }, void 0, false, {
@@ -399,7 +399,7 @@ function DeckList({ decks, onSelect, onCreate, onDelete }) {
         className: "max-w-2xl mx-auto mt-16 px-4",
         children: [
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h1", {
-                className: "text-5xl font-bold mb-2 text-[#e9e6ff]",
+                className: "text-5xl font-bold mb-2 text-[#2a2d4a]",
                 children: "CARDS AGAINST BOREDOM"
             }, void 0, false, {
                 fileName: "[project]/src/components/DeckList.tsx",
@@ -423,10 +423,10 @@ function DeckList({ decks, onSelect, onCreate, onDelete }) {
                         value: newDeckName,
                         onChange: (e)=>setNewDeckName(e.target.value),
                         onKeyDown: (e)=>e.key === "Enter" && handleCreate(),
-                        className: "flex-1 rounded-xl px-4 py-3 bg-[#c7d6ff] text-[#e9e6ff] placeholder-[#7a77c8] outline-none focus:ring-2 focus:ring-[#b6b3f2]"
+                        className: "flex-1 rounded-xl px-4 py-3 bg-white text-[#2a2d4a] placeholder-[#7a77c8] outline-none focus:ring-2 focus:ring-[#7a77c8] shadow-sm"
                     }, void 0, false, {
                         fileName: "[project]/src/components/DeckList.tsx",
-                        lineNumber: 28,
+                        lineNumber: 27,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -435,13 +435,13 @@ function DeckList({ decks, onSelect, onCreate, onDelete }) {
                         children: "+ Create"
                     }, void 0, false, {
                         fileName: "[project]/src/components/DeckList.tsx",
-                        lineNumber: 36,
+                        lineNumber: 35,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/components/DeckList.tsx",
-                lineNumber: 27,
+                lineNumber: 26,
                 columnNumber: 7
             }, this),
             decks.length === 0 ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -449,13 +449,13 @@ function DeckList({ decks, onSelect, onCreate, onDelete }) {
                 children: "No decks yet — create one above!"
             }, void 0, false, {
                 fileName: "[project]/src/components/DeckList.tsx",
-                lineNumber: 45,
+                lineNumber: 43,
                 columnNumber: 9
             }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                 className: "flex flex-col gap-4",
                 children: decks.map((deck)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                         onClick: ()=>onSelect(deck),
-                        className: "flex items-center justify-between bg-[#2a2d4a] border border-[#7a77c8] rounded-2xl px-6 py-4 hover:bg-[#7a77c8] hover:border-[#b6b3f2] transition-all cursor-pointer group",
+                        className: "flex items-center justify-between bg-[#2a2d4a] border border-[#7a77c8] rounded-2xl px-6 py-4 hover:bg-[#7a77c8] hover:border-[#b6b3f2] transition-all cursor-pointer group shadow-md",
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                 children: [
@@ -464,7 +464,7 @@ function DeckList({ decks, onSelect, onCreate, onDelete }) {
                                         children: deck.name
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/DeckList.tsx",
-                                        lineNumber: 53,
+                                        lineNumber: 51,
                                         columnNumber: 17
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -475,13 +475,13 @@ function DeckList({ decks, onSelect, onCreate, onDelete }) {
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/components/DeckList.tsx",
-                                        lineNumber: 54,
+                                        lineNumber: 52,
                                         columnNumber: 17
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/DeckList.tsx",
-                                lineNumber: 52,
+                                lineNumber: 50,
                                 columnNumber: 15
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -493,18 +493,18 @@ function DeckList({ decks, onSelect, onCreate, onDelete }) {
                                 children: "✕"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/DeckList.tsx",
-                                lineNumber: 56,
+                                lineNumber: 54,
                                 columnNumber: 15
                             }, this)
                         ]
                     }, deck.id, true, {
                         fileName: "[project]/src/components/DeckList.tsx",
-                        lineNumber: 49,
+                        lineNumber: 47,
                         columnNumber: 13
                     }, this))
             }, void 0, false, {
                 fileName: "[project]/src/components/DeckList.tsx",
-                lineNumber: 47,
+                lineNumber: 45,
                 columnNumber: 9
             }, this)
         ]
@@ -539,19 +539,14 @@ var _s = __turbopack_context__.k.signature();
 ;
 function DeckView({ deck, onUpdate, onBack }) {
     _s();
-    // State for the card currently drawn (or null if none drawn yet)
     const [drawnCard, setDrawnCard] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(null);
-    // State for the "add card" form inputs
     const [newActivity, setNewActivity] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])("");
     const [newDescription, setNewDescription] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])("");
     const [newOutdoor, setNewOutdoor] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
-    // --- Handlers ---
     const handleDraw = async (outdoor = null)=>{
-        const drawnCard = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$api$2f$api$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["drawCard"])(deck.id, outdoor);
-        if (drawnCard == null) return;
-        else {
-            setDrawnCard(drawnCard);
-        }
+        const result = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$api$2f$api$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["drawCard"])(deck.id, outdoor);
+        if (result == null) return;
+        setDrawnCard(result);
     };
     const handleAddCard = async ()=>{
         if (newActivity.trim() === "") return;
@@ -580,184 +575,231 @@ function DeckView({ deck, onUpdate, onBack }) {
         };
         onUpdate(updatedDeck);
     };
-    // --- Render ---
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+        className: "max-w-2xl mx-auto mt-16 px-4",
         children: [
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                 onClick: onBack,
+                className: "text-[#7a77c8] hover:text-[#2a2d4a] mb-4 font-semibold transition-colors",
                 children: "← Back"
             }, void 0, false, {
                 fileName: "[project]/src/components/DeckView.tsx",
-                lineNumber: 51,
+                lineNumber: 42,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h1", {
+                className: "text-4xl font-bold mb-8 text-[#2a2d4a]",
                 children: deck.name
             }, void 0, false, {
                 fileName: "[project]/src/components/DeckView.tsx",
-                lineNumber: 52,
+                lineNumber: 45,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
+                className: "bg-[#2a2d4a] rounded-2xl p-6 mb-8 shadow-md",
                 children: [
-                    drawnCard && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                    drawnCard ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        className: "mb-4",
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                className: "text-xl font-semibold text-[#e9e6ff]",
                                 children: drawnCard.activity
                             }, void 0, false, {
                                 fileName: "[project]/src/components/DeckView.tsx",
-                                lineNumber: 58,
+                                lineNumber: 51,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                className: "text-[#b6b3f2]",
                                 children: drawnCard.description
                             }, void 0, false, {
                                 fileName: "[project]/src/components/DeckView.tsx",
-                                lineNumber: 59,
+                                lineNumber: 52,
                                 columnNumber: 13
+                            }, this)
+                        ]
+                    }, void 0, true, {
+                        fileName: "[project]/src/components/DeckView.tsx",
+                        lineNumber: 50,
+                        columnNumber: 11
+                    }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                        className: "text-[#b6b3f2] mb-4",
+                        children: "Draw a card to get started!"
+                    }, void 0, false, {
+                        fileName: "[project]/src/components/DeckView.tsx",
+                        lineNumber: 55,
+                        columnNumber: 11
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        className: "flex gap-3 flex-wrap",
+                        children: [
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                onClick: ()=>handleDraw(null),
+                                className: "bg-[#7a77c8] text-[#e9e6ff] font-bold px-5 py-2 rounded-xl hover:bg-[#b6b3f2] hover:text-[#2a2d4a] transition-all",
+                                children: "Draw card"
+                            }, void 0, false, {
+                                fileName: "[project]/src/components/DeckView.tsx",
+                                lineNumber: 58,
+                                columnNumber: 11
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                onClick: ()=>handleDraw(true),
+                                className: "bg-[#7a77c8] text-[#e9e6ff] font-bold px-5 py-2 rounded-xl hover:bg-[#b6b3f2] hover:text-[#2a2d4a] transition-all",
+                                children: "Outdoor"
+                            }, void 0, false, {
+                                fileName: "[project]/src/components/DeckView.tsx",
+                                lineNumber: 62,
+                                columnNumber: 11
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                onClick: ()=>handleDraw(false),
+                                className: "bg-[#7a77c8] text-[#e9e6ff] font-bold px-5 py-2 rounded-xl hover:bg-[#b6b3f2] hover:text-[#2a2d4a] transition-all",
+                                children: "Indoor"
+                            }, void 0, false, {
+                                fileName: "[project]/src/components/DeckView.tsx",
+                                lineNumber: 66,
+                                columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/components/DeckView.tsx",
                         lineNumber: 57,
-                        columnNumber: 11
-                    }, this),
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                        onClick: ()=>handleDraw(null),
-                        children: "Draw card"
-                    }, void 0, false, {
-                        fileName: "[project]/src/components/DeckView.tsx",
-                        lineNumber: 62,
-                        columnNumber: 9
-                    }, this),
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                        onClick: ()=>handleDraw(true),
-                        children: "Draw outdoor card"
-                    }, void 0, false, {
-                        fileName: "[project]/src/components/DeckView.tsx",
-                        lineNumber: 63,
-                        columnNumber: 9
-                    }, this),
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                        onClick: ()=>handleDraw(false),
-                        children: "Draw indoor card"
-                    }, void 0, false, {
-                        fileName: "[project]/src/components/DeckView.tsx",
-                        lineNumber: 64,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/components/DeckView.tsx",
-                lineNumber: 55,
+                lineNumber: 48,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
-                children: [
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
-                        type: "text",
-                        placeholder: "New card...",
-                        value: newActivity,
-                        onChange: (e)=>setNewActivity(e.target.value),
-                        onKeyDown: (e)=>e.key === "Enter" && handleAddCard(),
-                        className: "flex-1 rounded-xl px-4 py-3 bg-[#c7d6ff] text-[#e9e6ff] placeholder-[#7a77c8] outline-none focus:ring-2 focus:ring-[#b6b3f2]"
-                    }, void 0, false, {
-                        fileName: "[project]/src/components/DeckView.tsx",
-                        lineNumber: 69,
-                        columnNumber: 9
-                    }, this),
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
-                        type: "text",
-                        placeholder: "Add a description...",
-                        value: newDescription,
-                        onChange: (e)=>setNewDescription(e.target.value),
-                        onKeyDown: (e)=>e.key === "Enter" && handleAddCard(),
-                        className: "flex-1 rounded-xl px-4 py-3 bg-[#c7d6ff] text-[#e9e6ff] placeholder-[#7a77c8] outline-none focus:ring-2 focus:ring-[#b6b3f2]"
-                    }, void 0, false, {
-                        fileName: "[project]/src/components/DeckView.tsx",
-                        lineNumber: 77,
-                        columnNumber: 9
-                    }, this),
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
-                        className: "flex items-center gap-2",
-                        children: [
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
-                                type: "checkbox",
-                                checked: newOutdoor,
-                                onChange: (e)=>setNewOutdoor(e.target.checked)
-                            }, void 0, false, {
-                                fileName: "[project]/src/components/DeckView.tsx",
-                                lineNumber: 86,
-                                columnNumber: 11
-                            }, this),
-                            "Outdoor activity?"
-                        ]
-                    }, void 0, true, {
-                        fileName: "[project]/src/components/DeckView.tsx",
-                        lineNumber: 85,
-                        columnNumber: 9
-                    }, this),
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                        onClick: handleAddCard,
-                        className: "bg-[#7a77c8] text-[#e9e6ff] font-bold px-6 py-3 rounded-xl hover:bg-[#b6b3f2] hover:text-[#2a2d4a] transition-all",
-                        children: "+ Create"
-                    }, void 0, false, {
-                        fileName: "[project]/src/components/DeckView.tsx",
-                        lineNumber: 89,
-                        columnNumber: 9
-                    }, this)
-                ]
-            }, void 0, true, {
+                className: "bg-white/60 rounded-2xl p-6 mb-8 shadow-sm",
+                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                    className: "flex flex-col gap-3",
+                    children: [
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
+                            type: "text",
+                            placeholder: "New card activity...",
+                            value: newActivity,
+                            onChange: (e)=>setNewActivity(e.target.value),
+                            onKeyDown: (e)=>e.key === "Enter" && handleAddCard(),
+                            className: "rounded-xl px-4 py-3 bg-white text-[#2a2d4a] placeholder-[#7a77c8] outline-none focus:ring-2 focus:ring-[#7a77c8]"
+                        }, void 0, false, {
+                            fileName: "[project]/src/components/DeckView.tsx",
+                            lineNumber: 76,
+                            columnNumber: 11
+                        }, this),
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
+                            type: "text",
+                            placeholder: "Add a description...",
+                            value: newDescription,
+                            onChange: (e)=>setNewDescription(e.target.value),
+                            onKeyDown: (e)=>e.key === "Enter" && handleAddCard(),
+                            className: "rounded-xl px-4 py-3 bg-white text-[#2a2d4a] placeholder-[#7a77c8] outline-none focus:ring-2 focus:ring-[#7a77c8]"
+                        }, void 0, false, {
+                            fileName: "[project]/src/components/DeckView.tsx",
+                            lineNumber: 84,
+                            columnNumber: 11
+                        }, this),
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
+                            className: "flex items-center gap-2 text-[#2a2d4a]",
+                            children: [
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
+                                    type: "checkbox",
+                                    checked: newOutdoor,
+                                    onChange: (e)=>setNewOutdoor(e.target.checked)
+                                }, void 0, false, {
+                                    fileName: "[project]/src/components/DeckView.tsx",
+                                    lineNumber: 93,
+                                    columnNumber: 13
+                                }, this),
+                                "Outdoor activity?"
+                            ]
+                        }, void 0, true, {
+                            fileName: "[project]/src/components/DeckView.tsx",
+                            lineNumber: 92,
+                            columnNumber: 11
+                        }, this),
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                            onClick: handleAddCard,
+                            className: "bg-[#7a77c8] text-[#e9e6ff] font-bold px-6 py-3 rounded-xl hover:bg-[#b6b3f2] hover:text-[#2a2d4a] transition-all self-start",
+                            children: "+ Create"
+                        }, void 0, false, {
+                            fileName: "[project]/src/components/DeckView.tsx",
+                            lineNumber: 96,
+                            columnNumber: 11
+                        }, this)
+                    ]
+                }, void 0, true, {
+                    fileName: "[project]/src/components/DeckView.tsx",
+                    lineNumber: 75,
+                    columnNumber: 9
+                }, this)
+            }, void 0, false, {
                 fileName: "[project]/src/components/DeckView.tsx",
-                lineNumber: 68,
+                lineNumber: 74,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
+                className: "flex flex-col gap-3",
                 children: deck.cards.length === 0 ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                    className: "text-[#7a77c8] text-center",
                     children: "empty deck"
                 }, void 0, false, {
                     fileName: "[project]/src/components/DeckView.tsx",
-                    lineNumber: 99,
+                    lineNumber: 106,
                     columnNumber: 11
                 }, this) : deck.cards.map((card)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        className: "flex items-center justify-between bg-[#2a2d4a] border border-[#7a77c8] rounded-xl px-5 py-3 shadow-sm",
                         children: [
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                children: card.activity
-                            }, void 0, false, {
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                        className: "font-semibold text-[#e9e6ff]",
+                                        children: card.activity
+                                    }, void 0, false, {
+                                        fileName: "[project]/src/components/DeckView.tsx",
+                                        lineNumber: 112,
+                                        columnNumber: 17
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                        className: "text-sm text-[#b6b3f2]",
+                                        children: card.description
+                                    }, void 0, false, {
+                                        fileName: "[project]/src/components/DeckView.tsx",
+                                        lineNumber: 113,
+                                        columnNumber: 17
+                                    }, this)
+                                ]
+                            }, void 0, true, {
                                 fileName: "[project]/src/components/DeckView.tsx",
-                                lineNumber: 103,
-                                columnNumber: 15
-                            }, this),
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                children: card.description
-                            }, void 0, false, {
-                                fileName: "[project]/src/components/DeckView.tsx",
-                                lineNumber: 104,
+                                lineNumber: 111,
                                 columnNumber: 15
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                                 onClick: ()=>handleDeleteCard(card.id),
-                                children: "Delete"
+                                className: "text-[#7a77c8] hover:text-red-400 transition-colors text-xl px-2",
+                                children: "✕"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/DeckView.tsx",
-                                lineNumber: 105,
+                                lineNumber: 115,
                                 columnNumber: 15
                             }, this)
                         ]
                     }, card.id, true, {
                         fileName: "[project]/src/components/DeckView.tsx",
-                        lineNumber: 102,
+                        lineNumber: 109,
                         columnNumber: 13
                     }, this))
             }, void 0, false, {
                 fileName: "[project]/src/components/DeckView.tsx",
-                lineNumber: 97,
+                lineNumber: 104,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/src/components/DeckView.tsx",
-        lineNumber: 50,
+        lineNumber: 41,
         columnNumber: 5
     }, this);
 }
