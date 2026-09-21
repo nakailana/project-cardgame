@@ -9,7 +9,10 @@ interface Props {
   onBack: () => void;
 }
 
+type ModalType = "draw" | "add" | null;
+
 export default function DeckView({ deck, onUpdate, onBack }: Props) {
+  const [activeModal, setActiveModal] = useState<ModalType>(null);
   const [drawnCard, setDrawnCard] = useState<Card | null>(null);
   const [newActivity, setNewActivity] = useState("");
   const [newDescription, setNewDescription] = useState("");
@@ -37,6 +40,11 @@ export default function DeckView({ deck, onUpdate, onBack }: Props) {
     onUpdate(updatedDeck);
   };
 
+  const closeModal = () => {
+    setActiveModal(null);
+    setDrawnCard(null);
+  };
+
   return (
     <div className="max-w-2xl mx-auto mt-16 px-4">
       <button onClick={onBack} className="text-[#7a77c8] hover:text-[#2a2d4a] mb-4 font-semibold transition-colors">
@@ -44,70 +52,101 @@ export default function DeckView({ deck, onUpdate, onBack }: Props) {
       </button>
       <h1 className="text-4xl font-bold mb-8 text-[#2a2d4a]">{deck.name}</h1>
 
-      {/* Drawn card display */}
-      <section className="bg-[#2a2d4a] rounded-2xl p-6 mb-8 shadow-md">
-        {drawnCard ? (
-          <div className="mb-4">
-            <p className="text-xl font-semibold text-[#e9e6ff]">{drawnCard.activity}</p>
-            <p className="text-[#b6b3f2]">{drawnCard.description}</p>
+      {/* Action buttons */}
+      <div className="flex gap-4 mb-10">
+        <button
+          onClick={() => setActiveModal("draw")}
+          className="flex-1 bg-[#7a77c8] text-[#e9e6ff] font-bold py-3 rounded-xl hover:bg-[#b6b3f2] hover:text-[#2a2d4a] transition-all">
+          ꩜ Draw a card
+        </button>
+        <button
+          onClick={() => setActiveModal("add")}
+          className="flex-1 bg-[#7a77c8] text-[#e9e6ff] font-bold py-3 rounded-xl hover:bg-[#b6b3f2] hover:text-[#2a2d4a]  transition-all">
+          + Add a card
+        </button>
+      </div>
+
+      {/* Modal overlay — only exists in the DOM when activeModal isn't null */}
+      {activeModal && (
+        <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50 px-4">
+          <div className="bg-[#e9e6ff] rounded-2xl p-6 w-full max-w-md shadow-xl relative">
+            <button
+              onClick={closeModal}
+              className="absolute top-3 right-4 text-[#7a77c8] hover:text-[#2a2d4a] text-xl font-bold">
+              ✕
+            </button>
+
+            {activeModal === "draw" && (
+              <div>
+                <h2 className="text-2xl font-bold text-[#2a2d4a] mb-4">Draw a Card</h2>
+                {drawnCard ? (
+                  <div className="mb-4 bg-[#2a2d4a] rounded-xl p-4">
+                    <p className="text-lg font-semibold text-[#e9e6ff]">{drawnCard.activity}</p>
+                    <p className="text-[#b6b3f2]">{drawnCard.description}</p>
+                  </div>
+                ) : (
+                  <p className="text-[#7a77c8] mb-4">Choose your mode!</p>
+                )}
+                <div className="flex gap-3 flex-wrap">
+                  <button onClick={() => handleDraw(null)}
+                    className="bg-[#7a77c8] text-[#e9e6ff] font-bold px-5 py-2 rounded-xl hover:bg-[#b6b3f2] hover:text-[#2a2d4a] transition-all">
+                    Any
+                  </button>
+                  <button onClick={() => handleDraw(true)}
+                    className="bg-[#7a77c8] text-[#e9e6ff] font-bold px-5 py-2 rounded-xl hover:bg-[#b6b3f2] hover:text-[#2a2d4a] transition-all">
+                    Outdoor
+                  </button>
+                  <button onClick={() => handleDraw(false)}
+                    className="bg-[#7a77c8] text-[#e9e6ff] font-bold px-5 py-2 rounded-xl hover:bg-[#b6b3f2] hover:text-[#2a2d4a] transition-all">
+                    Indoor
+                  </button>
+                </div>
+              </div>
+            )}
+
+            {activeModal === "add" && (
+              <div>
+                <h2 className="text-2xl font-bold text-[#2a2d4a] mb-4">Add a Card</h2>
+                <div className="flex flex-col gap-3">
+                  <input
+                    type="text"
+                    placeholder="New card activity..."
+                    value={newActivity}
+                    onChange={(e) => setNewActivity(e.target.value)}
+                    onKeyDown={(e) => e.key === "Enter" && handleAddCard()}
+                    className="rounded-xl px-4 py-3 bg-white text-[#2a2d4a] placeholder-[#7a77c8] outline-none focus:ring-2 focus:ring-[#7a77c8]"
+                  />
+                  <input
+                    type="text"
+                    placeholder="Add a description..."
+                    value={newDescription}
+                    onChange={(e) => setNewDescription(e.target.value)}
+                    onKeyDown={(e) => e.key === "Enter" && handleAddCard()}
+                    className="rounded-xl px-4 py-3 bg-white text-[#2a2d4a] placeholder-[#7a77c8] outline-none focus:ring-2 focus:ring-[#7a77c8]"
+                  />
+                  <label className="flex items-center gap-2 text-[#2a2d4a]">
+                    <input type="checkbox" checked={newOutdoor} onChange={(e) => setNewOutdoor(e.target.checked)} />
+                    Outdoor activity?
+                  </label>
+                  <button onClick={handleAddCard}
+                    className="bg-[#7a77c8] text-[#e9e6ff] font-bold px-6 py-3 rounded-xl hover:bg-[#b6b3f2] hover:text-[#2a2d4a] transition-all self-start">
+                    + Create
+                  </button>
+                </div>
+              </div>
+            )}
           </div>
-        ) : (
-          <p className="text-[#b6b3f2] mb-4">Draw a card to get started!</p>
-        )}
-        <div className="flex gap-3 flex-wrap">
-          <button onClick={() => handleDraw(null)}
-            className="bg-[#7a77c8] text-[#e9e6ff] font-bold px-5 py-2 rounded-xl hover:bg-[#b6b3f2] hover:text-[#2a2d4a] transition-all">
-            Draw card
-          </button>
-          <button onClick={() => handleDraw(true)}
-            className="bg-[#7a77c8] text-[#e9e6ff] font-bold px-5 py-2 rounded-xl hover:bg-[#b6b3f2] hover:text-[#2a2d4a] transition-all">
-            Outdoor
-          </button>
-          <button onClick={() => handleDraw(false)}
-            className="bg-[#7a77c8] text-[#e9e6ff] font-bold px-5 py-2 rounded-xl hover:bg-[#b6b3f2] hover:text-[#2a2d4a] transition-all">
-            Indoor
-          </button>
         </div>
-      </section>
+      )}
 
-      {/* Add card form */}
-      <section className="bg-white/60 rounded-2xl p-6 mb-8 shadow-sm">
-        <div className="flex flex-col gap-3">
-          <input
-            type="text"
-            placeholder="New card activity..."
-            value={newActivity}
-            onChange={(e) => setNewActivity(e.target.value)}
-            onKeyDown={(e) => e.key === "Enter" && handleAddCard()}
-            className="rounded-xl px-4 py-3 bg-white text-[#2a2d4a] placeholder-[#7a77c8] outline-none focus:ring-2 focus:ring-[#7a77c8]"
-          />
-          <input
-            type="text"
-            placeholder="Add a description..."
-            value={newDescription}
-            onChange={(e) => setNewDescription(e.target.value)}
-            onKeyDown={(e) => e.key === "Enter" && handleAddCard()}
-            className="rounded-xl px-4 py-3 bg-white text-[#2a2d4a] placeholder-[#7a77c8] outline-none focus:ring-2 focus:ring-[#7a77c8]"
-          />
-          <label className="flex items-center gap-2 text-[#2a2d4a]">
-            <input type="checkbox" checked={newOutdoor} onChange={(e) => setNewOutdoor(e.target.checked)} />
-            Outdoor activity?
-          </label>
-          <button onClick={handleAddCard}
-            className="bg-[#7a77c8] text-[#e9e6ff] font-bold px-6 py-3 rounded-xl hover:bg-[#b6b3f2] hover:text-[#2a2d4a] transition-all self-start">
-            + Create
-          </button>
-        </div>
-      </section>
-
-      {/* Card list */}
+      {/* Card list, unchanged */}
       <section className="flex flex-col gap-3">
         {deck.cards.length === 0 ? (
-          <p className="text-[#7a77c8] text-center">empty deck</p>
+          <p className="text-[#7a77c8] text-center">no decks yet...</p>
         ) : (
           deck.cards.map((card) => (
             <div key={card.id}
-              className="flex items-center justify-between bg-[#2a2d4a] border border-[#7a77c8] rounded-xl px-5 py-3 shadow-sm">
+              className="flex items-center justify-between bg-[#2a2d4a] hover:bg-[#353853] border border-[#7a77c8] rounded-xl px-5 py-3 shadow-sm">
               <div>
                 <p className="font-semibold text-[#e9e6ff]">{card.activity}</p>
                 <p className="text-sm text-[#b6b3f2]">{card.description}</p>
