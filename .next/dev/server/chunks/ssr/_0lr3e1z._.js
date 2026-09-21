@@ -152,10 +152,16 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist
 ;
 function DeckList({ decks, onSelect, onCreate, onDelete }) {
     const [newDeckName, setNewDeckName] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])("");
+    const [deckToDelete, setDeckToDelete] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(null);
     const handleCreate = ()=>{
         if (newDeckName.trim() === "") return;
         onCreate(newDeckName.trim());
         setNewDeckName("");
+    };
+    const confirmDelete = ()=>{
+        if (!deckToDelete) return;
+        onDelete(deckToDelete.id);
+        setDeckToDelete(null);
     };
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
         className: "max-w-2xl mx-auto mt-16 px-4",
@@ -165,7 +171,7 @@ function DeckList({ decks, onSelect, onCreate, onDelete }) {
                 children: "CARDS AGAINST BOREDOM"
             }, void 0, false, {
                 fileName: "[project]/src/components/DeckList.tsx",
-                lineNumber: 23,
+                lineNumber: 30,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -173,7 +179,7 @@ function DeckList({ decks, onSelect, onCreate, onDelete }) {
                 children: "Pick a deck or create a new one"
             }, void 0, false, {
                 fileName: "[project]/src/components/DeckList.tsx",
-                lineNumber: 24,
+                lineNumber: 31,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -188,7 +194,7 @@ function DeckList({ decks, onSelect, onCreate, onDelete }) {
                         className: "flex-1 rounded-xl px-4 py-3 bg-white text-[#2a2d4a] placeholder-[#7a77c8] outline-none focus:ring-2 focus:ring-[#7a77c8] shadow-sm"
                     }, void 0, false, {
                         fileName: "[project]/src/components/DeckList.tsx",
-                        lineNumber: 27,
+                        lineNumber: 34,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -197,13 +203,13 @@ function DeckList({ decks, onSelect, onCreate, onDelete }) {
                         children: "+ Create"
                     }, void 0, false, {
                         fileName: "[project]/src/components/DeckList.tsx",
-                        lineNumber: 35,
+                        lineNumber: 42,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/components/DeckList.tsx",
-                lineNumber: 26,
+                lineNumber: 33,
                 columnNumber: 7
             }, this),
             decks.length === 0 ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -211,7 +217,7 @@ function DeckList({ decks, onSelect, onCreate, onDelete }) {
                 children: "No decks yet — create one above!"
             }, void 0, false, {
                 fileName: "[project]/src/components/DeckList.tsx",
-                lineNumber: 43,
+                lineNumber: 50,
                 columnNumber: 9
             }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                 className: "flex flex-col gap-4",
@@ -226,7 +232,7 @@ function DeckList({ decks, onSelect, onCreate, onDelete }) {
                                         children: deck.name
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/DeckList.tsx",
-                                        lineNumber: 51,
+                                        lineNumber: 58,
                                         columnNumber: 17
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -237,42 +243,117 @@ function DeckList({ decks, onSelect, onCreate, onDelete }) {
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/components/DeckList.tsx",
-                                        lineNumber: 52,
+                                        lineNumber: 59,
                                         columnNumber: 17
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/DeckList.tsx",
-                                lineNumber: 50,
+                                lineNumber: 57,
                                 columnNumber: 15
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                                 onClick: (e)=>{
                                     e.stopPropagation();
-                                    onDelete(deck.id);
+                                    setDeckToDelete(deck);
                                 },
-                                className: "text-[#7a77c8] hover:text-[#D9789E] transition-colors text-xl px-2",
+                                className: "text-[#7a77c8] hover:text-[#D9789E] transition-colors text-xl px-2 group-hover:text-[#e9e6ff]",
                                 children: "✕"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/DeckList.tsx",
-                                lineNumber: 54,
+                                lineNumber: 61,
                                 columnNumber: 15
                             }, this)
                         ]
                     }, deck.id, true, {
                         fileName: "[project]/src/components/DeckList.tsx",
-                        lineNumber: 47,
+                        lineNumber: 54,
                         columnNumber: 13
                     }, this))
             }, void 0, false, {
                 fileName: "[project]/src/components/DeckList.tsx",
-                lineNumber: 45,
+                lineNumber: 52,
+                columnNumber: 9
+            }, this),
+            deckToDelete && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                className: "fixed inset-0 bg-black/40 flex items-center justify-center z-50 px-4",
+                onClick: ()=>setDeckToDelete(null),
+                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                    className: "bg-[#e9e6ff] rounded-2xl p-6 w-full max-w-sm shadow-xl",
+                    onClick: (e)=>e.stopPropagation(),
+                    children: [
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
+                            className: "text-xl font-bold text-[#2a2d4a] mb-2",
+                            children: "Delete deck?"
+                        }, void 0, false, {
+                            fileName: "[project]/src/components/DeckList.tsx",
+                            lineNumber: 75,
+                            columnNumber: 13
+                        }, this),
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                            className: "text-[#7a77c8] mb-1",
+                            children: [
+                                '"',
+                                deckToDelete.name,
+                                '" and all ',
+                                deckToDelete.cards.length,
+                                " of its cards will be permanently removed."
+                            ]
+                        }, void 0, true, {
+                            fileName: "[project]/src/components/DeckList.tsx",
+                            lineNumber: 76,
+                            columnNumber: 13
+                        }, this),
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                            className: "text-[#D9789E] text-sm font-semibold mb-6",
+                            children: "Warning: this cannot be undone."
+                        }, void 0, false, {
+                            fileName: "[project]/src/components/DeckList.tsx",
+                            lineNumber: 79,
+                            columnNumber: 13
+                        }, this),
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                            className: "flex gap-3 justify-end",
+                            children: [
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                    onClick: ()=>setDeckToDelete(null),
+                                    className: "px-5 py-2 rounded-xl font-semibold text-[#2a2d4a] hover:bg-[#c7d6ff] transition-all",
+                                    children: "Cancel"
+                                }, void 0, false, {
+                                    fileName: "[project]/src/components/DeckList.tsx",
+                                    lineNumber: 81,
+                                    columnNumber: 15
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                    onClick: confirmDelete,
+                                    className: "bg-[#D9789E] text-white font-bold px-5 py-2 rounded-xl hover:bg-[#C15D85] transition-all",
+                                    children: "Delete"
+                                }, void 0, false, {
+                                    fileName: "[project]/src/components/DeckList.tsx",
+                                    lineNumber: 85,
+                                    columnNumber: 15
+                                }, this)
+                            ]
+                        }, void 0, true, {
+                            fileName: "[project]/src/components/DeckList.tsx",
+                            lineNumber: 80,
+                            columnNumber: 13
+                        }, this)
+                    ]
+                }, void 0, true, {
+                    fileName: "[project]/src/components/DeckList.tsx",
+                    lineNumber: 74,
+                    columnNumber: 11
+                }, this)
+            }, void 0, false, {
+                fileName: "[project]/src/components/DeckList.tsx",
+                lineNumber: 73,
                 columnNumber: 9
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/src/components/DeckList.tsx",
-        lineNumber: 22,
+        lineNumber: 29,
         columnNumber: 5
     }, this);
 }
