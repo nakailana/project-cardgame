@@ -48,9 +48,12 @@
     --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
       "Courier New", monospace;
     --color-red-400: #ff6568;
+    --color-red-500: #fb2c36;
+    --color-red-600: #e40014;
     --color-black: #000;
     --color-white: #fff;
     --spacing: .25rem;
+    --container-sm: 24rem;
     --container-md: 28rem;
     --container-2xl: 42rem;
     --text-sm: .875rem;
@@ -79,6 +82,8 @@
   @supports (color: lab(0% 0 0)) {
     :root, :host {
       --color-red-400: lab(63.7053% 60.745 31.3109);
+      --color-red-500: lab(55.4814% 75.0732 48.8528);
+      --color-red-600: lab(48.4493% 77.4328 61.5452);
     }
   }
 }
@@ -531,12 +536,20 @@
     margin-top: calc(var(--spacing) * 20);
   }
 
+  .mb-1 {
+    margin-bottom: var(--spacing);
+  }
+
   .mb-2 {
     margin-bottom: calc(var(--spacing) * 2);
   }
 
   .mb-4 {
     margin-bottom: calc(var(--spacing) * 4);
+  }
+
+  .mb-6 {
+    margin-bottom: calc(var(--spacing) * 6);
   }
 
   .mb-8 {
@@ -565,6 +578,10 @@
 
   .max-w-md {
     max-width: var(--container-md);
+  }
+
+  .max-w-sm {
+    max-width: var(--container-sm);
   }
 
   .flex-1 {
@@ -627,6 +644,10 @@
     justify-content: center;
   }
 
+  .justify-end {
+    justify-content: flex-end;
+  }
+
   .gap-2 {
     gap: calc(var(--spacing) * 2);
   }
@@ -680,6 +701,10 @@
     background-color: #7a77c8;
   }
 
+  .bg-\[\#D9789E\] {
+    background-color: #d9789e;
+  }
+
   .bg-\[\#c7d6ff\] {
     background-color: #c7d6ff;
   }
@@ -696,6 +721,10 @@
     .bg-black\/40 {
       background-color: color-mix(in oklab, var(--color-black) 40%, transparent);
     }
+  }
+
+  .bg-red-500 {
+    background-color: var(--color-red-500);
   }
 
   .bg-white {
@@ -844,12 +873,20 @@
     color: lab(53.0109% 16.4191 -42.3447 / .2);
   }
 
+  .text-\[\#D9789E\] {
+    color: #d9789e;
+  }
+
   .text-\[\#b6b3f2\] {
     color: #b6b3f2;
   }
 
   .text-\[\#e9e6ff\] {
     color: #e9e6ff;
+  }
+
+  .text-red-500 {
+    color: var(--color-red-500);
   }
 
   .text-white {
@@ -926,12 +963,28 @@
       background-color: #353853;
     }
 
+    .hover\:bg-\[\#C15D85\]:hover {
+      background-color: #c15d85;
+    }
+
     .hover\:bg-\[\#b6b3f2\]:hover {
       background-color: #b6b3f2;
     }
 
+    .hover\:bg-\[\#c7d6ff\]:hover {
+      background-color: #c7d6ff;
+    }
+
+    .hover\:bg-red-600:hover {
+      background-color: var(--color-red-600);
+    }
+
     .hover\:text-\[\#2a2d4a\]:hover {
       color: #2a2d4a;
+    }
+
+    .hover\:text-\[\#D9789E\]:hover {
+      color: #d9789e;
     }
 
     .hover\:text-red-400:hover {

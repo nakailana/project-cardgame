@@ -17,6 +17,7 @@ export default function DeckView({ deck, onUpdate, onBack }: Props) {
   const [newActivity, setNewActivity] = useState("");
   const [newDescription, setNewDescription] = useState("");
   const [newOutdoor, setNewOutdoor] = useState(false);
+  const [cardToDelete, setCardToDelete] = useState<Card | null>(null);
 
   const handleDraw = async (outdoor: boolean | null = null) => {
     const result = await drawCard(deck.id, outdoor);
@@ -34,10 +35,12 @@ export default function DeckView({ deck, onUpdate, onBack }: Props) {
     setNewOutdoor(false);
   };
 
-  const handleDeleteCard = async (cardId: string) => {
-    await deleteCard(deck.id, cardId);
-    const updatedDeck = { ...deck, cards: deck.cards.filter((c) => c.id !== cardId) };
+  const confirmDelete = async () => {
+    if (!cardToDelete) return;
+    await deleteCard(deck.id, cardToDelete.id);
+    const updatedDeck = { ...deck, cards: deck.cards.filter((c) => c.id !== cardToDelete.id) };
     onUpdate(updatedDeck);
+    setCardToDelete(null);
   };
 
   const closeModal = () => {
@@ -66,10 +69,10 @@ export default function DeckView({ deck, onUpdate, onBack }: Props) {
         </button>
       </div>
 
-      {/* Modal overlay — only exists in the DOM when activeModal isn't null */}
+      {/* Draw / Add modal — click backdrop to close, click inside stays open */}
       {activeModal && (
-        <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50 px-4">
-          <div className="bg-[#e9e6ff] rounded-2xl p-6 w-full max-w-md shadow-xl relative">
+        <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50 px-4" onClick={closeModal}>
+          <div className="bg-[#e9e6ff] rounded-2xl p-6 w-full max-w-md shadow-xl relative" onClick={(e) => e.stopPropagation()}>
             <button
               onClick={closeModal}
               className="absolute top-3 right-4 text-[#7a77c8] hover:text-[#2a2d4a] text-xl font-bold">
@@ -139,10 +142,33 @@ export default function DeckView({ deck, onUpdate, onBack }: Props) {
         </div>
       )}
 
-      {/* Card list, unchanged */}
+      {/* Delete confirmation modal */}
+      {cardToDelete && (
+        <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50 px-4" onClick={() => setCardToDelete(null)}>
+          <div className="bg-[#e9e6ff] rounded-2xl p-6 w-full max-w-sm shadow-xl" onClick={(e) => e.stopPropagation()}>
+            <h2 className="text-xl font-bold text-[#2a2d4a] mb-2">Delete card?</h2>
+            <p className="text-[#7a77c8] mb-1">
+              "{cardToDelete.activity}" will be permanently removed.
+            </p>
+            <p className="text-[#D9789E] text-sm font-semibold mb-6">Warning: this cannot be undone.</p>
+            <div className="flex gap-3 justify-end">
+              <button onClick={() => setCardToDelete(null)}
+                className="px-5 py-2 rounded-xl font-semibold text-[#2a2d4a] hover:bg-[#c7d6ff] transition-all">
+                Cancel
+              </button>
+              <button onClick={confirmDelete}
+                className="bg-[#D9789E] text-white font-bold px-5 py-2 rounded-xl hover:bg-[#C15D85] transition-all">
+                Delete
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Card list */}
       <section className="flex flex-col gap-3">
         {deck.cards.length === 0 ? (
-          <p className="text-[#7a77c8] text-center">no decks yet...</p>
+          <p className="text-[#7a77c8] text-center">no cards yet...</p>
         ) : (
           deck.cards.map((card) => (
             <div key={card.id}
@@ -151,8 +177,8 @@ export default function DeckView({ deck, onUpdate, onBack }: Props) {
                 <p className="font-semibold text-[#e9e6ff]">{card.activity}</p>
                 <p className="text-sm text-[#b6b3f2]">{card.description}</p>
               </div>
-              <button onClick={() => handleDeleteCard(card.id)}
-                className="text-[#7a77c8] hover:text-red-400 transition-colors text-xl px-2">
+              <button onClick={() => setCardToDelete(card)}
+                className="text-[#7a77c8] hover:text-[#D9789E] transition-colors text-xl px-2">
                 ✕
               </button>
             </div>

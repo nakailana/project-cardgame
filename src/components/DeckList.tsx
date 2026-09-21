@@ -53,7 +53,7 @@ export default function DeckList({ decks, onSelect, onCreate, onDelete }: Props)
               </div>
               <button
                 onClick={(e) => { e.stopPropagation(); onDelete(deck.id); }}
-                className="text-[#7a77c8] hover:text-red-400 transition-colors text-xl px-2 group-hover:text-[#e9e6ff]">
+                className="text-[#7a77c8] hover:text-[#D9789E] transition-colors text-xl px-2">
                 ✕
               </button>
             </div>
