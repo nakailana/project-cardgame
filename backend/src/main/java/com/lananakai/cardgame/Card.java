@@ -11,15 +11,12 @@ public class Card {
     private String id;
     private String activity;
     private String description;
-    private String locationDesc;
     private Boolean outdoor;
 
     /*
      * REQUIRES: activity has a non-zero length;
      * EFFECTS: the card's activity is set to activity; the card's location is set
-     * to indoor;
-     * its description states the recommended location followed by the given
-     * description.
+     * to indoor; a brief description is given.
      */
     @JsonCreator
     public Card(@JsonProperty("activity") String activity,
@@ -29,32 +26,18 @@ public class Card {
 
         this.activity = activity;
         this.outdoor = outdoor;
-
-        if (this.outdoor) {
-            this.locationDesc = "Outdoor activity. ";
-        } else {
-            this.locationDesc = "Indoor activity. ";
-        }
         this.description = description;
     }
 
     // setters
     // MODIFIES: this
-    // EFFECTS: updates the location of this, updates location returned in
-    // description
+    // EFFECTS: updates the location of this object.
     public void updateLocation(Boolean location) {
         outdoor = location;
-
-        if (this.outdoor) {
-            this.locationDesc = "Outdoor activity. ";
-        } else {
-            this.locationDesc = "Indoor activity. ";
-        }
     }
 
     // MODIFIES: this
-    // EFFECTS: updates the description of the activity without changing the
-    // location description
+    // EFFECTS: updates the description of the activity
     public void updateDescription(String newDesc) {
         this.description = newDesc;
     }
@@ -68,12 +51,13 @@ public class Card {
         return activity;
     }
 
+    @JsonProperty("outdoor")
     public Boolean getLocation() {
         return outdoor;
     }
 
     public String getDescription() {
-        return locationDesc + description;
+        return description;
     }
 
     @Override

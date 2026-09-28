@@ -83,12 +83,21 @@ export default function DeckView({ deck, onUpdate, onBack }: Props) {
               <div>
                 <h2 className="text-2xl font-bold text-[#2a2d4a] mb-4">Draw a Card</h2>
                 {drawnCard ? (
-                  <div className="mb-4 bg-[#2a2d4a] rounded-xl p-4">
+                <div className="mb-4 bg-[#2a2d4a] rounded-xl p-4">
+                    <div className="flex items-center gap-2 mb-1">
                     <p className="text-lg font-semibold text-[#e9e6ff]">{drawnCard.activity}</p>
+                    <span className={
+                        drawnCard.outdoor
+                        ? "text-xs font-bold px-2 py-0.5 rounded-full bg-[#c7d6ff] text-[#2a2d4a]"
+                        : "text-xs font-bold px-2 py-0.5 rounded-full bg-[#7a77c8] text-[#e9e6ff]"
+                    }>
+                        {drawnCard.outdoor ? "☀ Outdoor" : "⌂ Indoor"}
+                    </span>
+                    </div>
                     <p className="text-[#b6b3f2]">{drawnCard.description}</p>
-                  </div>
+                </div>
                 ) : (
-                  <p className="text-[#7a77c8] mb-4">Choose your mode!</p>
+                <p className="text-[#7a77c8] mb-4">Choose your mode!</p>
                 )}
                 <div className="flex gap-3 flex-wrap">
                   <button onClick={() => handleDraw(null)}
@@ -173,14 +182,23 @@ export default function DeckView({ deck, onUpdate, onBack }: Props) {
           deck.cards.map((card) => (
             <div key={card.id}
               className="flex items-center justify-between bg-[#2a2d4a] hover:bg-[#353853] border border-[#7a77c8] rounded-xl px-5 py-3 shadow-sm">
-              <div>
-                <p className="font-semibold text-[#e9e6ff]">{card.activity}</p>
+              <div className="flex-1">
+                <div className="flex items-center gap-2 mb-1">
+                  <p className="font-semibold text-[#e9e6ff]">{card.activity}</p>
+                    <span className={
+                      card.outdoor
+                        ? "text-xs font-bold px-2 py-0.5 rounded-full bg-[#c7d6ff] text-[#2a2d4a]"
+                        : "text-xs font-bold px-2 py-0.5 rounded-full bg-[#7a77c8] text-[#e9e6ff]"
+                      }>
+                      {card.outdoor ? "☀ Outdoor" : "⌂ Indoor"}
+                    </span>
+                  </div>
                 <p className="text-sm text-[#b6b3f2]">{card.description}</p>
               </div>
-              <button onClick={() => setCardToDelete(card)}
-                className="text-[#7a77c8] hover:text-[#D9789E] transition-colors text-xl px-2">
-                ✕
-              </button>
+            <button onClick={() => setCardToDelete(card)}
+              className="text-[#7a77c8] hover:text-[#D9789E] transition-colors text-xl px-2">
+              ✕
+            </button>
             </div>
           ))
         )}
