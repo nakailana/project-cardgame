@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { Deck, Card } from "../types";
 import { addCard, deleteCard, drawCard } from "../api/api";
+import CardView from "./CardView";
 
 interface Props {
   deck: Deck;
@@ -18,6 +19,7 @@ export default function DeckView({ deck, onUpdate, onBack }: Props) {
   const [newDescription, setNewDescription] = useState("");
   const [newOutdoor, setNewOutdoor] = useState(false);
   const [cardToDelete, setCardToDelete] = useState<Card | null>(null);
+  const [selectedCard, setSelectedCard] = useState<Card | null>(null);
 
   const handleDraw = async (outdoor: boolean | null = null) => {
     const result = await drawCard(deck.id, outdoor);
@@ -41,6 +43,11 @@ export default function DeckView({ deck, onUpdate, onBack }: Props) {
     const updatedDeck = { ...deck, cards: deck.cards.filter((c) => c.id !== cardToDelete.id) };
     onUpdate(updatedDeck);
     setCardToDelete(null);
+  };
+
+  const requestDelete = (card: Card) => {
+    setSelectedCard(null);   // close the detail view
+    setCardToDelete(card);   // open the existing "are you sure?" modal
   };
 
   const closeModal = () => {
@@ -174,6 +181,12 @@ export default function DeckView({ deck, onUpdate, onBack }: Props) {
         </div>
       )}
 
+      <CardView
+        card={selectedCard}
+        onClose={() => setSelectedCard(null)}
+        onDelete={requestDelete}
+      />
+
       {/* Card list */}
       <section className="flex flex-col gap-3">
         {deck.cards.length === 0 ? (
@@ -181,26 +194,28 @@ export default function DeckView({ deck, onUpdate, onBack }: Props) {
         ) : (
           deck.cards.map((card) => (
             <div key={card.id}
-              className="flex items-center justify-between bg-[#2a2d4a] hover:bg-[#353853] border border-[#7a77c8] rounded-xl px-5 py-3 shadow-sm">
-              <div className="flex-1">
+                onClick={() => setSelectedCard(card)}
+                className="flex items-center justify-between bg-[#2a2d4a] hover:bg-[#353853] border border-[#7a77c8] rounded-xl px-5 py-3 shadow-sm cursor-pointer">
+                <div className="flex-1">
                 <div className="flex items-center gap-2 mb-1">
-                  <p className="font-semibold text-[#e9e6ff]">{card.activity}</p>
+                    <p className="font-semibold text-[#e9e6ff]">{card.activity}</p>
                     <span className={
-                      card.outdoor
+                    card.outdoor
                         ? "text-xs font-bold px-2 py-0.5 rounded-full bg-[#c7d6ff] text-[#2a2d4a]"
                         : "text-xs font-bold px-2 py-0.5 rounded-full bg-[#7a77c8] text-[#e9e6ff]"
-                      }>
-                      {card.outdoor ? "☀ Outdoor" : "⌂ Indoor"}
+                    }>
+                    {card.outdoor ? "☀ Outdoor" : "⌂ Indoor"}
                     </span>
-                  </div>
+                </div>
                 <p className="text-sm text-[#b6b3f2]">{card.description}</p>
-              </div>
-            <button onClick={() => setCardToDelete(card)}
-              className="text-[#7a77c8] hover:text-[#D9789E] transition-colors text-xl px-2">
-              ✕
-            </button>
+                </div>
+                <button
+                onClick={(e) => { e.stopPropagation(); setCardToDelete(card); }}
+                className="text-[#7a77c8] hover:text-[#D9789E] transition-colors text-xl px-2">
+                ✕
+                </button>
             </div>
-          ))
+            ))
         )}
       </section>
     </div>
