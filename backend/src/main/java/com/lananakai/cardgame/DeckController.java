@@ -2,7 +2,6 @@ package com.lananakai.cardgame;
 
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.ResponseEntity;
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -11,26 +10,30 @@ import java.util.List;
 @CrossOrigin(origins = "http://localhost:3000")
 public class DeckController {
 
-    private List<Deck> decks = new ArrayList<>();
+    private final DeckRepository decks;
+
+    // Spring passes in the repository it generated (dependency injection)
+    public DeckController(DeckRepository decks) {
+        this.decks = decks;
+    }
 
     // GET all decks
     @GetMapping
     public List<Deck> getDecks() {
-        return decks;
+        return decks.findAll();
     }
 
     // POST create a deck
     @PostMapping
     public Deck createDeck(@RequestBody Deck deck) {
         Deck newDeck = new Deck(deck.getName());
-        decks.add(newDeck);
-        return newDeck;
+        return decks.save(newDeck);
     }
 
     // DELETE a deck
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteDeck(@PathVariable String id) {
-        decks.removeIf(d -> d.getId().equals(id));
+        decks.deleteById(id);
         return ResponseEntity.ok().build();
     }
 
@@ -51,6 +54,7 @@ public class DeckController {
             return ResponseEntity.notFound().build();
         Card newCard = new Card(card.getActivity(), card.getLocation(), card.getDescription());
         deck.addCard(newCard);
+        decks.save(deck);
         return ResponseEntity.ok(newCard);
     }
 
@@ -61,6 +65,7 @@ public class DeckController {
         if (deck == null)
             return ResponseEntity.notFound().build();
         deck.removeCard(cardId);
+        decks.save(deck);
         return ResponseEntity.ok().build();
     }
 
@@ -80,11 +85,6 @@ public class DeckController {
 
     // helper
     private Deck findDeck(String id) {
-        for (Deck d : decks) {
-            if (d.getId().equals(id)) {
-                return d;
-            }
-        }
-        return null;
+        return decks.findById(id).orElse(null);
     }
 }

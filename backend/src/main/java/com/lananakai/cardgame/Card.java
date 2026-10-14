@@ -4,14 +4,25 @@ import java.util.UUID;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+
 // Represents a Card having an activity name, if it is an outdoor activity,
 // and optionally a brief description
+@Entity
 public class Card {
 
+    @Id
     private String id;
     private String activity;
+    @Column(length = 1000)
     private String description;
     private Boolean outdoor;
+
+    // EFFECTS: empty constructor for JPA to fill in fields when loading from the database
+    protected Card() {
+    }
 
     /*
      * REQUIRES: activity has a non-zero length;

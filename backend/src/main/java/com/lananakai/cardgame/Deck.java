@@ -7,12 +7,30 @@ import java.util.UUID;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
+
 // Represents a Card Deck with a name (theme) and list of cards.
+@Entity
 public class Deck {
 
+    @Id
     private String id;
+    @Column(name = "name")
     private String deckName;
+    // a deck owns its cards: saving/deleting the deck saves/deletes them too
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+    @JoinColumn(name = "deck_id")
     private List<Card> cards;
+
+    // EFFECTS: empty constructor for JPA to fill in fields when loading from the database
+    protected Deck() {
+    }
 
     /*
      * REQUIRES: deckName has a non-zero length
