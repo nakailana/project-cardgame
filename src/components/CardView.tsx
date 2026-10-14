@@ -1,5 +1,6 @@
 "use client";
 import { Card } from "../types";
+import LocationBadge from "./LocationBadge";
 
 interface Props {
   card: Card | null;
@@ -19,22 +20,17 @@ export default function CardView({ card, onClose, onDelete }: Props) {
         </button>
 
         <div className="flex items-center gap-2 mb-3">
-          <h2 className="text-2xl font-bold text-[#2a2d4a]">{card.activity}</h2>
-          <span className={
-            card.outdoor
-              ? "text-xs font-bold px-2 py-0.5 rounded-full bg-[#c7d6ff] text-[#2a2d4a]"
-              : "text-xs font-bold px-2 py-0.5 rounded-full bg-[#7a77c8] text-[#e9e6ff]"
-          }>
-            {card.outdoor ? "☀ Outdoor" : "⌂ Indoor"}
-          </span>
+          <h2 className="text-2xl font-semibold text-[#2a2d4a]">{card.activity}</h2>
+          <LocationBadge outdoor={card.outdoor} />
         </div>
 
         <p className="text-[#7a77c8] mb-6">{card.description}</p>
 
+        {/* Kept small and muted in the corner so it doesn't compete with the card */}
         <button
           onClick={() => onDelete(card)}
-          className="text-[#D9789E] hover:text-[#C15D85] font-semibold transition-colors">
-          Delete this card
+          className="absolute bottom-3 right-4 text-xs text-[#b6b3f2] hover:text-[#D9789E] transition-colors">
+          delete
         </button>
       </div>
     </div>

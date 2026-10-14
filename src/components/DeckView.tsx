@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Deck, Card } from "../types";
 import { addCard, deleteCard, drawCard } from "../api/api";
 import CardView from "./CardView";
+import LocationBadge from "./LocationBadge";
 
 interface Props {
   deck: Deck;
@@ -14,7 +15,7 @@ type ModalType = "draw" | "add" | null;
 
 export default function DeckView({ deck, onUpdate, onBack }: Props) {
   const [activeModal, setActiveModal] = useState<ModalType>(null);
-  const [drawnCard, setDrawnCard] = useState<Card | null>(null);
+  const [noCardFound, setNoCardFound] = useState(false);
   const [newActivity, setNewActivity] = useState("");
   const [newDescription, setNewDescription] = useState("");
   const [newOutdoor, setNewOutdoor] = useState(false);
@@ -23,8 +24,12 @@ export default function DeckView({ deck, onUpdate, onBack }: Props) {
 
   const handleDraw = async (outdoor: boolean | null = null) => {
     const result = await drawCard(deck.id, outdoor);
-    if (result == null) return;
-    setDrawnCard(result);
+    if (result == null) {
+      setNoCardFound(true);
+      return;
+    }
+    closeModal();            // close the draw modal
+    setSelectedCard(result); // open the drawn card's detail view
   };
 
   const handleAddCard = async () => {
@@ -52,7 +57,7 @@ export default function DeckView({ deck, onUpdate, onBack }: Props) {
 
   const closeModal = () => {
     setActiveModal(null);
-    setDrawnCard(null);
+    setNoCardFound(false);
   };
 
   return (
@@ -89,20 +94,8 @@ export default function DeckView({ deck, onUpdate, onBack }: Props) {
             {activeModal === "draw" && (
               <div>
                 <h2 className="text-2xl font-bold text-[#2a2d4a] mb-4">Draw a Card</h2>
-                {drawnCard ? (
-                <div className="mb-4 bg-[#2a2d4a] rounded-xl p-4">
-                    <div className="flex items-center gap-2 mb-1">
-                    <p className="text-lg font-semibold text-[#e9e6ff]">{drawnCard.activity}</p>
-                    <span className={
-                        drawnCard.outdoor
-                        ? "text-xs font-bold px-2 py-0.5 rounded-full bg-[#c7d6ff] text-[#2a2d4a]"
-                        : "text-xs font-bold px-2 py-0.5 rounded-full bg-[#7a77c8] text-[#e9e6ff]"
-                    }>
-                        {drawnCard.outdoor ? "☀ Outdoor" : "⌂ Indoor"}
-                    </span>
-                    </div>
-                    <p className="text-[#b6b3f2]">{drawnCard.description}</p>
-                </div>
+                {noCardFound ? (
+                <p className="text-[#D9789E] font-semibold mb-4">No cards match that mode — try another!</p>
                 ) : (
                 <p className="text-[#7a77c8] mb-4">Choose your mode!</p>
                 )}
@@ -199,13 +192,7 @@ export default function DeckView({ deck, onUpdate, onBack }: Props) {
                 <div className="flex-1">
                 <div className="flex items-center gap-2 mb-1">
                     <p className="font-semibold text-[#e9e6ff]">{card.activity}</p>
-                    <span className={
-                    card.outdoor
-                        ? "text-xs font-bold px-2 py-0.5 rounded-full bg-[#c7d6ff] text-[#2a2d4a]"
-                        : "text-xs font-bold px-2 py-0.5 rounded-full bg-[#7a77c8] text-[#e9e6ff]"
-                    }>
-                    {card.outdoor ? "☀ Outdoor" : "⌂ Indoor"}
-                    </span>
+                    <LocationBadge outdoor={card.outdoor} />
                 </div>
                 <p className="text-sm text-[#b6b3f2]">{card.description}</p>
                 </div>

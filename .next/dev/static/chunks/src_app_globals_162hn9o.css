@@ -428,6 +428,10 @@
     bottom: calc(var(--spacing) * -10);
   }
 
+  .bottom-3 {
+    bottom: calc(var(--spacing) * 3);
+  }
+
   .bottom-4 {
     bottom: calc(var(--spacing) * 4);
   }
@@ -570,8 +574,20 @@
     display: flex;
   }
 
+  .inline-flex {
+    display: inline-flex;
+  }
+
+  .h-4 {
+    height: calc(var(--spacing) * 4);
+  }
+
   .min-h-screen {
     min-height: 100vh;
+  }
+
+  .w-4 {
+    width: calc(var(--spacing) * 4);
   }
 
   .w-full {
@@ -652,6 +668,10 @@
 
   .justify-end {
     justify-content: flex-end;
+  }
+
+  .gap-1 {
+    gap: var(--spacing);
   }
 
   .gap-2 {
