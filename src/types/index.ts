@@ -10,3 +10,7 @@ export interface Deck {
   name: string;
   cards: Card[];
 }
+
+export interface User {
+  username: string;
+}

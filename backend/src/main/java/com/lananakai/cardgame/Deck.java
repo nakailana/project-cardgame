@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.UUID;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import jakarta.persistence.CascadeType;
@@ -13,6 +14,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 
 // Represents a Card Deck with a name (theme) and list of cards.
@@ -27,6 +29,12 @@ public class Deck {
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     @JoinColumn(name = "deck_id")
     private List<Card> cards;
+    // the user this deck belongs to; many decks can share one owner.
+    // @JsonIgnore keeps the owner (and their password hash) out of API responses
+    @ManyToOne
+    @JoinColumn(name = "owner_id")
+    @JsonIgnore
+    private AppUser owner;
 
     // EFFECTS: empty constructor for JPA to fill in fields when loading from the database
     protected Deck() {
@@ -42,6 +50,12 @@ public class Deck {
         this.id = UUID.randomUUID().toString();
         this.deckName = deckName;
         cards = new ArrayList<Card>();
+    }
+
+    // MODIFIES: this
+    // EFFECTS: makes owner the owner of this deck
+    public void setOwner(AppUser owner) {
+        this.owner = owner;
     }
 
     // REQUIRES: this is not an empty ArrayList
